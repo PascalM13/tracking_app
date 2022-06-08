@@ -5,7 +5,9 @@ import 'package:tracking_app/theme/colors.dart';
 
 void main() {
   runApp(MaterialApp(
-    theme: ThemeData(scaffoldBackgroundColor: primary),
+    theme: ThemeData(
+        scaffoldBackgroundColor: primary,
+        colorScheme: ColorScheme.fromSwatch().copyWith(primary: accentColor)),
     debugShowCheckedModeBanner: false,
     home: const WelcomeScreen(),
     onGenerateRoute: RouterManager.generateRoute,
