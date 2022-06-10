@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/routes.dart';
 import 'package:tracking_app/screens/auth/welcome_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     theme: ThemeData(
         scaffoldBackgroundColor: primary,
