@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
+import 'package:tracking_app/screens/auth/register_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/auth/welcome/welcome_background_widget.dart';
 
@@ -32,16 +33,22 @@ class WelcomeBodyWidget extends StatelessWidget {
             RoundedButtonWidget(
               text: "Login",
               onPress: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const LoginScreen();
-                }));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
               },
               color: accentColor,
               textColor: primary,
             ),
             RoundedButtonWidget(
               text: "Sign Up",
-              onPress: () {},
+              onPress: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterScreen()));
+              },
               color: secondery,
               textColor: Colors.black54,
             )

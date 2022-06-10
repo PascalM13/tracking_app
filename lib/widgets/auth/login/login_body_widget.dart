@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tracking_app/screens/auth/welcome_screen.dart';
+import 'package:tracking_app/screens/auth/register_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_background_widget.dart';
 
-import '../../UI/input_field_email_widget.dart';
-import '../../UI/input_field_password_widget.dart';
+import '../../UI/input_fields/input_field_email_widget.dart';
+import '../../UI/input_fields/input_field_password_widget.dart';
 
 class LoginBodyWidget extends StatelessWidget {
   const LoginBodyWidget({Key? key}) : super(key: key);
@@ -53,7 +53,7 @@ class LoginBodyWidget extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const WelcomeScreen(); //TODO: Needs to be wired up with Sign UP
+                    return const RegisterScreen();
                   }));
                 },
                 child: const Text(
