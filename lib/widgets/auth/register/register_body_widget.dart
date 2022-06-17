@@ -46,6 +46,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
           const SizedBox(
             height: 25,
           ),
+          /*
           const InputFieldWidget(
             hintText: "Vorname",
             icon: Icons.person,
@@ -83,12 +84,10 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
           RoundedDropdownGenderWidget(setGender: _setGender),
           const SizedBox(
             height: 30,
-          ),
+          ),*/
           RoundedButtonWidget(
               text: 'Sign Up',
-              onPress: () {
-                print(gender);
-              },
+              onPress: () {},
               color: accentColor,
               textColor: Colors.white),
           Row(
