@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:tracking_app/models/dto/login_dto.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
 import 'package:tracking_app/services/auth/login_service.dart';
@@ -6,6 +7,7 @@ import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_background_widget.dart';
 
+import '../../../routes.dart';
 import '../../UI/input_fields/input_field_widget.dart';
 
 class LoginBodyWidget extends StatefulWidget {
@@ -18,15 +20,28 @@ class LoginBodyWidget extends StatefulWidget {
 class _LoginBodyWidgetState extends State<LoginBodyWidget> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _isValid = true;
+  bool _isValid = true; //default is true, to not display error message
 
-  Future<void> validateCredentials() async {
+  Future<void> _validateUser(VoidCallback onSuccess) async {
     LoginDto dto =
         LoginDto(_emailController.text.trim(), _passwordController.text.trim());
-    bool value = await const LoginService().login(dto);
-    setState(() {
-      _isValid = value;
-    });
+    Response? res = await const LoginService().login(dto);
+
+    if (res == null) {
+      setState(() {
+        _isValid = false;
+      });
+    }
+
+    if (res?.statusCode != 201) {
+      setState(() {
+        _isValid = false;
+      });
+    }
+
+    if (res?.statusCode == 201) {
+      onSuccess.call();
+    }
   }
 
   @override
@@ -68,7 +83,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
           if (!_isValid)
             const SizedBox(
               child: Text(
-                "Falsche E-Mail oder Passwort",
+                "Wrong E-Mail or Password",
                 style: TextStyle(
                     color: accentColor,
                     fontSize: 12,
@@ -80,7 +95,10 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
           ),
           RoundedButtonWidget(
               text: 'Login',
-              onPress: validateCredentials,
+              onPress: () => _validateUser(() {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/', ModalRoute.withName('/welcome'));
+                  }),
               color: accentColor,
               textColor: Colors.white),
           Row(
