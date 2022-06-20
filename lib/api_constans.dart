@@ -5,7 +5,7 @@ class ApiConstants {
   static String signIn = 'auth/signin';
   static String signUp = 'auth/signup';
   //Constants for Activity
-  static String activityType = 'acitivity-type/';
+  static String activityType = 'activity-type/';
   static String actity = 'activity/';
   //Constant for News
   static String news = 'news/';
