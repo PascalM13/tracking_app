@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tracking_app/screens/activity_screen.dart';
+import 'package:tracking_app/screens/history_screen.dart';
+import 'package:tracking_app/screens/home_screen.dart';
+import 'package:tracking_app/screens/profile_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 
 class NavScreen extends StatefulWidget {
@@ -16,16 +20,16 @@ class _NavScreenState extends State<NavScreen> {
       index: pageIndex,
       children: const [
         Center(
-          child: Text("Home"),
+          child: HomeScreen(),
         ),
         Center(
-          child: Text("Acitivity"),
+          child: AcitvityScreen(),
         ),
         Center(
-          child: Text("History"),
+          child: HistoryScreen(),
         ),
         Center(
-          child: Text("User"),
+          child: ProfileScreen(),
         )
       ],
     );
