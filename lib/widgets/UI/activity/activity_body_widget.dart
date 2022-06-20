@@ -39,10 +39,6 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
     });
   }
 
-  void test() {
-    _setVisibilityStopwatch();
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -51,6 +47,13 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const Text(
+            "Activity",
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: accentColor,
+                fontSize: 25.0),
+          ),
           Image.asset(
             'assets/images/login_screen.jpg',
             height: size.height * 0.3,
