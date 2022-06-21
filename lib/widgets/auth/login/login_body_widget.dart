@@ -17,8 +17,8 @@ class LoginBodyWidget extends StatefulWidget {
 
 class _LoginBodyWidgetState extends State<LoginBodyWidget> {
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _isValid = true; //default is true, to not display error message
+  final _passwordController =
+      TextEditingController(); //default is true, to not display error message
 
   Future<void> _login() async {
     LoginDto dto =
@@ -26,12 +26,27 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
     Response? res = await const LoginService().login(dto);
 
     if (!mounted) return;
-    if (res!.statusCode == 201) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/', ModalRoute.withName('/welcome'));
+    if (res != null) {
+      if (res.statusCode == 201) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/', ModalRoute.withName('/welcome'));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text("Wrong credentials"),
+          backgroundColor: accentColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          behavior: SnackBarBehavior.floating,
+        ));
+      }
     } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Wrong credentials")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("No Connection"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
     }
   }
 
@@ -71,16 +86,6 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
               inputController: _passwordController,
               keyboardtType: TextInputType.text,
               isPassword: true),
-          if (!_isValid)
-            const SizedBox(
-              child: Text(
-                "Wrong E-Mail or Password",
-                style: TextStyle(
-                    color: accentColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
           const SizedBox(
             height: 30,
           ),

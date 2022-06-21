@@ -13,7 +13,6 @@ class LoginService {
 // Service for Login and Storing the JWT-Token
   Future<http.Response?> login(LoginDto dto) async {
     var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.signIn);
-    print("Ich bin hier");
     try {
       var res = await http
           .post(url, body: {'email': dto.email, 'password': dto.password});
