@@ -6,8 +6,6 @@ import 'package:tracking_app/services/auth/login_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_background_widget.dart';
-
-import '../../../routes.dart';
 import '../../UI/input_fields/input_field_widget.dart';
 
 class LoginBodyWidget extends StatefulWidget {
@@ -22,25 +20,18 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
   final _passwordController = TextEditingController();
   bool _isValid = true; //default is true, to not display error message
 
-  Future<void> _validateUser(VoidCallback onSuccess) async {
+  Future<void> _login() async {
     LoginDto dto =
         LoginDto(_emailController.text.trim(), _passwordController.text.trim());
     Response? res = await const LoginService().login(dto);
 
-    if (res == null) {
-      setState(() {
-        _isValid = false;
-      });
-    }
-
-    if (res?.statusCode != 201) {
-      setState(() {
-        _isValid = false;
-      });
-    }
-
-    if (res?.statusCode == 201) {
-      onSuccess.call();
+    if (!mounted) return;
+    if (res!.statusCode == 201) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/', ModalRoute.withName('/welcome'));
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Wrong credentials")));
     }
   }
 
@@ -95,10 +86,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
           ),
           RoundedButtonWidget(
               text: 'Login',
-              onPress: () => _validateUser(() {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/', ModalRoute.withName('/welcome'));
-                  }),
+              onPress: () => {_login()},
               color: accentColor,
               textColor: Colors.white),
           Row(
