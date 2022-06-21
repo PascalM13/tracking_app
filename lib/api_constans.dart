@@ -1,5 +1,8 @@
+import 'dart:io' show Platform;
+
 class ApiConstants {
-  static String baseUrl = 'http://10.0.2.2:3333/';
+  static String baseUrl =
+      Platform.isIOS ? 'http://0.0.0.0:3333/' : 'http://10.0.2.2:3333/';
 
   //Constants for Auth
   static String signIn = 'auth/signin';
