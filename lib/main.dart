@@ -11,6 +11,6 @@ void main() {
     debugShowCheckedModeBanner: false,
     home: const NavScreen(), //home: const WelcomeScreen(),
     onGenerateRoute: RouterManager.generateRoute,
-    initialRoute: RouterManager.welcomeScreen,
+    //initialRoute: RouterManager.welcomeScreen,
   ));
 }

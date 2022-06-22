@@ -17,6 +17,7 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
   String? activity;
   bool isChooseButtonVisible = true;
   bool isStopwatchVisible = false;
+  final _nameController = TextEditingController();
 
   // Function to pass to set the state of activity
   void _setActivity(String dropDownValue) {
@@ -37,6 +38,13 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
     setState(() {
       isStopwatchVisible = !isStopwatchVisible;
     });
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    _nameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -70,9 +78,11 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                 if (activity == 'Others')
                   Column(
                     children: [
-                      const InputFieldWidget(
+                      InputFieldWidget(
                         hintText: "Name of the activity",
                         icon: Icons.abc_rounded,
+                        inputController: _nameController,
+                        keyboardtType: TextInputType.text,
                       ),
                     ],
                   ),
@@ -81,9 +91,20 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                     onPress: () {
                       print(activity);
                       if (activity != null) {
-                        //hier Zeitmessung starten
-                        _setVisibilityButton();
-                        _setVisibilityStopwatch();
+                        if (activity == 'Others') {
+                          if (_nameController.text != '') {
+                            //hier Zeitmessung starten
+                            _setVisibilityButton();
+                            _setVisibilityStopwatch();
+                            print(_nameController.text);
+                          } else {
+                            print('else-fall');
+                          }
+                        } else {
+                          //hier Zeitmessung starten
+                          _setVisibilityButton();
+                          _setVisibilityStopwatch();
+                        }
                       }
                     },
                     color: accentColor,
