@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tracking_app/api_constans.dart';
@@ -21,12 +22,12 @@ class LoginService {
         final jsonToken = jsonDecode(res.body);
         const storage = FlutterSecureStorage();
         storage.write(key: "access_token", value: jsonToken['access_token']);
-        return res;
       }
       return res;
-    } catch (e) {
-      log(e.toString());
-      return null;
+    } on SocketException {
+      log("No internet connection");
+    } catch (err) {
+      log(err.toString());
     }
   }
 }

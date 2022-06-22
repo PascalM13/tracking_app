@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
+import 'package:tracking_app/services/acitivity_type_service.dart';
+import 'package:tracking_app/services/auth/token_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/auth/welcome/welcome_background_widget.dart';
 
@@ -48,6 +50,14 @@ class WelcomeBodyWidget extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const RegisterScreen()));
+              },
+              color: secondery,
+              textColor: Colors.black54,
+            ),
+            RoundedButtonWidget(
+              text: "API Test Button",
+              onPress: () {
+                print(TokenService().validateToken());
               },
               color: secondery,
               textColor: Colors.black54,

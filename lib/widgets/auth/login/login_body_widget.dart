@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 import 'package:tracking_app/models/dto/login_dto.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
@@ -6,8 +7,6 @@ import 'package:tracking_app/services/auth/login_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_background_widget.dart';
-
-import '../../../routes.dart';
 import '../../UI/input_fields/input_field_widget.dart';
 
 class LoginBodyWidget extends StatefulWidget {
@@ -19,28 +18,36 @@ class LoginBodyWidget extends StatefulWidget {
 
 class _LoginBodyWidgetState extends State<LoginBodyWidget> {
   final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  bool _isValid = true; //default is true, to not display error message
+  final _passwordController =
+      TextEditingController(); //default is true, to not display error message
 
-  Future<void> _validateUser(VoidCallback onSuccess) async {
+  Future<void> _login() async {
     LoginDto dto =
         LoginDto(_emailController.text.trim(), _passwordController.text.trim());
     Response? res = await const LoginService().login(dto);
 
-    if (res == null) {
-      setState(() {
-        _isValid = false;
-      });
-    }
-
-    if (res?.statusCode != 201) {
-      setState(() {
-        _isValid = false;
-      });
-    }
-
-    if (res?.statusCode == 201) {
-      onSuccess.call();
+    if (!mounted) return;
+    if (res != null) {
+      if (res.statusCode == 201) {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/', ModalRoute.withName('/welcome'));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: const Text("Wrong credentials"),
+          backgroundColor: accentColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          behavior: SnackBarBehavior.floating,
+        ));
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("No Connection"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
     }
   }
 
@@ -80,25 +87,12 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
               inputController: _passwordController,
               keyboardtType: TextInputType.text,
               isPassword: true),
-          if (!_isValid)
-            const SizedBox(
-              child: Text(
-                "Wrong E-Mail or Password",
-                style: TextStyle(
-                    color: accentColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
           const SizedBox(
             height: 30,
           ),
           RoundedButtonWidget(
               text: 'Login',
-              onPress: () => _validateUser(() {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, '/', ModalRoute.withName('/welcome'));
-                  }),
+              onPress: () => {_login()},
               color: accentColor,
               textColor: Colors.white),
           Row(
