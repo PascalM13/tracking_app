@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:tracking_app/models/dto/login_dto.dart';
+import 'package:tracking_app/screens/auth/login_forgot_password_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
 import 'package:tracking_app/services/auth/login_service.dart';
 import 'package:tracking_app/theme/colors.dart';
@@ -86,6 +87,25 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
               inputController: _passwordController,
               keyboardtType: TextInputType.text,
               isPassword: true),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text("Forgot your Password?  ",
+                  style: TextStyle(color: accentColor, fontSize: 12)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const LoginForgotPasswordScreen();
+                  }));
+                },
+                child: const Text(
+                  "Click here",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: accentColor),
+                ),
+              )
+            ],
+          ),
           const SizedBox(
             height: 30,
           ),
@@ -112,7 +132,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
                 ),
               )
             ],
-          )
+          ),
         ],
       ),
     ));
