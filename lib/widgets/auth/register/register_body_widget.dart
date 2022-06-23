@@ -3,11 +3,9 @@ import 'package:tracking_app/screens/auth/login_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
-import 'package:tracking_app/widgets/UI/rounded_dropdown_gender_widget.dart';
 import 'package:tracking_app/widgets/auth/register/register_background_widget.dart';
 
-import '../../UI/input_fields/input_field_email_widget.dart';
-import '../../UI/input_fields/input_field_password_widget.dart';
+import '../../../screens/auth/register_personal_screen.dart';
 
 class RegisterBodyWidget extends StatefulWidget {
   const RegisterBodyWidget({Key? key}) : super(key: key);
@@ -17,13 +15,53 @@ class RegisterBodyWidget extends StatefulWidget {
 }
 
 class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
-  String? gender;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _passwordValidatorController = TextEditingController();
 
-  // Function to pass to set the state of gender
-  void _setGender(String dropDownValue) {
-    setState(() {
-      gender = dropDownValue;
-    });
+  void _validateEmailAndPassword() {
+    //Validate our Email
+    if (_emailController.text.isEmpty) {
+      //TODO: Check if email already exists with Service
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Wrong credentials"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+      return;
+    }
+    //Check if every field is filled
+    if (_emailController.text.isEmpty ||
+        _passwordController.text.isEmpty ||
+        _passwordValidatorController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Please fill out all field!"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+      return;
+    }
+
+    //If both password are equals, we can redirect the user
+    if (_passwordController.text != _passwordValidatorController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Password need to be equal!"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+      return;
+    }
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return RegisterPersonalScreen(
+          email: _emailController.text, password: _passwordController.text);
+    }));
   }
 
   @override
@@ -46,48 +84,37 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
           const SizedBox(
             height: 25,
           ),
-          /*
-          const InputFieldWidget(
-            hintText: "Vorname",
-            icon: Icons.person,
-          ),
+          InputFieldWidget(
+              hintText: "Email",
+              icon: Icons.mail,
+              inputController: _emailController,
+              keyboardtType: TextInputType.emailAddress),
           const SizedBox(
             height: 15,
           ),
-          const InputFieldWidget(
-            hintText: "Nachname",
-            icon: Icons.person,
-          ),
+          InputFieldWidget(
+              hintText: "Password",
+              icon: Icons.lock,
+              inputController: _passwordController,
+              keyboardtType: TextInputType.text,
+              isPassword: true),
           const SizedBox(
             height: 15,
           ),
-          const InputFieldEmailWidget(),
-          const SizedBox(
-            height: 15,
-          ),
-          const InputFieldPasswordWidget(),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text("Optional",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black45,
-                  fontSize: 14)),
-          const SizedBox(
-            height: 10,
-          ),
-          const InputFieldWidget(
-            hintText: "Adresse",
-            icon: Icons.house,
-          ),
-          RoundedDropdownGenderWidget(setGender: _setGender),
+          InputFieldWidget(
+              hintText: "Repeat Password",
+              icon: Icons.lock,
+              inputController: _passwordValidatorController,
+              keyboardtType: TextInputType.text,
+              isPassword: true),
           const SizedBox(
             height: 30,
-          ),*/
+          ),
           RoundedButtonWidget(
-              text: 'Sign Up',
-              onPress: () {},
+              text: 'Next',
+              onPress: () {
+                _validateEmailAndPassword();
+              },
               color: accentColor,
               textColor: Colors.white),
           Row(

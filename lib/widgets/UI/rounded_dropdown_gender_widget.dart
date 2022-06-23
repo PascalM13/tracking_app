@@ -13,7 +13,7 @@ class RoundedDropdownGenderWidget extends StatefulWidget {
 
 class _RoundedDropdownGenderWidgetState
     extends State<RoundedDropdownGenderWidget> {
-  String dropDownValue = "Keine Angabe";
+  String dropDownValue = "---";
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _RoundedDropdownGenderWidgetState
               });
               widget.setGender(dropDownValue);
             },
-            items: <String>['Keine Angabe', 'Männlich', 'Weiblich', 'Divers']
+            items: <String>['---', 'Male', 'Female', 'Diverse']
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,

@@ -9,6 +9,7 @@ class InputFieldWidget extends StatefulWidget {
   final TextEditingController inputController;
   final TextInputType keyboardtType;
   final bool isPassword;
+  final double inputWidth;
 
   const InputFieldWidget(
       {Key? key,
@@ -16,7 +17,8 @@ class InputFieldWidget extends StatefulWidget {
       required this.icon,
       required this.inputController,
       required this.keyboardtType,
-      this.isPassword = false})
+      this.isPassword = false,
+      this.inputWidth = 0.8})
       : super(key: key);
 
   @override
@@ -27,16 +29,17 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return InputFieldWidgetContainer(
+        inputWidth: widget.inputWidth,
         child: TextField(
-      controller: widget.inputController,
-      obscureText: widget.isPassword, // Hide if Widget is used for password
-      decoration: InputDecoration(
-          prefixIcon: Icon(
-            widget.icon,
-          ),
-          hintText: widget.hintText,
-          border: InputBorder.none),
-      keyboardType: widget.keyboardtType,
-    ));
+          controller: widget.inputController,
+          obscureText: widget.isPassword, // Hide if Widget is used for password
+          decoration: InputDecoration(
+              prefixIcon: Icon(
+                widget.icon,
+              ),
+              hintText: widget.hintText,
+              border: InputBorder.none),
+          keyboardType: widget.keyboardtType,
+        ));
   }
 }

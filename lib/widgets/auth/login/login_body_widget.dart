@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 import 'package:tracking_app/models/dto/login_dto.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
@@ -33,7 +32,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
             context, '/', ModalRoute.withName('/welcome'));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text("Wrong credentials"),
+          content: const Text("Email already exists"),
           backgroundColor: accentColor,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),

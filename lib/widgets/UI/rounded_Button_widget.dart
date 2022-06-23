@@ -5,13 +5,15 @@ class RoundedButtonWidget extends StatelessWidget {
   final VoidCallback onPress;
   final Color color;
   final Color textColor;
+  final double buttonWidth;
 
   const RoundedButtonWidget(
       {Key? key,
       required this.text,
       required this.onPress,
       required this.color,
-      required this.textColor})
+      required this.textColor,
+      this.buttonWidth = 0.8})
       : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class RoundedButtonWidget extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      width: size.width * 0.8,
+      width: size.width * buttonWidth,
       child: TextButton(
           style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),

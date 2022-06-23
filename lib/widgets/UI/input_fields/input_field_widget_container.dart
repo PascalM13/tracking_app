@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../theme/colors.dart';
 
 class InputFieldWidgetContainer extends StatelessWidget {
+  final double inputWidth;
   final Widget child;
-  const InputFieldWidgetContainer({Key? key, required this.child})
+  const InputFieldWidgetContainer(
+      {Key? key, required this.child, required this.inputWidth})
       : super(key: key);
 
   @override
@@ -12,7 +14,7 @@ class InputFieldWidgetContainer extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 7.0),
-      width: size.width * 0.8,
+      width: size.width * inputWidth,
       decoration: BoxDecoration(
         color: secondery,
         borderRadius: BorderRadius.circular(30),
