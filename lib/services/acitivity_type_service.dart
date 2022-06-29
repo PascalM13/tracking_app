@@ -1,61 +1,37 @@
 import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
-
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tracking_app/api_constans.dart';
-import 'package:http/http.dart' as http;
-import 'package:tracking_app/models/activity_type.dart';
+import 'package:tracking_app/models/acitvity_type/activity_type.dart';
+import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 
 class ActivityTypeService {
   const ActivityTypeService();
 
-  ///Http-Get-Request which returns a activity-type by id
-  Future<ActivityType?> getActivityType(int id) async {
-    var url = Uri.parse(
-        ApiConstants.baseUrl + ApiConstants.activityType + id.toString());
-    const storage = FlutterSecureStorage();
-    var token = await storage.read(key: 'access_token');
-
-    try {
-      final response = await http.get(url, headers: {
-        HttpHeaders.authorizationHeader: 'Bearer ${token!}',
-      });
-
-      final responseJson = jsonDecode(response.body);
-
+  ///Get-Request which returns a activity-type by id
+  Future<ActivityType> getActivityType(int id) async {
+    final String url = ApiConstants.activityType + id.toString();
+    final res = await const ApiServiceHelper().createGetRequest(url, true);
+    if (res.statusCode == 200) {
+      final responseJson = jsonDecode(res.body);
       return ActivityType.fromJson(responseJson);
-    } catch (e) {
-      //TODO: Redirect to Welcome if we get a 401 unauthorized?
-      log(e.toString());
-      return null;
+    } else {
+      throw Exception('Failed to load ActivityType with id: $id');
     }
   }
 
-  ///Http-Get-Request which returns all acitivity-types
-  Future<List<ActivityType>?> getUniversities() async {
-    var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.university);
-    const storage = FlutterSecureStorage();
-    var token = await storage.read(key: 'access_token');
-
-    try {
-      final response = await http.get(url, headers: {
-        HttpHeaders.authorizationHeader: 'Bearer ${token!}',
-      });
-
-      final responseJson = jsonDecode(response.body);
-
+  ///Get-Request which returns all acitivity-types
+  Future<List<ActivityType>> getUniversities() async {
+    final String url = ApiConstants.university;
+    final res = await const ApiServiceHelper().createGetRequest(url, true);
+    if (res.statusCode == 200) {
+      final responseJson = jsonDecode(res.body);
       //Creating a list to store input data
-      List<ActivityType> activityTypes = [];
+      List<ActivityType> universities = [];
       for (var activityType in responseJson) {
-        activityTypes.add(ActivityType.fromJson(activityType));
+        universities.add(ActivityType.fromJson(activityType));
       }
-
-      return activityTypes;
-    } catch (e) {
-      //TODO: Redirect to Welcome if we get a 401 unauthorized?
-      log(e.toString());
-      return null;
+      return universities;
+    } else {
+      throw Exception('Failed to load ActivityTypes');
     }
   }
 }

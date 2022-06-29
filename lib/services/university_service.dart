@@ -1,61 +1,37 @@
 import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
-
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tracking_app/api_constans.dart';
-import 'package:tracking_app/models/university.dart';
-import 'package:http/http.dart' as http;
+import 'package:tracking_app/models/university/university.dart';
+import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 
 class UniversityService {
   const UniversityService();
 
-  ///Http-Get-Request which returns a University by id
-  Future<University?> getUniversityById(int id) async {
-    var url = Uri.parse(
-        ApiConstants.baseUrl + ApiConstants.university + id.toString());
-    const storage = FlutterSecureStorage();
-    var token = await storage.read(key: 'access_token');
-
-    try {
-      final response = await http.get(url, headers: {
-        HttpHeaders.authorizationHeader: 'Bearer ${token!}',
-      });
-
-      final responseJson = jsonDecode(response.body);
-
+  ///Get-Request which returns a University by id
+  Future<University> getUniversityById(int id) async {
+    final String url = ApiConstants.university + id.toString();
+    final res = await const ApiServiceHelper().createGetRequest(url, false);
+    if (res.statusCode == 200) {
+      final responseJson = jsonDecode(res.body);
       return University.fromJson(responseJson);
-    } catch (e) {
-      //TODO: Redirect to Welcome if we get a 401 unauthorized?
-      log(e.toString());
-      return null;
+    } else {
+      throw Exception('Failed to load University with id: $id');
     }
   }
 
-  ///Http-Get-Request which returns a all Universities
-  Future<List<University>?> getUniversities() async {
-    var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.university);
-    const storage = FlutterSecureStorage();
-    var token = await storage.read(key: 'access_token');
-
-    try {
-      final response = await http.get(url, headers: {
-        HttpHeaders.authorizationHeader: 'Bearer ${token!}',
-      });
-
-      final responseJson = jsonDecode(response.body);
-
+  ///Get-Request which returns all Universities
+  Future<List<University>> getUniversities() async {
+    final String url = ApiConstants.university;
+    final res = await const ApiServiceHelper().createGetRequest(url, false);
+    if (res.statusCode == 200) {
+      final responseJson = jsonDecode(res.body);
       //Creating a list to store input data
       List<University> universities = [];
       for (var university in responseJson) {
         universities.add(University.fromJson(university));
       }
-
       return universities;
-    } catch (e) {
-      //TODO: Redirect to Welcome if we get a 401 unauthorized?
-      log(e.toString());
-      return null;
+    } else {
+      throw Exception('Failed to load Universities');
     }
   }
 }

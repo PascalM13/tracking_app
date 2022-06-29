@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tracking_app/models/auth/sign_in_dto.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
-import 'package:tracking_app/services/acitivity_type_service.dart';
-import 'package:tracking_app/services/auth/token_service.dart';
-import 'package:tracking_app/services/university_service.dart';
+import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/auth/welcome/welcome_background_widget.dart';
 
@@ -58,7 +57,8 @@ class WelcomeBodyWidget extends StatelessWidget {
             RoundedButtonWidget(
               text: "API Test Button",
               onPress: () {
-                UniversityService().getUniversities();
+                final dto = new SignInDto("peter@example.comm", "password123");
+                AuthService().signIn(dto);
               },
               color: secondery,
               textColor: Colors.black54,
