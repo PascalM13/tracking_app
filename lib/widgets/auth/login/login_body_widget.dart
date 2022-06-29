@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:tracking_app/models/dto/login_dto.dart';
+import 'package:tracking_app/models/auth/sign_in_dto.dart';
 import 'package:tracking_app/screens/auth/login_forgot_password_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
-import 'package:tracking_app/services/auth/login_service.dart';
+import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_background_widget.dart';
@@ -22,24 +22,23 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
       TextEditingController(); //default is true, to not display error message
 
   Future<void> _login() async {
-    LoginDto dto =
-        LoginDto(_emailController.text.trim(), _passwordController.text.trim());
-    Response? res = await const LoginService().login(dto);
+    SignInDto dto = SignInDto(
+        _emailController.text.trim(), _passwordController.text.trim());
+    final int status = await const AuthService().signIn(dto);
 
     if (!mounted) return;
-    if (res != null) {
-      if (res.statusCode == 201) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/', ModalRoute.withName('/welcome'));
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: const Text("Email already exists"),
-          backgroundColor: accentColor,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          behavior: SnackBarBehavior.floating,
-        ));
-      }
+
+    if (status != 201) {
+      Navigator.pushNamedAndRemoveUntil(
+          context, '/', ModalRoute.withName('/welcome'));
+    } else if (status == 400) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Email already exists"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text("No Connection"),
