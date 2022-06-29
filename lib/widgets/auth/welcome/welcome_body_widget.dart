@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tracking_app/models/auth/sign_in_dto.dart';
+import 'package:tracking_app/models/auth/sign_up_dto.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
 import 'package:tracking_app/services/auth_service.dart';
@@ -57,8 +58,13 @@ class WelcomeBodyWidget extends StatelessWidget {
             RoundedButtonWidget(
               text: "API Test Button",
               onPress: () {
-                final dto = new SignInDto("peter@example.comm", "password123");
-                AuthService().signIn(dto);
+                final dto = SignUpDto(
+                    email: "MyMail@mail.com",
+                    password: "123D",
+                    firstName: "Hans",
+                    lastName: "Peter",
+                    weight: 180);
+                dto.toJson();
               },
               color: secondery,
               textColor: Colors.black54,
