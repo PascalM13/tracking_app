@@ -20,9 +20,10 @@ class AuthService {
         await const ApiServiceHelper().createPostRequest(url, dto, false);
 
     if (res.statusCode == 201) {
-      final jsonToken = jsonDecode(res.body);
+      final json = jsonDecode(res.body);
       const storage = FlutterSecureStorage();
-      storage.write(key: "access_token", value: jsonToken['access_token']);
+      storage.write(key: "access_token", value: json['access_token']);
+      UserModel().setCurrentUser(json);
 
       return res.statusCode;
     } else if (res.statusCode == 400) {
