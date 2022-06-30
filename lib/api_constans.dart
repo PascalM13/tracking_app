@@ -9,8 +9,8 @@ class ApiConstants {
   static String signUp = 'auth/signup';
   static String resetPassword = 'auth/password/reset';
   static String changePassword = 'auth/password/change';
-  static String confirmEmail = 'confirm/email/';
-  static String confirmNewEmail = 'confirm/new-email/';
+  static String confirmEmail = 'auth/confirm/email/';
+  static String confirmNewEmail = 'auth/confirm/new-email/';
   //Constants for Activity
   static String activityType = 'activity-type/';
   static String actity = 'activity/';

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tracking_app/models/auth/sign_in_dto.dart';
 import 'package:tracking_app/models/auth/sign_up_dto.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
@@ -8,6 +11,7 @@ import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/auth/welcome/welcome_background_widget.dart';
 
+import '../../../models/user/user_model.dart';
 import '../../UI/rounded_button_widget.dart';
 
 class WelcomeBodyWidget extends StatelessWidget {
@@ -57,14 +61,11 @@ class WelcomeBodyWidget extends StatelessWidget {
             ),
             RoundedButtonWidget(
               text: "API Test Button",
-              onPress: () {
-                final dto = SignUpDto(
-                    email: "MyMail@mail.com",
-                    password: "123D",
-                    firstName: "Hans",
-                    lastName: "Peter",
-                    weight: 180);
-                dto.toJson();
+              onPress: () async {
+                AuthService().confirmEmail("pascal@test.com", "MDX-22V");
+
+                var user = await UserModel().getCurrentUser();
+                print(user.email);
               },
               color: secondery,
               textColor: Colors.black54,
