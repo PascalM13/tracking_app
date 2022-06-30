@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/auth/sign_up_dto.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
+import 'package:tracking_app/screens/auth/verify_screen.dart';
 import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_date_widget.dart';
@@ -64,7 +65,9 @@ class _RegisterPersonalBodyWidgetState
     if (!mounted) return;
 
     if (res == 201) {
-      //TODO Screen für Validierung
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const VerifyScreen();
+      }));
     } else if (res == 409) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text("Account already exists"),
@@ -107,7 +110,7 @@ class _RegisterPersonalBodyWidgetState
           InputFieldWidget(
               hintText: "Firstname",
               icon: Icons.person,
-              inputController: _lastNameController,
+              inputController: _firstNameController,
               keyboardtType: TextInputType.name),
           const SizedBox(
             height: 15,
@@ -115,7 +118,7 @@ class _RegisterPersonalBodyWidgetState
           InputFieldWidget(
               hintText: "Lastname",
               icon: Icons.family_restroom,
-              inputController: _firstNameController,
+              inputController: _lastNameController,
               keyboardtType: TextInputType.name),
           const SizedBox(
             height: 15,
@@ -206,8 +209,7 @@ class _RegisterPersonalBodyWidgetState
           RoundedButtonWidget(
               text: 'Sign Up',
               onPress: () {
-                //TODO: SignUp Service needs to be created
-                log("No logic implemented at 'register_personal_body_widget'");
+                _signUp();
               },
               color: accentColor,
               textColor: Colors.white),

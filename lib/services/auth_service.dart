@@ -45,7 +45,7 @@ class AuthService {
     } else if (res.statusCode == 409) {
       return res.statusCode;
     } else {
-      throw Exception('Failed to sign in');
+      throw Exception('Failed to sign up');
     }
   }
 
@@ -72,6 +72,8 @@ class AuthService {
       // Save user data in SharedPreferences
       UserModel().setCurrentUser(json);
 
+      return res.statusCode;
+    } else if (res.statusCode == 401) {
       return res.statusCode;
     } else {
       throw Exception("Cant validate Email");
