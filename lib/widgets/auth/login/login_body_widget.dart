@@ -31,9 +31,9 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
     if (status != 201) {
       Navigator.pushNamedAndRemoveUntil(
           context, '/', ModalRoute.withName('/welcome'));
-    } else if (status == 400) {
+    } else if (status == 401) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Email already exists"),
+        content: const Text("Wrong password"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -41,7 +41,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
       ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("No Connection"),
+        content: const Text("Email doesn't exist"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),

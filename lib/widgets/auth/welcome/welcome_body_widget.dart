@@ -32,7 +32,7 @@ class WelcomeBodyWidget extends StatelessWidget {
                     fontSize: 20)),
             SvgPicture.asset(
               'assets/images/svg_welcome_screen.svg',
-              height: size.height * 0.4,
+              height: size.height * 0.3,
             ),
             const SizedBox(
               height: 20,

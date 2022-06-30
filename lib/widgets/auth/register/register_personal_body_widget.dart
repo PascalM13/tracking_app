@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:tracking_app/models/auth/sign_up_dto.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
+import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_date_widget.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
@@ -40,6 +42,46 @@ class _RegisterPersonalBodyWidgetState
     setState(() {
       gender = dropDownValue;
     });
+  }
+
+  Future<void> _signUp() async {
+    final String fullAddress =
+        "${_addressZIPController.text.trim()} ${_addressTownController.text.trim()}, ${_addressStreetController.text.trim()}";
+    SignUpDto dto = SignUpDto(
+      email: widget.email,
+      password: widget.password,
+      firstName: _firstNameController.text.trim(),
+      lastName: _lastNameController.text.trim(),
+      address: fullAddress,
+      gender: gender,
+      //birthday: _birthdateController.text.trim(), //TODO Convert to Int?
+      height: int.parse(_heightController.text.trim()),
+      weight: int.parse(_weightController.text.trim()),
+    );
+
+    int res = await const AuthService().signUp(dto);
+
+    if (!mounted) return;
+
+    if (res == 201) {
+      //TODO Screen für Validierung
+    } else if (res == 409) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Account already exists"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Error - Please fill out all mandatory fields"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+    }
   }
 
   @override
