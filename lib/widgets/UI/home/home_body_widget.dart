@@ -15,7 +15,6 @@ class HomeBodyWidget extends StatefulWidget {
 class _HomeBodyWidgetState extends State<HomeBodyWidget> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return ScreenBackgroundWidget(
         child: SingleChildScrollView(
       child: Column(
@@ -30,13 +29,13 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
             ),
           ),
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: const Text(
               "Relationship between diabetes and fitness", //TODO: hier Name aus Datenbank einfügen
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
-                color: accentColor,
+                color: Colors.black45,
                 fontSize: 21.0,
               ),
               textAlign: TextAlign.center,
@@ -45,7 +44,7 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
           const SizedBox(
             height: 30,
           ),
-          Text(
+          const Text(
             'Your own progress:',
             style: TextStyle(
               height: 2.5,
@@ -58,15 +57,15 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
           const SizedBox(
             height: 15,
           ),
-          PercentIndicatorDayWidget(),
+          const PercentIndicatorDayWidget(),
           const SizedBox(
             height: 15,
           ),
-          PercentIndicatorActivityWidget(),
+          const PercentIndicatorActivityWidget(),
           const SizedBox(
             height: 30,
           ),
-          ExpansionPanelListWidget(),
+          const ExpansionPanelListWidget(),
         ],
       ),
     ));

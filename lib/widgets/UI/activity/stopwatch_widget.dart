@@ -31,11 +31,9 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
           StreamBuilder<int>(
               stream: _stopWatchTimer.rawTime,
               initialData: _stopWatchTimer.rawTime.value,
@@ -82,6 +80,6 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                     textColor: Colors.white),
               ],
             ),
-        ]));
+        ]);
   }
 }
