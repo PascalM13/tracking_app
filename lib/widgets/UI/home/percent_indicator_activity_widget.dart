@@ -12,36 +12,42 @@ class PercentIndicatorActivityWidget extends StatefulWidget {
 
 class _PercentIndicatorActivityWidgetState
     extends State<PercentIndicatorActivityWidget> {
+  final double _drawnProgress =
+      0.56; //TODO: hier Fortschritt der Aktivität aus Datenbank eingeben
+  final String _progress =
+      '56 of 100 days'; //TODO: hier die jeweilige Zahl aus der Datenbank einfügen
+  final String _target =
+      '100'; //TODO: hier die jeweilige Endzeit aus der Studie einfügen
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: LinearPercentIndicator(
         lineHeight: 25,
         width: size.width - 60,
-        percent:
-            56 / 100, //TODO: hier Fortschritt der Tage aus Datenbank eingeben
+        barRadius: const Radius.circular(20),
+        percent: _drawnProgress,
         animation: true,
         animationDuration: 1000,
         progressColor: accentColor,
-        leading: new Text(
+        leading: const Text(
           '0',
           style: TextStyle(
             color: Colors.black,
             fontSize: 11.0,
           ),
         ),
-        center: new Text(
-          '56 of 100 activities', //TODO: hier die jeweilige Zahl aus der Datenbank einfügen
-          style: TextStyle(
+        center: Text(
+          _progress,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 11.0,
           ),
         ),
-        trailing: new Text(
-          '100', //TODO: hier die jeweilige Anzahl an Aktivitäten aus der Studie einfügen
-          style: TextStyle(
+        trailing: Text(
+          _target,
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 11.0,
           ),

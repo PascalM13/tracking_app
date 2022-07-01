@@ -11,6 +11,23 @@ class HistoryBodyWidget extends StatefulWidget {
 }
 
 class _HistoryBodyWidgetState extends State<HistoryBodyWidget> {
+  List<String> dateArray = [
+    '2022-06-30',
+    '2022-06-29',
+    '2022-06-28',
+    '2022-06-27',
+    '2022-06-26'
+  ];
+  List<String> nameArray = [
+    'Running',
+    'Cycling',
+    'Walking',
+    'Running',
+    'Swimming',
+    'Hiking'
+  ];
+  int preferedLength = 0;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,11 +50,14 @@ class _HistoryBodyWidgetState extends State<HistoryBodyWidget> {
           const SizedBox(
             height: 15,
           ),
-          HistoryCardWidget(),
-          HistoryCardWidget(),
-          HistoryCardWidget(),
-          HistoryCardWidget(),
-          HistoryCardWidget(),
+          if (dateArray.length <= nameArray.length)
+            for (int i = 0; i < dateArray.length; i++)
+              HistoryCardWidget(
+                  dateOfActivity: dateArray[i], nameOfActivity: nameArray[i]),
+          if (dateArray.length > nameArray.length)
+            for (int i = 0; i < nameArray.length; i++)
+              HistoryCardWidget(
+                  dateOfActivity: dateArray[i], nameOfActivity: nameArray[i]),
         ],
       ),
     ));
