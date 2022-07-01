@@ -86,7 +86,7 @@ class AuthService {
     final res =
         await const ApiServiceHelper().createPostRequest(url, dto, false);
 
-    if (res.statusCode == 201) {
+    if (res.statusCode == 201 || res.statusCode == 400) {
       return res.statusCode;
     } else {
       throw Exception('Failed to reset password');
@@ -99,7 +99,7 @@ class AuthService {
     final res =
         await const ApiServiceHelper().createPostRequest(url, dto, false);
 
-    if (res.statusCode == 201) {
+    if (res.statusCode == 201 || res.statusCode == 400) {
       return res.statusCode;
     } else {
       throw Exception('Failed to change password');

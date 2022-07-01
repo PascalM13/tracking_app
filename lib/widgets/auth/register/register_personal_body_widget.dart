@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/auth/sign_up_dto.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
@@ -7,6 +5,7 @@ import 'package:tracking_app/screens/auth/verify_screen.dart';
 import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_date_widget.dart';
+import 'package:tracking_app/widgets/UI/input_fields/input_field_numbers_widget.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_dropdown_gender_widget.dart';
@@ -46,18 +45,45 @@ class _RegisterPersonalBodyWidgetState
   }
 
   Future<void> _signUp() async {
+    //First check if lastname and firstname are not empty
+    if (_firstNameController.text.trim().isEmpty ||
+        _lastNameController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("First- and Lastname should not be empty!"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+      return;
+    }
+
+    //Create a full Address
     final String fullAddress =
         "${_addressZIPController.text.trim()} ${_addressTownController.text.trim()}, ${_addressStreetController.text.trim()}";
+
+    //Parse only if its not empty
+    final int? parsedHeight = _heightController.text.trim().isNotEmpty
+        ? int.parse(_heightController.text.trim())
+        : null;
+
+    final int? parsedWeight = _weightController.text.trim().isNotEmpty
+        ? int.parse(_weightController.text.trim())
+        : null;
+
+    final String? parsedGender =
+        gender == "---" || gender == null ? null : gender!.toUpperCase();
+
     SignUpDto dto = SignUpDto(
       email: widget.email,
       password: widget.password,
       firstName: _firstNameController.text.trim(),
       lastName: _lastNameController.text.trim(),
       address: fullAddress,
-      gender: gender,
+      gender: parsedGender,
       //birthday: _birthdateController.text.trim(), //TODO Convert to Int?
-      height: int.parse(_heightController.text.trim()),
-      weight: int.parse(_weightController.text.trim()),
+      height: parsedHeight,
+      weight: parsedWeight,
     );
 
     int res = await const AuthService().signUp(dto);
@@ -70,7 +96,7 @@ class _RegisterPersonalBodyWidgetState
       }));
     } else if (res == 409) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Account already exists"),
+        content: const Text("Account with Email already exists"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -121,7 +147,15 @@ class _RegisterPersonalBodyWidgetState
               inputController: _lastNameController,
               keyboardtType: TextInputType.name),
           const SizedBox(
-            height: 15,
+            height: 10,
+          ),
+          const Text("Optional",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black45,
+                  fontSize: 14)),
+          const SizedBox(
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -134,7 +168,7 @@ class _RegisterPersonalBodyWidgetState
             ],
           ),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
           const Text("Address",
               style: TextStyle(
@@ -142,7 +176,7 @@ class _RegisterPersonalBodyWidgetState
                   color: Colors.black45,
                   fontSize: 14)),
           const SizedBox(
-            height: 15,
+            height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -176,30 +210,24 @@ class _RegisterPersonalBodyWidgetState
           const SizedBox(
             height: 15,
           ),
-          const Text("Optional",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black45,
-                  fontSize: 14)),
-          const SizedBox(
-            height: 15,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              InputFieldWidget(
-                hintText: "Height(cm)",
+              InputFieldNumbersWidget(
+                hintText: "Height",
                 icon: Icons.height,
                 inputController: _heightController,
                 keyboardtType: TextInputType.number,
                 inputWidth: 0.4,
+                labelText: "cm",
               ),
-              InputFieldWidget(
-                hintText: "Weight(kg)",
+              InputFieldNumbersWidget(
+                hintText: "Weight",
                 icon: Icons.scale,
                 inputController: _weightController,
                 keyboardtType: TextInputType.number,
                 inputWidth: 0.36,
+                labelText: "kg",
               ),
             ],
           ),

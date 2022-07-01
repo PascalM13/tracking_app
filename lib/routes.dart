@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tracking_app/screens/UI/nav_screen.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
 import 'package:tracking_app/screens/auth/verify_screen.dart';
@@ -17,6 +18,14 @@ class RouterManager {
   static const String welcomeScreen = '/welcome';
   static const String loginScreen = '/login';
   static const String verifyScreen = '/verify';
+
+  static Future<void> startingRoute(String route) async {
+    const storage = FlutterSecureStorage();
+    var token = await storage.read(key: 'access_token');
+    if (token != null) {
+      route = RouterManager.navScreen;
+    }
+  }
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {

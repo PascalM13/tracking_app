@@ -30,7 +30,7 @@ class SignUpDto {
     data['password'] = password;
     data['firstName'] = firstName;
     data['lastName'] = lastName;
-    data['gender'] = gender!.toUpperCase();
+    data['gender'] = gender;
     data['address'] = address;
     data['birthday'] = birthday;
     data['height'] = height;

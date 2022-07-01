@@ -51,12 +51,14 @@ class ApiServiceHelper {
 
     //Create a get Request by Token Status
     if (tokenRequired == true && token != null) {
+      var json = dto.toJson();
+      var jsonEnc = jsonEncode(json);
       res = await http.post(url,
           headers: {
             "Content-Type": "application/json",
             HttpHeaders.authorizationHeader: 'Bearer $token',
           },
-          body: dto.toJson());
+          body: jsonEnc);
     } else {
       var json = dto.toJson();
       var jsonEnc = jsonEncode(json);

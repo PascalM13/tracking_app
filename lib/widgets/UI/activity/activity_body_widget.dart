@@ -117,7 +117,7 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                 if (isStopwatchVisible == true)
                   Column(
                     children: [
-                      StopWatchWidget(),
+                      //StopWatchWidget(),
                       const SizedBox(
                         height: 15,
                       ),

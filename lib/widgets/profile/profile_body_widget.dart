@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tracking_app/widgets/UI/rounded_Button_widget.dart';
+import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 import '../../theme/colors.dart';
 
@@ -15,7 +15,7 @@ class ProfileBodyWidget extends StatefulWidget {
 class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
   Future<void> _logout() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    final storage = new FlutterSecureStorage();
+    const storage = FlutterSecureStorage();
 
     //Clear token and shared preferences
     await preferences.clear();

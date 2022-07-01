@@ -5,6 +5,10 @@ import 'package:tracking_app/theme/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  String defaultRoute = RouterManager.welcomeScreen;
+  RouterManager.startingRoute(defaultRoute);
+
   runApp(MaterialApp(
     theme: ThemeData(
         scaffoldBackgroundColor: primary,
@@ -12,6 +16,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     //home: const NavScreen(), //home: const WelcomeScreen(),
     onGenerateRoute: RouterManager.generateRoute,
-    initialRoute: RouterManager.welcomeScreen,
+
+    initialRoute: defaultRoute,
   ));
 }

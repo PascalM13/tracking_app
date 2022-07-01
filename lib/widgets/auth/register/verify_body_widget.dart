@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:tracking_app/services/auth_service.dart';
 
 import '../../../theme/colors.dart';
 import '../../UI/input_fields/input_field_widget.dart';
-import '../../UI/rounded_Button_widget.dart';
+import '../../UI/rounded_button_widget.dart';
 
 class VerifyBodyWidget extends StatefulWidget {
   const VerifyBodyWidget({Key? key}) : super(key: key);
@@ -68,7 +66,7 @@ class _VerifyBodyWidgetState extends State<VerifyBodyWidget> {
                 ),
                 InputFieldWidget(
                   hintText: "Verify-Code",
-                  icon: Icons.lock,
+                  icon: Icons.security,
                   inputController: _verifyController,
                   keyboardtType: TextInputType.text,
                 ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tracking_app/models/auth/reset_password_dto.dart';
+import 'package:tracking_app/screens/auth/login_forgot_password_verify_screen.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
+import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
-import 'package:tracking_app/widgets/UI/rounded_Button_widget.dart';
+import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_forgot_password_background_widget.dart';
 
 class LoginForgotPasswordBodyWidget extends StatefulWidget {
@@ -18,10 +21,7 @@ class _LoginForgotPasswordBodyWidgetState
   final _emailController = TextEditingController();
   final _emailVerificationController = TextEditingController();
 
-  void _resetPassword() {
-    //TODO Check if Account with Email exists
-    //if (emailExists() != true) return;
-
+  void _resetPassword() async {
     //Check if email == emailVerification
     if (_emailController.text != _emailVerificationController.text) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -33,20 +33,41 @@ class _LoginForgotPasswordBodyWidgetState
       ));
       return;
     }
-    // TODO: Send a Request to change the password of the User
-    ScaffoldMessenger.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(SnackBar(
-        content: const Text("A new Password has been sent to your Email!"),
+    ResetPasswordDto dto = ResetPasswordDto(_emailController.text.trim());
+    int res = await const AuthService().resetPassword(dto);
+
+    if (!mounted) return;
+
+    // If request failed
+    if (res == 400) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Invalid Email"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 10),
       ));
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const LoginScreen();
-    }));
+      return;
+    }
+
+    // If Request was successful
+    if (res == 201) {
+      ScaffoldMessenger.of(context)
+        ..removeCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          content: const Text("A new Password has been sent to your Email!"),
+          backgroundColor: accentColor,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 10),
+        ));
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const LoginForgotPasswordVerifyScreen();
+      }));
+    }
+
+    return;
   }
 
   @override
