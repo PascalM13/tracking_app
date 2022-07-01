@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
+import 'package:tracking_app/screens/auth/verify_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
@@ -49,7 +50,7 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
     //If both password are equals, we can redirect the user
     if (_passwordController.text != _passwordValidatorController.text) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Password need to be equal!"),
+        content: const Text("Passwords need to be equal!"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
@@ -135,7 +136,29 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
                 ),
               )
             ],
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text("Verify account?  ",
+                  style: TextStyle(color: accentColor)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const VerifyScreen();
+                  }));
+                },
+                child: const Text(
+                  "Click here",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: accentColor),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     ));

@@ -116,12 +116,35 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                           );
                         }));
                       }
-                    }
-                  },
-                  color: accentColor,
-                  textColor: Colors.white),
-            ],
-          ),
+                    },
+                    color: accentColor,
+                    textColor: Colors.white),
+              ],
+            ),
+          if (isChooseButtonVisible == false)
+            Column(
+              children: [
+                if (isStopwatchVisible == true)
+                  Column(
+                    children: [
+                      //StopWatchWidget(),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      RoundedButtonWidget(
+                          text: 'Save activity',
+                          onPress: () {
+                            //hier Übertragung in Datenbank
+                            _setVisibilityButton();
+                            _setVisibilityStopwatch();
+                            activity = null;
+                          },
+                          color: accentColor,
+                          textColor: Colors.white),
+                    ],
+                  ),
+              ],
+            ),
         ],
       ),
     ));

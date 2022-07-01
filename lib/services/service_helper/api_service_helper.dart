@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -50,13 +51,19 @@ class ApiServiceHelper {
 
     //Create a get Request by Token Status
     if (tokenRequired == true && token != null) {
+      var json = dto.toJson();
+      var jsonEnc = jsonEncode(json);
       res = await http.post(url,
           headers: {
+            "Content-Type": "application/json",
             HttpHeaders.authorizationHeader: 'Bearer $token',
           },
-          body: dto.toJson());
+          body: jsonEnc);
     } else {
-      res = await http.post(url, body: dto.toJson());
+      var json = dto.toJson();
+      var jsonEnc = jsonEncode(json);
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: jsonEnc);
     }
     return res;
   }

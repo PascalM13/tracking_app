@@ -11,19 +11,18 @@ class SignUpDto {
   int? birthday;
   int? height;
   int? weight;
-  int? universityId;
 
-  SignUpDto(
-      {required this.email,
-      required this.password,
-      required this.firstName,
-      required this.lastName,
-      this.gender,
-      this.address,
-      this.birthday,
-      this.height,
-      this.weight,
-      this.universityId});
+  SignUpDto({
+    required this.email,
+    required this.password,
+    required this.firstName,
+    required this.lastName,
+    this.gender,
+    this.address,
+    this.birthday,
+    this.height,
+    this.weight,
+  });
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -36,6 +35,8 @@ class SignUpDto {
     data['birthday'] = birthday;
     data['height'] = height;
     data['weight'] = weight;
+    data['role'] = "USER"; //Needs to be send
+
     return data;
   }
 }

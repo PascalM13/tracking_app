@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:tracking_app/models/auth/sign_in_dto.dart';
 import 'package:tracking_app/screens/auth/login_forgot_password_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
@@ -28,7 +27,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
 
     if (!mounted) return;
 
-    if (status != 201) {
+    if (status == 201) {
       Navigator.pushNamedAndRemoveUntil(
           context, '/', ModalRoute.withName('/welcome'));
     } else if (status == 401) {
@@ -41,7 +40,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
       ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Email doesn't exist"),
+        content: const Text("Account doesn't exist"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
