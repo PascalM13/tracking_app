@@ -1,4 +1,5 @@
 import 'package:tracking_app/models/acitvity_type/activity_type_model.dart';
+import 'package:tracking_app/services/acitivity_type_service.dart';
 
 class ActivityModel {
   final int id;
@@ -12,7 +13,7 @@ class ActivityModel {
   final int userId;
   final int activityTypeId;
   final int projectId;
-  final ActivityTypeModel activityType;
+  String? activityName;
 
   ActivityModel(
       {required this.id,
@@ -25,20 +26,20 @@ class ActivityModel {
       required this.userId,
       required this.activityTypeId,
       required this.projectId,
-      required this.activityType});
+      this.activityName});
 
   factory ActivityModel.fromJson(Map<String, dynamic> json) {
     return ActivityModel(
-        id: json['id'],
-        startDate: json['start_date'],
-        endDate: json['end_date'],
-        hearthrate: json['hearthrate'],
-        steps: json['steps'],
-        distance: json['distance'],
-        bloodSugarOxygen: json['bloodSugarOxygen'],
-        userId: json['userId'],
-        activityTypeId: json['activityTypeId'],
-        projectId: json['projectId'],
-        activityType: ActivityTypeModel.fromJson(json['activityType']));
+      id: json['id'],
+      startDate: json['start_date'],
+      endDate: json['end_date'],
+      hearthrate: json['hearthrate'],
+      steps: json['steps'],
+      distance: json['distance'],
+      bloodSugarOxygen: json['bloodSugarOxygen'],
+      userId: json['userId'],
+      activityTypeId: json['activityTypeId'],
+      projectId: json['projectId'],
+    );
   }
 }
