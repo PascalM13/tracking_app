@@ -22,7 +22,7 @@ class AuthService {
     if (res.statusCode == 201) {
       final json = jsonDecode(res.body);
       const storage = FlutterSecureStorage();
-      storage.write(key: "access_token", value: json['access_token']);
+      storage.write(key: "access_token", value: json['accessToken']);
       UserModel().setCurrentUser(json);
 
       return res.statusCode;
@@ -67,7 +67,7 @@ class AuthService {
       final json = jsonDecode(res.body);
       // Save recieved access token in secure storage
       const storage = FlutterSecureStorage();
-      storage.write(key: "access_token", value: json['access_token']);
+      storage.write(key: "access_token", value: json['accessToken']);
 
       // Save user data in SharedPreferences
       UserModel().setCurrentUser(json);

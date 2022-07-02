@@ -36,7 +36,10 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return ScreenBackgroundWidget(
+    return Text("123");
+  }
+}
+    /*return ScreenBackgroundWidget(
         child: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -149,4 +152,4 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
       ),
     ));
   }
-}
+}*/
