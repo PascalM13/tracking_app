@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tracking_app/screens/auth/login_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
@@ -23,8 +22,8 @@ class WelcomeBodyWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.black54,
                     fontSize: 20)),
-            SvgPicture.asset(
-              'assets/images/svg_welcome_screen.svg',
+            Image.asset(
+              'assets/images/welcome_screen.png',
               height: size.height * 0.3,
             ),
             const SizedBox(
@@ -52,6 +51,26 @@ class WelcomeBodyWidget extends StatelessWidget {
               color: secondery,
               textColor: Colors.black54,
             ),
+            /*RoundedButtonWidget(
+              text: "Test",
+              onPress: () async {
+                SignInDto dto = SignInDto("pascal@example.com", "password");
+                int res = await AuthService().signIn(dto);
+                if (res == 201) {
+                  ActivityDto dto = ActivityDto(
+                    startDate: 1740991600000,
+                    endDate: 1760991600000,
+                    userId: 18,
+                    activityTypeId: 1,
+                    projectId: 1,
+                    steps: 2000,
+                  );
+                  await ActivityService().createActivity(dto);
+                }
+              },
+              color: secondery,
+              textColor: Colors.black54,
+            )*/
           ]),
     );
   }

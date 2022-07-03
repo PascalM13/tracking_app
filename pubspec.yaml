@@ -34,7 +34,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   line_icons: ^2.0.1
-  flutter_svg: ^1.1.0
   flutter_secure_storage: ^5.0.2
   http: ^0.13.4
 
@@ -69,7 +68,7 @@ flutter:
   assets:
     - assets/images/bottom_welcome_screen.png
     - assets/images/top_welcome_screen.png
-    - assets/images/svg_welcome_screen.svg
+    - assets/images/welcome_screen.png
     - assets/images/login_screen.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see

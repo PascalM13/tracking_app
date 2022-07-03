@@ -23,7 +23,7 @@ class _NavScreenState extends State<NavScreen> {
           child: HomeScreen(),
         ),
         Center(
-          child: AcitvityScreen(),
+          child: ActivityScreen(),
         ),
         Center(
           child: HistoryScreen(),

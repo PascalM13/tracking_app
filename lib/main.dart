@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/routes.dart';
-import 'package:tracking_app/screens/UI/nav_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   String defaultRoute = RouterManager.welcomeScreen;
-  RouterManager.startingRoute(defaultRoute);
 
   runApp(MaterialApp(
     theme: ThemeData(
