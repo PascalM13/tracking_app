@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tracking_app/screens/activity_startstop_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
-import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
-import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
-import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
-import 'package:tracking_app/widgets/UI/rounded_dropdown_activity_widget.dart';
+
+import '../background/screen_background_widget.dart';
 
 class ActivityBodyWidget extends StatefulWidget {
   const ActivityBodyWidget({Key? key}) : super(key: key);
@@ -26,6 +23,19 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
     });
   }
 
+  void _validateNameOfActivity() {
+    if (_nameController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Wrong credentials"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+      return;
+    }
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -36,10 +46,8 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Text("123");
-  }
-}
-    /*return ScreenBackgroundWidget(
+    
+    return ScreenBackgroundWidget(
         child: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +99,6 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
               RoundedButtonWidget(
                   text: 'Choose activity',
                   onPress: () {
-                    print(_activity);
                     if (_activity != null) {
                       if (_activity == 'Others') {
                         if (_nameController.text != '') {
@@ -104,9 +111,8 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                               writtenActivity: _nameController.text,
                             );
                           }));
-                          print(_nameController.text);
                         } else {
-                          print('else-fall');
+                          _validateNameOfActivity();
                         }
                       } else {
                         //hier Zeitmessung starten
@@ -152,4 +158,4 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
       ),
     ));
   }
-}*/
+}

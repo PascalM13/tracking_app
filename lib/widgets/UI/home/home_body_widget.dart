@@ -13,6 +13,9 @@ class HomeBodyWidget extends StatefulWidget {
 }
 
 class _HomeBodyWidgetState extends State<HomeBodyWidget> {
+  final String _studyname =
+      "Relationship between diabetes and fitness"; //TODO: hier Name aus Datenbank einfügen
+
   @override
   Widget build(BuildContext context) {
     return ScreenBackgroundWidget(
@@ -30,9 +33,9 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child: const Text(
-              "Relationship between diabetes and fitness", //TODO: hier Name aus Datenbank einfügen
-              style: TextStyle(
+            child: Text(
+              _studyname,
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
                 color: Colors.black45,
