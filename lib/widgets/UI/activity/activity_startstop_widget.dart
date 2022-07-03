@@ -8,9 +8,7 @@ import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 class ActivityStartStopWidget extends StatefulWidget {
   final String activity;
-  final String writtenActivity;
-  const ActivityStartStopWidget(
-      {Key? key, required this.activity, required this.writtenActivity})
+  const ActivityStartStopWidget({Key? key, required this.activity})
       : super(key: key);
   @override
   State<ActivityStartStopWidget> createState() =>

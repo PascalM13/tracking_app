@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/theme/colors.dart';
 
+import '../../../screens/activity_startstop_screen.dart';
 import '../background/screen_background_widget.dart';
+import '../rounded_Button_widget.dart';
+import '../rounded_dropdown_activity_widget.dart';
 
 class ActivityBodyWidget extends StatefulWidget {
   const ActivityBodyWidget({Key? key}) : super(key: key);
@@ -13,7 +16,6 @@ class ActivityBodyWidget extends StatefulWidget {
 class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
   String? _activity;
   String transferActivity = '';
-  final _nameController = TextEditingController();
 
   // Function to pass to set the state of activity
   void _setActivity(String dropDownValue) {
@@ -23,30 +25,10 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
     });
   }
 
-  void _validateNameOfActivity() {
-    if (_nameController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Wrong credentials"),
-        backgroundColor: accentColor,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        behavior: SnackBarBehavior.floating,
-      ));
-      return;
-    }
-  }
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    _nameController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    
+
     return ScreenBackgroundWidget(
         child: SingleChildScrollView(
       child: Column(
@@ -85,75 +67,33 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
               RoundedDropdownActivityWidget(
                 setActivity: _setActivity,
               ),
-              if (_activity == 'Others')
-                Column(
-                  children: [
-                    InputFieldWidget(
-                      hintText: "Name of the activity",
-                      icon: Icons.abc_rounded,
-                      inputController: _nameController,
-                      keyboardtType: TextInputType.text,
-                    ),
-                  ],
-                ),
               RoundedButtonWidget(
-                  text: 'Choose activity',
-                  onPress: () {
-                    if (_activity != null) {
-                      if (_activity == 'Others') {
-                        if (_nameController.text != '') {
-                          //hier Zeitmessung starten
+                text: 'Choose activity',
+                color: accentColor,
+                textColor: Colors.white,
+                onPress: () {
+                  if (_activity != null) {
+                    //hier Zeitmessung starten
 
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return ActivityStartStopScreen(
-                              activity: transferActivity,
-                              writtenActivity: _nameController.text,
-                            );
-                          }));
-                        } else {
-                          _validateNameOfActivity();
-                        }
-                      } else {
-                        //hier Zeitmessung starten
-
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return ActivityStartStopScreen(
-                            activity: transferActivity,
-                            writtenActivity: _nameController.text,
-                          );
-                        }));
-                      }
-                    },
-                    color: accentColor,
-                    textColor: Colors.white),
-              ],
-            ),
-          if (isChooseButtonVisible == false)
-            Column(
-              children: [
-                if (isStopwatchVisible == true)
-                  Column(
-                    children: [
-                      //StopWatchWidget(),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      RoundedButtonWidget(
-                          text: 'Save activity',
-                          onPress: () {
-                            //hier Übertragung in Datenbank
-                            _setVisibilityButton();
-                            _setVisibilityStopwatch();
-                            activity = null;
-                          },
-                          color: accentColor,
-                          textColor: Colors.white),
-                    ],
-                  ),
-              ],
-            ),
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ActivityStartStopScreen(
+                        activity: transferActivity,
+                      );
+                    }));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: const Text("Error - Please select an activity"),
+                      backgroundColor: accentColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0)),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                  }
+                },
+              ),
+            ],
+          ),
         ],
       ),
     ));

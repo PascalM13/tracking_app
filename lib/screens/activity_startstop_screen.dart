@@ -3,9 +3,7 @@ import 'package:tracking_app/widgets/UI/activity/activity_startstop_widget.dart'
 
 class ActivityStartStopScreen extends StatelessWidget {
   final String activity;
-  final String writtenActivity;
-  const ActivityStartStopScreen(
-      {Key? key, required this.activity, required this.writtenActivity})
+  const ActivityStartStopScreen({Key? key, required this.activity})
       : super(key: key);
 
   @override
@@ -13,7 +11,6 @@ class ActivityStartStopScreen extends StatelessWidget {
     return Scaffold(
       body: ActivityStartStopWidget(
         activity: activity,
-        writtenActivity: writtenActivity,
       ),
     );
   }
