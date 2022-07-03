@@ -26,6 +26,19 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
     });
   }
 
+  void _validateNameOfActivity() {
+    if (_nameController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Wrong credentials"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+      return;
+    }
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -88,7 +101,6 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
               RoundedButtonWidget(
                   text: 'Choose activity',
                   onPress: () {
-                    print(_activity);
                     if (_activity != null) {
                       if (_activity == 'Others') {
                         if (_nameController.text != '') {
@@ -101,9 +113,8 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                               writtenActivity: _nameController.text,
                             );
                           }));
-                          print(_nameController.text);
                         } else {
-                          print('else-fall');
+                          _validateNameOfActivity();
                         }
                       } else {
                         //hier Zeitmessung starten
@@ -116,6 +127,8 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                           );
                         }));
                       }
+                    } else {
+                      _validateNameOfActivity();
                     }
                   },
                   color: accentColor,

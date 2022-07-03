@@ -10,8 +10,8 @@ void main() {
         scaffoldBackgroundColor: primary,
         colorScheme: ColorScheme.fromSwatch().copyWith(primary: accentColor)),
     debugShowCheckedModeBanner: false,
-    //home: const NavScreen(), //home: const WelcomeScreen(),
+    home: const NavScreen(), //home: const WelcomeScreen(),
     onGenerateRoute: RouterManager.generateRoute,
-    initialRoute: RouterManager.welcomeScreen,
+    //initialRoute: RouterManager.welcomeScreen,
   ));
 }

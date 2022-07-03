@@ -18,6 +18,7 @@ class ActivityStartStopWidget extends StatefulWidget {
 }
 
 class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
+  final String _header = 'Activity';
   @override
   Widget build(BuildContext context) {
     return ScreenBackgroundWidget(
@@ -25,9 +26,9 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Text(
-            "Activity: ",
-            style: TextStyle(
+          Text(
+            _header,
+            style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: accentColor,
                 fontSize: 25.0),
