@@ -24,7 +24,7 @@ class _VerifyBodyWidgetState extends State<VerifyBodyWidget> {
 
     if (res == 201) {
       Navigator.pushNamedAndRemoveUntil(
-          context, '/', ModalRoute.withName('/welcome'));
+          context, '/nav', ModalRoute.withName('/'));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text("Wrong Email or Code"),

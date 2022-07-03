@@ -29,7 +29,7 @@ class _LoginBodyWidgetState extends State<LoginBodyWidget> {
 
     if (status == 201) {
       Navigator.pushNamedAndRemoveUntil(
-          context, '/', ModalRoute.withName('/welcome'));
+          context, '/nav', ModalRoute.withName('/'));
     } else if (status == 401) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text("Wrong password"),

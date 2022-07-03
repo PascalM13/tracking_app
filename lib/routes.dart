@@ -14,14 +14,14 @@ import 'package:tracking_app/screens/profile_screen.dart';
 
 class RouterManager {
   //Non-Auth Screens
-  static const String navScreen = '/';
+  static const String navScreen = '/nav';
   static const String homeScreen = '/home';
   static const String activityScreen = '/activity';
   static const String historyScreen = '/history';
   static const String profileScreen = '/profile';
 
   //Auth Screens
-  static const String welcomeScreen = '/welcome';
+  static const String welcomeScreen = '/';
   static const String loginScreen = '/login';
   static const String loginForgotPasswordScreen = '/login-forgot-password';
   static const String loginForgotPasswordVerifyScreen =
