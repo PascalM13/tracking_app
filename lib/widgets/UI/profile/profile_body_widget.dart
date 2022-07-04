@@ -4,6 +4,8 @@ import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
+import '../../../models/user/user_model.dart';
+
 class ProfileBodyWidget extends StatefulWidget {
   const ProfileBodyWidget({Key? key}) : super(key: key);
 
@@ -13,15 +15,64 @@ class ProfileBodyWidget extends StatefulWidget {
 
 class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
   //variables which have to be filled with database
-  final String _firstname = 'abc';
-  final String _lastname = 'def';
-  final String _dateofbirth = 'ghi';
-  final String _gender = 'jkl';
-  final String _town = 'mno';
-  final String _zip = 'pqr';
-  final String _streetno = 'stu';
-  final String _height = 'vwx';
-  final String _weight = 'yza';
+  String _firstname = '';
+  String _lastname = '';
+  String _dateofbirth = '';
+  String _gender = '';
+  String _zip = '';
+  String _town = '';
+  String _street = '';
+  String _number = '';
+  String _height = '';
+  String _weight = '';
+  List<String> _addressList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getUser();
+  }
+
+  void _getUser() async {
+    UserModel tmp = await UserModel().getCurrentUser();
+    setState(() {
+      _firstname = tmp.firstName!;
+      _lastname = tmp.lastName!;
+      if (tmp.birthday == null) {
+        _dateofbirth = '---';
+      } else {
+        _dateofbirth = tmp.birthday.toString();
+      }
+      if (tmp.gender == null) {
+        _gender = '---';
+      } else {
+        _gender = tmp.gender.toString();
+      }
+      if (tmp.address == null) {
+        _zip = '---';
+        _town = '---';
+        _street = '---';
+        _number = '---';
+      } else {
+        var help = tmp.address.toString();
+        final splitted = help.split(' ');
+        _zip = splitted[0];
+        _town = splitted[1].substring(0, splitted[1].length - 1);
+        _street = splitted[2];
+        _number = splitted[3];
+      }
+      if (tmp.height == null) {
+        _height = '---';
+      } else {
+        _height = tmp.height.toString();
+      }
+      if (tmp.weight == null) {
+        _weight = '---';
+      } else {
+        _weight = tmp.weight.toString();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,16 +139,6 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    'Town:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
                     'ZIP:',
                     style: TextStyle(
                       height: 2.5,
@@ -108,7 +149,27 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    'Street, no:',
+                    'Town:',
+                    style: TextStyle(
+                      height: 2.5,
+                      fontWeight: FontWeight.bold,
+                      color: accentColor,
+                      fontSize: 15.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Street:',
+                    style: TextStyle(
+                      height: 2.5,
+                      fontWeight: FontWeight.bold,
+                      color: accentColor,
+                      fontSize: 15.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Number:',
                     style: TextStyle(
                       height: 2.5,
                       fontWeight: FontWeight.bold,
@@ -179,15 +240,6 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    _town,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
                     _zip,
                     style: const TextStyle(
                       height: 2.5,
@@ -197,7 +249,25 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    _streetno,
+                    _town,
+                    style: const TextStyle(
+                      height: 2.5,
+                      color: Colors.black,
+                      fontSize: 15.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    _street,
+                    style: const TextStyle(
+                      height: 2.5,
+                      color: Colors.black,
+                      fontSize: 15.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    _number,
                     style: const TextStyle(
                       height: 2.5,
                       color: Colors.black,
