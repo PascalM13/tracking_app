@@ -9,6 +9,8 @@ import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_dropdown_gender_widget.dart';
 
+import '../../../models/user/user_model.dart';
+
 class ProfileChangeWidget extends StatefulWidget {
   const ProfileChangeWidget({Key? key}) : super(key: key);
 
@@ -28,6 +30,65 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   final _addressStreetController = TextEditingController();
 
   String? gender;
+
+  String _firstname = '';
+  String _lastname = '';
+  String _dateofbirth = '';
+  String _gender = '';
+  String _zip = '';
+  String _town = '';
+  String _street = '';
+  String _number = '';
+  String _streetno = '';
+  String _height = '';
+  String _weight = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _getUser();
+  }
+
+  void _getUser() async {
+    UserModel tmp = await UserModel().getCurrentUser();
+    setState(() {
+      _firstname = tmp.firstName!;
+      _lastname = tmp.lastName!;
+      if (tmp.birthday == null) {
+        _dateofbirth = 'Date of birth';
+      } else {
+        _dateofbirth = tmp.birthday.toString();
+      }
+      if (tmp.gender == null) {
+        _gender = 'Gender';
+      } else {
+        _gender = tmp.gender.toString();
+      }
+      if (tmp.address == null) {
+        _zip = 'ZIP';
+        _town = 'Town';
+        _street = 'Street, ';
+        _number = 'no.';
+      } else {
+        var help = tmp.address.toString();
+        final splitted = help.split(' ');
+        _zip = splitted[0];
+        _town = splitted[1].substring(0, splitted[1].length - 1);
+        _street = splitted[2];
+        _number = splitted[3];
+      }
+      if (tmp.height == null) {
+        _height = 'Height(cm)';
+      } else {
+        _height = '${tmp.height} cm';
+      }
+      if (tmp.weight == null) {
+        _weight = 'Weight(kg)';
+      } else {
+        _weight = '${tmp.weight} kg';
+      }
+    });
+  }
 
   // Function to pass to set the state of gender
   void _setGender(String dropDownValue) {
@@ -54,7 +115,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             height: 25,
           ),
           InputFieldWidget(
-              hintText: "Firstname",
+              hintText: _firstname,
               icon: Icons.person,
               inputController: _lastNameController,
               keyboardtType: TextInputType.name),
@@ -62,7 +123,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             height: 15,
           ),
           InputFieldWidget(
-              hintText: "Lastname",
+              hintText: _lastname,
               icon: Icons.family_restroom,
               inputController: _firstNameController,
               keyboardtType: TextInputType.name),
@@ -94,14 +155,14 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               InputFieldWidget(
-                hintText: "Town",
+                hintText: _town,
                 icon: Icons.home,
                 inputController: _addressTownController,
                 keyboardtType: TextInputType.text,
                 inputWidth: 0.4,
               ),
               InputFieldWidget(
-                hintText: "ZIP",
+                hintText: _zip,
                 icon: Icons.location_on,
                 inputController: _addressZIPController,
                 keyboardtType: TextInputType.number,
@@ -113,7 +174,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             height: 15,
           ),
           InputFieldWidget(
-            hintText: "Street, no.",
+            hintText: _street + ' ' + _number,
             icon: Icons.add_location_alt,
             inputController: _addressStreetController,
             keyboardtType: TextInputType.streetAddress,
@@ -134,14 +195,14 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               InputFieldWidget(
-                hintText: "Height(cm)",
+                hintText: _height,
                 icon: Icons.height,
                 inputController: _heightController,
                 keyboardtType: TextInputType.number,
                 inputWidth: 0.4,
               ),
               InputFieldWidget(
-                hintText: "Weight(kg)",
+                hintText: _weight,
                 icon: Icons.scale,
                 inputController: _weightController,
                 keyboardtType: TextInputType.number,
