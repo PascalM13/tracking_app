@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/auth/sign_in_dto.dart';
+import 'package:tracking_app/models/user/user_model.dart';
 import 'package:tracking_app/screens/auth/login_forgot_password_screen.dart';
 import 'package:tracking_app/screens/auth/register_screen.dart';
 import 'package:tracking_app/services/auth_service.dart';
+import 'package:tracking_app/services/user_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_background_widget.dart';

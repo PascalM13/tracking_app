@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tracking_app/api_constans.dart';
 import 'package:tracking_app/models/user/update_user_mail_dto.dart';
 import 'package:tracking_app/models/user/update_user_password_dto.dart';
@@ -33,13 +34,14 @@ class UserService {
 
   ///Http-Patch-Request
   Future<UserModel> updateUser(Map<String, dynamic> changedAttributes) async {
-    final String url = ApiConstants.user;
+    final String url = ApiConstants.userUpdate;
     final res = await const ApiServiceHelper()
         .createPatchRequest(url, changedAttributes, true);
 
     if (res.statusCode == 200) {
       final responseJson = jsonDecode(res.body);
       UserModel userModel = UserModel.fromJson(responseJson);
+      UserModel().setCurrentUser({"user": responseJson});
 
       return userModel;
     } else {
