@@ -22,4 +22,7 @@ class ApiConstants {
   static String userUpdate = 'user/update';
   static String userUpdatePassword = 'user/update/password';
   static String userUpdateEmail = 'user/update/email';
+  //Constants for Project
+  static String project = 'project/';
+  static String projectAll = 'project/all';
 }
