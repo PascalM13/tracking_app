@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:tracking_app/screens/UI/nav_screen.dart';
+import 'package:tracking_app/services/user_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_date_widget.dart';
@@ -28,6 +29,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   final _addressTownController = TextEditingController();
   final _addressZIPController = TextEditingController();
   final _addressStreetController = TextEditingController();
+  final _addressController = TextEditingController();
 
   String? gender;
 
@@ -40,6 +42,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   String _street = '';
   String _number = '';
   String _streetno = '';
+  String _address = '';
   String _height = '';
   String _weight = '';
 
@@ -52,8 +55,18 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   void _getUser() async {
     UserModel tmp = await UserModel().getCurrentUser();
     setState(() {
-      _firstname = tmp.firstName!;
-      _lastname = tmp.lastName!;
+      if (tmp.firstName == null || tmp.firstName == '') {
+        _firstname = 'Firstname';
+      } else {
+        _firstname = tmp.firstName.toString();
+      }
+      //_firstname = tmp.firstName!;
+      //_lastname = tmp.lastName!;
+      if (tmp.lastName == null || tmp.lastName == '') {
+        _lastname = 'Lastname';
+      } else {
+        _lastname = tmp.lastName.toString();
+      }
       if (tmp.birthday == null) {
         _dateofbirth = 'Date of birth';
       } else {
@@ -65,6 +78,11 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
         _gender = tmp.gender.toString();
       }
       if (tmp.address == null) {
+        _address = 'Address';
+      } else {
+        _address = tmp.address.toString();
+      }
+      /*if (tmp.address == null || tmp.address == ' , ') {
         _zip = 'ZIP';
         _town = 'Town';
         _street = 'Street, ';
@@ -75,8 +93,10 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
         _zip = splitted[0];
         _town = splitted[1].substring(0, splitted[1].length - 1);
         _street = splitted[2];
-        _number = splitted[3];
-      }
+        if (splitted[3] != '') {
+          _number = splitted[3];
+        }
+      }*/
       if (tmp.height == null) {
         _height = 'Height(cm)';
       } else {
@@ -94,6 +114,60 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   void _setGender(String dropDownValue) {
     setState(() {
       gender = dropDownValue;
+    });
+  }
+
+  Future<void> _updateUserInfo() async {
+    //Create a full Address
+    final String fullAddress =
+        "${_addressZIPController.text.trim()} ${_addressTownController.text.trim()}, ${_addressStreetController.text.trim()}";
+
+    //Parse only if its not empty
+    final int? parsedHeight = _heightController.text.trim().isNotEmpty
+        ? int.parse(_heightController.text.trim())
+        : null;
+
+    final int? parsedWeight = _weightController.text.trim().isNotEmpty
+        ? int.parse(_weightController.text.trim())
+        : null;
+
+    final String? parsedGender =
+        gender == "---" || gender == null ? null : gender!.toUpperCase();
+
+    if (_firstNameController.text.isNotEmpty) {
+      UserModel userInfos = await UserService()
+          .updateUser({"firstName": _firstNameController.text.trim()});
+    }
+    if (_lastNameController.text.isNotEmpty) {
+      UserModel userInfos = await UserService()
+          .updateUser({"lastName": _lastNameController.text.trim()});
+    }
+    if (parsedGender != '' || parsedGender != null) {
+      UserModel userInfos =
+          await UserService().updateUser({"gender": parsedGender});
+    }
+    if (_addressController.text.isNotEmpty) {
+      UserModel userInfos = await UserService()
+          .updateUser({"address": _addressController.text.trim()});
+    }
+    /*if (fullAddress != '' || fullAddress != null) {
+      UserModel userInfos =
+          await UserService().updateUser({"address": fullAddress});
+    }*/
+    if (_heightController.text.isNotEmpty) {
+      UserModel userInfos = await UserService()
+          .updateUser({"height": int.parse(_heightController.text.trim())});
+    }
+    if (_weightController.text.isNotEmpty) {
+      UserModel userInfos = await UserService()
+          .updateUser({"weight": int.parse(_weightController.text.trim())});
+    }
+  }
+
+  //Function to chance the profile
+  void _changeProfile() {
+    setState(() {
+      _getUser();
     });
   }
 
@@ -117,7 +191,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
           InputFieldWidget(
               hintText: _firstname,
               icon: Icons.person,
-              inputController: _lastNameController,
+              inputController: _firstNameController,
               keyboardtType: TextInputType.name),
           const SizedBox(
             height: 15,
@@ -125,7 +199,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
           InputFieldWidget(
               hintText: _lastname,
               icon: Icons.family_restroom,
-              inputController: _firstNameController,
+              inputController: _lastNameController,
               keyboardtType: TextInputType.name),
           const SizedBox(
             height: 15,
@@ -151,7 +225,14 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
           const SizedBox(
             height: 15,
           ),
-          Row(
+          InputFieldWidget(
+            hintText: _address,
+            icon: Icons.add_location_alt,
+            inputController: _addressController,
+            keyboardtType: TextInputType.streetAddress,
+            inputWidth: 0.8,
+          ),
+          /*Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               InputFieldWidget(
@@ -179,7 +260,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             inputController: _addressStreetController,
             keyboardtType: TextInputType.streetAddress,
             inputWidth: 0.8,
-          ),
+          ),*/
           const SizedBox(
             height: 15,
           ),
@@ -218,7 +299,8 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
               onPress: () {
                 //TODO: Profile Service needs to be created
                 log("No logic implemented at 'profile_body_widget'");
-
+                _updateUserInfo();
+                _changeProfile();
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const NavScreen();
                 }));

@@ -100,6 +100,9 @@ class _ExpansionPanelListWidgetState extends State<ExpansionPanelListWidget> {
                                 ),
                               ],
                             ),
+                            const SizedBox(
+                              width: 50,
+                            ),
                             Column(
                               children: [
                                 Text(
