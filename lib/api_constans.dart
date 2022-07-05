@@ -1,8 +1,6 @@
-import 'dart:io' show Platform;
-
 class ApiConstants {
-  static String baseUrl =
-      Platform.isIOS ? 'http://0.0.0.0:3333/' : 'http://10.0.2.2:3333/';
+  static String baseUrl = 'https://impl-tracker.herokuapp.com/';
+  //Platform.isIOS ? 'http://0.0.0.0:3333/' : 'http://10.0.2.2:3333/'; //If using a localhost backend
 
   //Constants for Auth
   static String signIn = 'auth/signin';
