@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/routes.dart';
+import 'package:tracking_app/screens/pedometer_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 
 void main() {
@@ -13,8 +14,9 @@ void main() {
         colorScheme: ColorScheme.fromSwatch().copyWith(primary: accentColor)),
     debugShowCheckedModeBanner: false,
     //home: const NavScreen(), //home: const WelcomeScreen(),
-    onGenerateRoute: RouterManager.generateRoute,
+    //onGenerateRoute: RouterManager.generateRoute,
 
-    initialRoute: defaultRoute,
+    // initialRoute: defaultRoute,
+    home: const PedometerScreen(),
   ));
 }
