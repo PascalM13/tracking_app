@@ -25,7 +25,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
   String _number = '';
   String _height = '';
   String _weight = '';
-  List<String> _addressList = [];
+  String _address = '';
 
   @override
   void initState() {
@@ -33,11 +33,33 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
     _getUser();
   }
 
+  refresh() {
+    setState(() {
+      _getUser();
+    });
+  }
+  /*@override
+  void _changeProfile() {
+    setState(() {
+      _getUser();
+    });
+  }*/
+
   void _getUser() async {
     UserModel tmp = await UserModel().getCurrentUser();
     setState(() {
-      _firstname = tmp.firstName!;
-      _lastname = tmp.lastName!;
+      //_firstname = tmp.firstName!;
+      //_lastname = tmp.lastName!;
+      if (tmp.firstName == null || tmp.firstName == '') {
+        _firstname = '---';
+      } else {
+        _firstname = tmp.firstName.toString();
+      }
+      if (tmp.lastName == null || tmp.lastName == '') {
+        _lastname = '---';
+      } else {
+        _lastname = tmp.lastName.toString();
+      }
       if (tmp.birthday == null) {
         _dateofbirth = '---';
       } else {
@@ -49,6 +71,11 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
         _gender = tmp.gender.toString();
       }
       if (tmp.address == null) {
+        _address = '---';
+      } else {
+        _address = tmp.address.toString();
+      }
+      /*if (tmp.address == null || tmp.address == ' , ') {
         _zip = '---';
         _town = '---';
         _street = '---';
@@ -60,7 +87,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
         _town = splitted[1].substring(0, splitted[1].length - 1);
         _street = splitted[2];
         _number = splitted[3];
-      }
+      }*/
       if (tmp.height == null) {
         _height = '---';
       } else {
@@ -139,6 +166,16 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
+                    'Address:',
+                    style: TextStyle(
+                      height: 2.5,
+                      fontWeight: FontWeight.bold,
+                      color: accentColor,
+                      fontSize: 15.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  /*Text(
                     'ZIP:',
                     style: TextStyle(
                       height: 2.5,
@@ -177,7 +214,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                       fontSize: 15.0,
                     ),
                     textAlign: TextAlign.center,
-                  ),
+                  ),*/
                   Text(
                     'Height(cm):',
                     style: TextStyle(
@@ -240,6 +277,15 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
+                    _address,
+                    style: const TextStyle(
+                      height: 2.5,
+                      color: Colors.black,
+                      fontSize: 15.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  /*Text(
                     _zip,
                     style: const TextStyle(
                       height: 2.5,
@@ -274,7 +320,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                       fontSize: 15.0,
                     ),
                     textAlign: TextAlign.center,
-                  ),
+                  ),*/
                   Text(
                     _height,
                     style: const TextStyle(
