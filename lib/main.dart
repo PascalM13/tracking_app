@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tracking_app/routes.dart';
 import 'package:tracking_app/theme/colors.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  String defaultRoute = RouterManager.welcomeScreen;
+  const storage = FlutterSecureStorage();
+  String? token = await storage.read(key: 'access_token');
+  print("Token: $token");
+
+  String defaultRoute =
+      (token == null) ? RouterManager.welcomeScreen : RouterManager.navScreen;
 
   runApp(MaterialApp(
     theme: ThemeData(
