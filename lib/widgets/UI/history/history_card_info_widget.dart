@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/screens/UI/nav_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
-import 'package:tracking_app/widgets/UI/rounded_Button_widget.dart';
+import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 class HistoryCardInfoWidget extends StatefulWidget {
   final String dateOfActivity;

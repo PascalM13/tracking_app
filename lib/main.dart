@@ -8,7 +8,6 @@ void main() async {
 
   const storage = FlutterSecureStorage();
   String? token = await storage.read(key: 'access_token');
-  print("Token: $token");
 
   String defaultRoute =
       (token == null) ? RouterManager.welcomeScreen : RouterManager.navScreen;

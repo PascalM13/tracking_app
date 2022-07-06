@@ -5,14 +5,14 @@ import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 import '../../theme/colors.dart';
 
-class ProfileBodyWidget extends StatefulWidget {
-  const ProfileBodyWidget({Key? key}) : super(key: key);
+class LogoutButtonWidget extends StatefulWidget {
+  const LogoutButtonWidget({Key? key}) : super(key: key);
 
   @override
-  State<ProfileBodyWidget> createState() => _ProfileBodyWidgetState();
+  State<LogoutButtonWidget> createState() => _LogoutButtonWidgetState();
 }
 
-class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
+class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
   Future<void> _logout() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     const storage = FlutterSecureStorage();
@@ -25,7 +25,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
     if (!mounted) return;
 
     Navigator.pushNamedAndRemoveUntil(
-        context, '/welcome', ModalRoute.withName('/'));
+        context, '/', ModalRoute.withName('/nav'));
   }
 
   @override

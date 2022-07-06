@@ -3,7 +3,7 @@ import 'package:tracking_app/theme/colors.dart';
 
 import '../../../screens/activity_startstop_screen.dart';
 import '../background/screen_background_widget.dart';
-import '../rounded_Button_widget.dart';
+import '../rounded_button_widget.dart';
 import '../rounded_dropdown_activity_widget.dart';
 
 class ActivityBodyWidget extends StatefulWidget {

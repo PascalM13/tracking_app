@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/screens/profile_change_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
+import 'package:tracking_app/widgets/UI/logout_button_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 import '../../../models/user/user_model.dart';
@@ -355,6 +356,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
               },
               color: accentColor,
               textColor: Colors.white),
+          const LogoutButtonWidget(),
         ],
       ),
     ));
