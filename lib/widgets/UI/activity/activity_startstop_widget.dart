@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/screens/UI/nav_screen.dart';
+import 'package:tracking_app/screens/activity_save_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/activity/pedometer_widget.dart';
 import 'package:tracking_app/widgets/UI/activity/stopwatch_widget.dart';
@@ -51,7 +52,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
 
                 print(widget.activity);
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const NavScreen();
+                  return const ActivitySaveScreen();
                 }));
               },
               color: accentColor,

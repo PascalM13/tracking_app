@@ -70,9 +70,10 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
             Column(
               children: [
                 RoundedButtonWidget(
-                    text: 'End Activity',
+                    text: 'Stop Activity',
                     onPress: () {
                       _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
+                      _setVisibilityOfButton();
                       print(
                           showTime); //mit showTime kann die gestoppte Zeit an die Datenbank übermittelt werden
                     },
