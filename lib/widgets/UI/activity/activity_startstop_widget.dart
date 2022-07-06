@@ -6,8 +6,10 @@ import 'package:tracking_app/widgets/UI/activity/stopwatch_widget.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
+import '../../../models/acitvity_type/activity_type_model.dart';
+
 class ActivityStartStopWidget extends StatefulWidget {
-  final String activity;
+  final ActivityTypeModel activity;
   const ActivityStartStopWidget({Key? key, required this.activity})
       : super(key: key);
   @override
