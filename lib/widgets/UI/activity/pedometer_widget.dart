@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class PedometerWidget extends StatefulWidget {
   const PedometerWidget({Key? key}) : super(key: key);
@@ -50,7 +53,30 @@ class _PedometerWidgetState extends State<PedometerWidget> {
     });
   }
 
-  void initPlatformState() {
+  Future<Permission> getMotionPermission() async {
+    if (Platform.isAndroid && (await getAndroidSdk())! >= 29) {
+      return Permission.activityRecognition;
+    } else {
+      return Permission.sensors;
+    }
+  }
+
+  Future<int?> getAndroidSdk() async {
+    if (Platform.isAndroid) {
+      var androidInfo = await DeviceInfoPlugin().androidInfo;
+      var sdkInt = androidInfo.version.sdkInt;
+      return sdkInt;
+    }
+    return 0;
+  }
+
+  Future<void> initPlatformState() async {
+    Permission motionPermission = await getMotionPermission();
+    if (!await motionPermission.isGranted) {
+      var newStatus = await motionPermission.request();
+      if (!newStatus.isGranted) return Future.error('Permission not granted');
+    }
+
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
     _pedestrianStatusStream
         .listen(onPedestrianStatusChanged)
