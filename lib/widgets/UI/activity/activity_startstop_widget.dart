@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:tracking_app/models/wrapper/duration_wrapper.dart';
 import 'package:tracking_app/screens/UI/nav_screen.dart';
 import 'package:tracking_app/screens/activity_save_screen.dart';
@@ -27,6 +26,15 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
   int steps = 0;
   DurationWrapper stopWatchTime = DurationWrapper("00:00:00:00");
 
+  //Disable Save Activity Button
+  bool saveActivityIsDisabled = true;
+
+  setSaveActivityIsDisabled(bool value) {
+    setState(() {
+      saveActivityIsDisabled = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenBackgroundWidget(
@@ -49,36 +57,35 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
             height: 15,
           ),
           StopWatchWidget(
-            stopWatchTime: stopWatchTime,
-          ),
+              stopWatchTime: stopWatchTime,
+              setSaveActivityIsDisabled: setSaveActivityIsDisabled),
           const SizedBox(
-            height: 15,
+            height: 100,
           ),
           RoundedButtonWidget(
               text: 'Save activity',
               onPress: () {
                 //TODO Soll nur funktionieren wenn Activity gestoppt ist
 
-                print(widget.activity);
-                print(stopWatchTime.duration);
+                if (saveActivityIsDisabled == false) {
+                  print(widget.activity);
+                  print(stopWatchTime.duration);
 
-                print(start);
-                print(end);
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ActivitySaveScreen(
-                    activityTypeModel: widget.activity,
-                    duration: stopWatchTime.duration,
-                    steps: steps,
-                    start: start,
-                    end: end,
-                  );
-                }));
+                  print(start);
+                  print(end);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ActivitySaveScreen(
+                      activityTypeModel: widget.activity,
+                      duration: stopWatchTime.duration,
+                      steps: steps,
+                      start: start,
+                      end: end,
+                    );
+                  }));
+                }
               },
-              color: accentColor,
+              color: saveActivityIsDisabled ? secondery : accentColor,
               textColor: Colors.white),
-          const SizedBox(
-            height: 15,
-          ),
           RoundedButtonWidget(
               text: 'Cancel',
               onPress: () {
