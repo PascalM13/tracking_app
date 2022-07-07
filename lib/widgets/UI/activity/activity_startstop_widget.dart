@@ -68,11 +68,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
                 //TODO Soll nur funktionieren wenn Activity gestoppt ist
 
                 if (saveActivityIsDisabled == false) {
-                  print(widget.activity);
-                  print(stopWatchTime.duration);
-
-                  print(start);
-                  print(end);
+                  end = DateTime.now();
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return ActivitySaveScreen(
                       activityTypeModel: widget.activity,

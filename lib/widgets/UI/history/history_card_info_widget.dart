@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tracking_app/models/activity/activity_model.dart';
 import 'package:tracking_app/screens/UI/nav_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 class HistoryCardInfoWidget extends StatefulWidget {
-  final String dateOfActivity;
-  final String nameOfActivity;
-  const HistoryCardInfoWidget(
-      {Key? key, required this.dateOfActivity, required this.nameOfActivity})
+  final ActivityModel activityModel;
+  const HistoryCardInfoWidget({Key? key, required this.activityModel})
       : super(key: key);
 
   @override
@@ -33,7 +32,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            widget.nameOfActivity,
+            widget.activityModel.activityName!,
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: accentColor,
@@ -67,7 +66,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 5,
                               ),
                               Text(
-                                'Start date:\n$_startdate',
+                                'Start date:\n${widget.activityModel.startDate}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -102,7 +101,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 5,
                               ),
                               Text(
-                                'Heartrate:\n$_heartrate',
+                                'Heartrate:\n${widget.activityModel.hearthrate}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -137,7 +136,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 5,
                               ),
                               Text(
-                                'Distance:\n$_distance',
+                                'Distance:\n${widget.activityModel.distance}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -176,7 +175,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 5,
                               ),
                               Text(
-                                'End date:\n$_enddate',
+                                'End date:\n${widget.activityModel.endDate}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -211,7 +210,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 5,
                               ),
                               Text(
-                                'Steps:\n$_steps',
+                                'Steps:\n${widget.activityModel.steps}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -246,7 +245,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 5,
                               ),
                               Text(
-                                'Blood sugar/\noxygen:\n$_bloodSugarOxygen',
+                                'Blood sugar\n${widget.activityModel.bloodSugarOxygen}',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,

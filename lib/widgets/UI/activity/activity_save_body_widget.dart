@@ -10,6 +10,7 @@ import '../../../theme/colors.dart';
 import '../input_fields/input_field_widget.dart';
 import '../rounded_button_widget.dart';
 
+// ignore: must_be_immutable
 class ActivitySaveBodyWidget extends StatefulWidget {
   int? steps;
   final String duration;
@@ -37,8 +38,8 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
     var user = await UserModel().getCurrentUser();
 
     var dto = ActivityDto(
-        startDate: 123,
-        endDate: 123,
+        startDate: widget.start.millisecondsSinceEpoch,
+        endDate: widget.end.millisecondsSinceEpoch,
         userId: user.id!,
         activityTypeId: widget.activityTypeModel.id,
         projectId: 1,
@@ -47,8 +48,8 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
 
     var savedAcitivity = await const ActivityService().createActivity(dto);
 
-    print(savedAcitivity.hearthrate);
-    print(savedAcitivity.activityName);
+    print(widget.start);
+    print(widget.start.millisecondsSinceEpoch);
 
     if (!mounted) return;
 
