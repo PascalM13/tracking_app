@@ -20,10 +20,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
   String _lastname = '';
   String _dateofbirth = '';
   String _gender = '';
-  String _zip = '';
-  String _town = '';
-  String _street = '';
-  String _number = '';
+
   String _height = '';
   String _weight = '';
   String _address = '';
@@ -34,17 +31,16 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
     _getUser();
   }
 
-  refresh() {
-    setState(() {
-      _getUser();
-    });
-  }
-  /*@override
-  void _changeProfile() {
+  /*refresh() async {
     setState(() {
       _getUser();
     });
   }*/
+  void _changeProfile() {
+    setState(() {
+      _getUser();
+    });
+  }
 
   void _getUser() async {
     UserModel tmp = await UserModel().getCurrentUser();
@@ -76,19 +72,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
       } else {
         _address = tmp.address.toString();
       }
-      /*if (tmp.address == null || tmp.address == ' , ') {
-        _zip = '---';
-        _town = '---';
-        _street = '---';
-        _number = '---';
-      } else {
-        var help = tmp.address.toString();
-        final splitted = help.split(' ');
-        _zip = splitted[0];
-        _town = splitted[1].substring(0, splitted[1].length - 1);
-        _street = splitted[2];
-        _number = splitted[3];
-      }*/
+
       if (tmp.height == null) {
         _height = '---';
       } else {
@@ -107,8 +91,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
     return ScreenBackgroundWidget(
         child: SingleChildScrollView(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           const Text(
             "My Profile",
             style: TextStyle(
@@ -117,235 +101,188 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                 fontSize: 25.0),
           ),
           const SizedBox(
-            height: 25,
+            height: 15,
           ),
-          const Icon(Icons.account_circle_rounded, color: secondery, size: 75),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Text(
-                    'Firstname:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Lastname:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Date of birth:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Gender:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Address:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  /*Text(
-                    'ZIP:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Town:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Street:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Number:',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),*/
-                  Text(
-                    'Height(cm):',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Weight(kg):',
-                    style: TextStyle(
-                      height: 2.5,
-                      fontWeight: FontWeight.bold,
-                      color: accentColor,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    _firstname,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _lastname,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _dateofbirth,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _gender,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _address,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  /*Text(
-                    _zip,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _town,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _street,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _number,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),*/
-                  Text(
-                    _height,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    _weight,
-                    style: const TextStyle(
-                      height: 2.5,
-                      color: Colors.black,
-                      fontSize: 15.0,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.account_circle_rounded,
+                  color: secondery, size: 75),
+              RoundedButtonWidget(
+                text: 'Refresh',
+                onPress: () {
+                  _changeProfile();
+                },
+                color: accentColor,
+                textColor: Colors.white,
+                buttonWidth: 0.4,
               ),
             ],
           ),
-          const SizedBox(
-            height: 25,
+          Container(
+            padding: const EdgeInsets.all(30),
+            child: Row(
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Firstname:',
+                      style: TextStyle(
+                        height: 2.5,
+                        fontWeight: FontWeight.bold,
+                        color: accentColor,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Lastname:',
+                      style: TextStyle(
+                        height: 2.5,
+                        fontWeight: FontWeight.bold,
+                        color: accentColor,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Date of birth:',
+                      style: TextStyle(
+                        height: 2.5,
+                        fontWeight: FontWeight.bold,
+                        color: accentColor,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Gender:',
+                      style: TextStyle(
+                        height: 2.5,
+                        fontWeight: FontWeight.bold,
+                        color: accentColor,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 80,
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        'Address:',
+                        style: TextStyle(
+                          height: 2.5,
+                          fontWeight: FontWeight.bold,
+                          color: accentColor,
+                          fontSize: 15.0,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Text(
+                      'Height(cm):',
+                      style: TextStyle(
+                        height: 2.5,
+                        fontWeight: FontWeight.bold,
+                        color: accentColor,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      'Weight(kg):',
+                      style: TextStyle(
+                        height: 2.5,
+                        fontWeight: FontWeight.bold,
+                        color: accentColor,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _firstname,
+                      style: const TextStyle(
+                        height: 2.5,
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      _lastname,
+                      style: const TextStyle(
+                        height: 2.5,
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      _dateofbirth,
+                      style: const TextStyle(
+                        height: 2.5,
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      _gender,
+                      style: const TextStyle(
+                        height: 2.5,
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 200,
+                      alignment: Alignment.center,
+                      child: Text(
+                        _address,
+                        overflow: TextOverflow.visible,
+                        style: const TextStyle(
+                          height: 0,
+                          color: Colors.black,
+                          fontSize: 15.0,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Text(
+                      _height,
+                      style: const TextStyle(
+                        height: 2.5,
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      _weight,
+                      style: const TextStyle(
+                        height: 2.5,
+                        color: Colors.black,
+                        fontSize: 15.0,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           RoundedButtonWidget(
               text: 'Edit personal information',

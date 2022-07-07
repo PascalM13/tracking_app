@@ -36,12 +36,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   String _firstname = '';
   String _lastname = '';
   String _dateofbirth = '';
-  String _gender = '';
-  String _zip = '';
-  String _town = '';
-  String _street = '';
-  String _number = '';
-  String _streetno = '';
+
   String _address = '';
   String _height = '';
   String _weight = '';
@@ -60,8 +55,6 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
       } else {
         _firstname = tmp.firstName.toString();
       }
-      //_firstname = tmp.firstName!;
-      //_lastname = tmp.lastName!;
       if (tmp.lastName == null || tmp.lastName == '') {
         _lastname = 'Lastname';
       } else {
@@ -72,31 +65,13 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
       } else {
         _dateofbirth = tmp.birthday.toString();
       }
-      if (tmp.gender == null) {
-        _gender = 'Gender';
-      } else {
-        _gender = tmp.gender.toString();
-      }
+
       if (tmp.address == null) {
         _address = 'Address';
       } else {
         _address = tmp.address.toString();
       }
-      /*if (tmp.address == null || tmp.address == ' , ') {
-        _zip = 'ZIP';
-        _town = 'Town';
-        _street = 'Street, ';
-        _number = 'no.';
-      } else {
-        var help = tmp.address.toString();
-        final splitted = help.split(' ');
-        _zip = splitted[0];
-        _town = splitted[1].substring(0, splitted[1].length - 1);
-        _street = splitted[2];
-        if (splitted[3] != '') {
-          _number = splitted[3];
-        }
-      }*/
+
       if (tmp.height == null) {
         _height = 'Height(cm)';
       } else {
@@ -118,10 +93,6 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   }
 
   Future<void> _updateUserInfo() async {
-    //Create a full Address
-    final String fullAddress =
-        "${_addressZIPController.text.trim()} ${_addressTownController.text.trim()}, ${_addressStreetController.text.trim()}";
-
     //Parse only if its not empty
     final int? parsedHeight = _heightController.text.trim().isNotEmpty
         ? int.parse(_heightController.text.trim())
@@ -150,10 +121,6 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
       UserModel userInfos = await UserService()
           .updateUser({"address": _addressController.text.trim()});
     }
-    /*if (fullAddress != '' || fullAddress != null) {
-      UserModel userInfos =
-          await UserService().updateUser({"address": fullAddress});
-    }*/
     if (_heightController.text.isNotEmpty) {
       UserModel userInfos = await UserService()
           .updateUser({"height": int.parse(_heightController.text.trim())});
@@ -232,35 +199,6 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             keyboardtType: TextInputType.streetAddress,
             inputWidth: 0.8,
           ),
-          /*Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              InputFieldWidget(
-                hintText: _town,
-                icon: Icons.home,
-                inputController: _addressTownController,
-                keyboardtType: TextInputType.text,
-                inputWidth: 0.4,
-              ),
-              InputFieldWidget(
-                hintText: _zip,
-                icon: Icons.location_on,
-                inputController: _addressZIPController,
-                keyboardtType: TextInputType.number,
-                inputWidth: 0.3,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          InputFieldWidget(
-            hintText: _street + ' ' + _number,
-            icon: Icons.add_location_alt,
-            inputController: _addressStreetController,
-            keyboardtType: TextInputType.streetAddress,
-            inputWidth: 0.8,
-          ),*/
           const SizedBox(
             height: 15,
           ),
@@ -296,12 +234,13 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
           ),
           RoundedButtonWidget(
               text: 'Save information',
-              onPress: () {
+              onPress: () async {
                 //TODO: Profile Service needs to be created
                 log("No logic implemented at 'profile_body_widget'");
                 _updateUserInfo();
                 _changeProfile();
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                await Navigator.push(context,
+                    MaterialPageRoute(builder: (context) {
                   return const NavScreen();
                 }));
               },

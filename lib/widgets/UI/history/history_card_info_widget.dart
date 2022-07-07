@@ -31,7 +31,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
         child: SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Text(
             widget.nameOfActivity,
             style: const TextStyle(
