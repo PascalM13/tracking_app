@@ -263,18 +263,6 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          RoundedButtonWidget(
-              text: 'Back',
-              onPress: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const NavScreen();
-                }));
-              },
-              color: accentColor,
-              textColor: Colors.white),
         ],
       ),
     ));
