@@ -25,8 +25,13 @@ class ActivitySaveScreen extends StatefulWidget {
 class _ActivitySaveScreenState extends State<ActivitySaveScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ActivitySaveBodyWidget(),
+    return Scaffold(
+      body: ActivitySaveBodyWidget(
+          activityTypeModel: widget.activityTypeModel,
+          duration: widget.duration,
+          start: widget.start,
+          end: widget.end,
+          steps: widget.steps),
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:tracking_app/models/wrapper/duration_wrapper.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 class StopWatchWidget extends StatefulWidget {
-  String stopWatchTime;
+  DurationWrapper stopWatchTime;
   StopWatchWidget({Key? key, required this.stopWatchTime}) : super(key: key);
 
   @override
@@ -41,7 +42,7 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                 final value = snapshot.data;
                 final displayTime =
                     StopWatchTimer.getDisplayTime(value!, hours: _isHours);
-                widget.stopWatchTime = displayTime;
+                widget.stopWatchTime.duration = displayTime;
                 return Text(
                   displayTime,
                   style: const TextStyle(
@@ -74,8 +75,6 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                     onPress: () {
                       _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
                       _setVisibilityOfButton();
-                      //mit showTime kann die gestoppte Zeit an die Datenbank übermittelt werden
-                      print(widget.stopWatchTime);
                     },
                     color: accentColor,
                     textColor: Colors.white),

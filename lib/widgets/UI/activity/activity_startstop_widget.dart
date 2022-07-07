@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:tracking_app/models/wrapper/duration_wrapper.dart';
 import 'package:tracking_app/screens/UI/nav_screen.dart';
 import 'package:tracking_app/screens/activity_save_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
@@ -24,7 +25,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
   DateTime start = DateTime.now();
   DateTime end = DateTime.now();
   int steps = 0;
-  String stopWatchTime = "00:00:00:00";
+  DurationWrapper stopWatchTime = DurationWrapper("00:00:00:00");
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,9 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
           const SizedBox(
             height: 15,
           ),
-          StopWatchWidget(stopWatchTime: stopWatchTime),
+          StopWatchWidget(
+            stopWatchTime: stopWatchTime,
+          ),
           const SizedBox(
             height: 15,
           ),
@@ -57,14 +60,14 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
                 //TODO Soll nur funktionieren wenn Activity gestoppt ist
 
                 print(widget.activity);
-                print(
-                    stopWatchTime); //TODO Bleibt immer 0, da Wert und nicht referenz übergeben wird
+                print(stopWatchTime.duration);
+
                 print(start);
                 print(end);
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return ActivitySaveScreen(
                     activityTypeModel: widget.activity,
-                    duration: stopWatchTime,
+                    duration: stopWatchTime.duration,
                     steps: steps,
                     start: start,
                     end: end,
