@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:io';
 
@@ -14,17 +15,13 @@ class ActivitySVGWidget extends StatefulWidget {
 }
 
 class _ActivitySVGWidgetState extends State<ActivitySVGWidget> {
-  String getSVGPath(String activityName) {
-    //TODO Check function doesnt work. Check if asset exists!
-    String name = activityName.toLowerCase();
-    String assetPath = "assets/svgs/$name.svg";
-    print(assetPath);
-    bool syncPath = File("../../../" + assetPath).existsSync();
-
-    if (syncPath) {
-      return assetPath;
-    } else {
-      return "assets/svgs/default.svg";
+  Future myLoadAsset(String name) async {
+    try {
+      String activityName = name.toLowerCase();
+      String assetPath = "assets/svgs/swimming.svg";
+      return await rootBundle.loadString(assetPath);
+    } catch (_) {
+      return null;
     }
   }
 
@@ -32,11 +29,33 @@ class _ActivitySVGWidgetState extends State<ActivitySVGWidget> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return (SizedBox(
-      child: SvgPicture.asset(
-        getSVGPath(widget.activityName),
-        color: accentColor,
-        height: size.height * 0.35,
-      ),
+      child: FutureBuilder(
+          future: myLoadAsset(widget.activityName),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            List<Widget> children;
+            if (snapshot.hasData) {
+              children = <Widget>[
+                SvgPicture.asset(
+                    "assets/svgs/${widget.activityName.toLowerCase()}.svg",
+                    width: size.width * 0.35,
+                    color: accentColor)
+              ];
+            } else {
+              children = <Widget>[
+                SvgPicture.asset(
+                  "assets/svgs/default.svg",
+                  width: size.width * 0.30,
+                  color: accentColor,
+                )
+              ];
+            }
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: children,
+              ),
+            );
+          }),
     ));
   }
 }

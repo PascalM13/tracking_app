@@ -47,8 +47,8 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
             widget.activity.name,
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                color: accentColor,
-                fontSize: 25.0),
+                color: Colors.black54,
+                fontSize: 28.0),
           ),
           const SizedBox(
             height: 30,

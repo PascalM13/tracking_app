@@ -69,9 +69,9 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                 return Text(
                   displayTime,
                   style: const TextStyle(
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54),
                 );
               }),
           const SizedBox(
