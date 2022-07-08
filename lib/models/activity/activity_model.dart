@@ -1,6 +1,3 @@
-import 'package:tracking_app/models/acitvity_type/activity_type_model.dart';
-import 'package:tracking_app/services/acitivity_type_service.dart';
-
 class ActivityModel {
   final int id;
   final int startDate;
@@ -41,5 +38,18 @@ class ActivityModel {
       activityTypeId: json['activityTypeId'],
       projectId: json['projectId'],
     );
+  }
+
+  String getDateString() {
+    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(startDate);
+    String date = "${dateTime.day}. ${dateTime.month} .${dateTime.year}";
+    return date;
+  }
+
+  String getDuration() {
+    DateTime dateTime =
+        DateTime.fromMillisecondsSinceEpoch(endDate - startDate);
+    String duration = "${dateTime.hour}:${dateTime.minute}";
+    return duration;
   }
 }

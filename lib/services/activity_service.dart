@@ -32,7 +32,7 @@ class ActivityService {
     //Create URL
     UserModel currUser = await UserModel().getCurrentUser();
     String userId = currUser.id.toString();
-    String projectId = "1"; //TODO Add ProjectID to User Object
+    String projectId = "2"; //TODO Add ProjectID to User Object
     final String url = "${ApiConstants.actity}project/$projectId/user/$userId";
     final res = await const ApiServiceHelper().createGetRequest(url, true);
 

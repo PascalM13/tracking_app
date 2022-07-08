@@ -23,7 +23,6 @@ class _RegisterBodyWidgetState extends State<RegisterBodyWidget> {
   void _validateEmailAndPassword() {
     //Validate our Email
     if (_emailController.text.isEmpty) {
-      //TODO: Check if email already exists with Service
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: const Text("Wrong credentials"),
         backgroundColor: accentColor,

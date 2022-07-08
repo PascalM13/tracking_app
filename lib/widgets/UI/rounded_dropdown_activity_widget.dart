@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/theme/colors.dart';
 
+import '../../models/acitvity_type/activity_type_model.dart';
+
 class RoundedDropdownActivityWidget extends StatefulWidget {
   final Function setActivity;
-  const RoundedDropdownActivityWidget({Key? key, required this.setActivity})
+  final List<ActivityTypeModel> activityList;
+  const RoundedDropdownActivityWidget(
+      {Key? key, required this.setActivity, required this.activityList})
       : super(key: key);
 
   @override
@@ -13,7 +17,7 @@ class RoundedDropdownActivityWidget extends StatefulWidget {
 
 class _RoundedDropdownActivityWidgetState
     extends State<RoundedDropdownActivityWidget> {
-  String dropDownValue = "Please select";
+  ActivityTypeModel? dropDownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +29,8 @@ class _RoundedDropdownActivityWidgetState
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 2, 20, 2),
         child: DropdownButtonHideUnderline(
-          child: DropdownButton<String>(
-            hint: const Text("Activity"),
+          child: DropdownButton<ActivityTypeModel>(
+            hint: const Text("Your Activity"),
             value: dropDownValue,
             elevation: 16,
             borderRadius: BorderRadius.circular(12.0),
@@ -36,23 +40,17 @@ class _RoundedDropdownActivityWidgetState
               height: 2,
               color: Colors.deepPurpleAccent,
             ),
-            onChanged: (String? newValue) {
+            onChanged: (ActivityTypeModel? newValue) {
               setState(() {
                 dropDownValue = newValue!;
               });
               widget.setActivity(dropDownValue);
             },
-            items: <String>[
-              'Please select',
-              'Running',
-              'Swimming',
-              'Cycling',
-              'Hiking',
-              'Others'
-            ].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
+            items: widget.activityList.map<DropdownMenuItem<ActivityTypeModel>>(
+                (ActivityTypeModel value) {
+              return DropdownMenuItem<ActivityTypeModel>(
                 value: value,
-                child: Text(value),
+                child: Text(value.name),
               );
             }).toList(),
           ),
