@@ -41,6 +41,7 @@ dependencies:
   percent_indicator: ^4.2.2
   shared_preferences: ^2.0.15
   pedometer: ^3.0.0
+  flutter_svg: ^1.1.1+1
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,19 @@ flutter:
     - assets/images/top_welcome_screen.png
     - assets/images/welcome_screen.png
     - assets/images/login_screen.jpg
+    - assets/svgs/basketball.svg
+    - assets/svgs/climbing.svg
+    - assets/svgs/cycling.svg
+    - assets/svgs/default.svg
+    - assets/svgs/football.svg
+    - assets/svgs/hiking.svg
+    - assets/svgs/horseback riding.svg
+    - assets/svgs/running.svg
+    - assets/svgs/swimming.svg
+    - assets/svgs/tennis.svg
+    - assets/svgs/walking.svg
+    - assets/svgs/weightlifting.svg
+    - assets/svgs/yoga.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

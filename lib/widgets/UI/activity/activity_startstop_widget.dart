@@ -5,6 +5,7 @@ import 'package:tracking_app/screens/activity_save_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/activity/pedometer_widget.dart';
 import 'package:tracking_app/widgets/UI/activity/stopwatch_widget.dart';
+import 'package:tracking_app/widgets/UI/activity_svg_widget.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
@@ -52,7 +53,8 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
           const SizedBox(
             height: 30,
           ),
-          const PedometerWidget(),
+          //const PedometerWidget(),
+          ActivitySVGWidget(activityName: widget.activity.name),
           const SizedBox(
             height: 15,
           ),
@@ -65,8 +67,6 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
           RoundedButtonWidget(
               text: 'Save activity',
               onPress: () {
-                //TODO Soll nur funktionieren wenn Activity gestoppt ist
-
                 if (saveActivityIsDisabled == false) {
                   end = DateTime.now();
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
