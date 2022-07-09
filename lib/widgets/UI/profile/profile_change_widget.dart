@@ -253,7 +253,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
               onPress: () async {
                 //TODO: Profile Service needs to be created
                 log("No logic implemented at 'profile_body_widget'");
-                _updateUserInfo();
+                await _updateUserInfo();
                 _changeProfile();
                 await Navigator.push(context,
                     MaterialPageRoute(builder: (context) {

@@ -15,69 +15,9 @@ class ProfileBodyWidget extends StatefulWidget {
 }
 
 class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
-  //variables which have to be filled with database
-  String _firstname = '';
-  String _lastname = '';
-  String _dateofbirth = '';
-  String _gender = '';
-
-  String _height = '';
-  String _weight = '';
-  String _address = '';
-
   @override
   void initState() {
     super.initState();
-    _getUser();
-  }
-
-  void _changeProfile() {
-    setState(() {
-      _getUser();
-    });
-  }
-
-  void _getUser() async {
-    UserModel tmp = await UserModel().getCurrentUser();
-    setState(() {
-      if (tmp.firstName == null || tmp.firstName == '') {
-        _firstname = '---';
-      } else {
-        _firstname = tmp.firstName.toString();
-      }
-      if (tmp.lastName == null || tmp.lastName == '') {
-        _lastname = '---';
-      } else {
-        _lastname = tmp.lastName.toString();
-      }
-      if (tmp.birthday == null) {
-        _dateofbirth = '---';
-      } else {
-        _dateofbirth = tmp.birthday.toString();
-        print(_dateofbirth);
-      }
-      if (tmp.gender == null) {
-        _gender = '---';
-      } else {
-        _gender = tmp.gender.toString();
-      }
-      if (tmp.address == null) {
-        _address = '---';
-      } else {
-        _address = tmp.address.toString();
-      }
-
-      if (tmp.height == null) {
-        _height = '---';
-      } else {
-        _height = tmp.height.toString();
-      }
-      if (tmp.weight == null) {
-        _weight = '---';
-      } else {
-        _weight = tmp.weight.toString();
-      }
-    });
   }
 
   @override
@@ -97,21 +37,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
           const SizedBox(
             height: 15,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.account_circle_rounded,
-                  color: secondery, size: 75),
-              RoundedButtonWidget(
-                text: 'Refresh',
-                onPress: () {
-                  _changeProfile();
-                },
-                color: accentColor,
-                textColor: Colors.white,
-                buttonWidth: 0.4,
-              ),
-            ],
+          const Icon(
+            Icons.account_circle_rounded,
           ),
           Container(
             padding: const EdgeInsets.all(30),
@@ -200,80 +127,108 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                 const SizedBox(
                   width: 10,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      _firstname,
-                      style: const TextStyle(
-                        height: 2.5,
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      _lastname,
-                      style: const TextStyle(
-                        height: 2.5,
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      _dateofbirth,
-                      style: const TextStyle(
-                        height: 2.5,
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      _gender,
-                      style: const TextStyle(
-                        height: 2.5,
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Container(
-                      height: 50,
-                      width: 200,
-                      alignment: Alignment.center,
-                      child: Text(
-                        _address,
-                        overflow: TextOverflow.visible,
-                        style: const TextStyle(
-                          height: 0,
-                          color: Colors.black,
-                          fontSize: 15.0,
+                FutureBuilder(
+                    future: UserModel().getCurrentUser(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<UserModel> snapshot) {
+                      List<Widget> children;
+                      if (snapshot.hasData) {
+                        children = <Widget>[
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                snapshot.data!.firstName!,
+                                style: const TextStyle(
+                                  height: 2.5,
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                snapshot.data!.lastName!,
+                                style: const TextStyle(
+                                  height: 2.5,
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                snapshot.data!.birthday == null
+                                    ? "---"
+                                    : snapshot.data!.birthday!.toString(),
+                                style: const TextStyle(
+                                  height: 2.5,
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                snapshot.data!.gender == null
+                                    ? "---"
+                                    : snapshot.data!.gender!,
+                                style: const TextStyle(
+                                  height: 2.5,
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Container(
+                                height: 50,
+                                width: 200,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  snapshot.data!.address == null
+                                      ? "---"
+                                      : snapshot.data!.address!,
+                                  overflow: TextOverflow.visible,
+                                  style: const TextStyle(
+                                    height: 0,
+                                    color: Colors.black,
+                                    fontSize: 15.0,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              Text(
+                                snapshot.data!.height == null
+                                    ? "---"
+                                    : snapshot.data!.height!.toString(),
+                                style: const TextStyle(
+                                  height: 2.5,
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                snapshot.data!.weight == null
+                                    ? "---"
+                                    : snapshot.data!.weight!.toString(),
+                                style: const TextStyle(
+                                  height: 2.5,
+                                  color: Colors.black,
+                                  fontSize: 15.0,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ];
+                      } else {
+                        children = <Widget>[Text("Loading...")];
+                      }
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: children,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Text(
-                      _height,
-                      style: const TextStyle(
-                        height: 2.5,
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      _weight,
-                      style: const TextStyle(
-                        height: 2.5,
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+                      );
+                    })
               ],
             ),
           ),

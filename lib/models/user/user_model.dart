@@ -61,10 +61,10 @@ class UserModel {
     return data;
   }
 
-  void setCurrentUser(dynamic json) async {
+  Future<void> setCurrentUser(dynamic json) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String user = jsonEncode(UserModel.fromJson(json['user']));
-    pref.setString('user', user);
+    await pref.setString('user', user);
   }
 
   Future<UserModel> getCurrentUser() async {

@@ -40,7 +40,7 @@ class UserService {
     if (res.statusCode == 200) {
       final responseJson = jsonDecode(res.body);
       UserModel userModel = UserModel.fromJson(responseJson);
-      UserModel().setCurrentUser({"user": responseJson});
+      await UserModel().setCurrentUser({"user": responseJson});
 
       return userModel;
     } else {
