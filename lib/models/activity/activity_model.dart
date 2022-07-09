@@ -7,9 +7,7 @@ class ActivityModel {
   final int distance;
   final int bloodSugarOxygen;
   //References
-  final int userId;
   final int activityTypeId;
-  final int projectId;
   String? activityName;
 
   ActivityModel(
@@ -20,23 +18,19 @@ class ActivityModel {
       required this.steps,
       required this.distance,
       required this.bloodSugarOxygen,
-      required this.userId,
       required this.activityTypeId,
-      required this.projectId,
       this.activityName});
 
   factory ActivityModel.fromJson(Map<String, dynamic> json) {
     return ActivityModel(
       id: json['id'],
-      startDate: json['start_date'],
-      endDate: json['end_date'],
+      startDate: int.parse(json['start_date']),
+      endDate: int.parse(json['end_date']),
       hearthrate: json['hearthrate'],
       steps: json['steps'],
       distance: json['distance'],
       bloodSugarOxygen: json['bloodSugarOxygen'],
-      userId: json['userId'],
       activityTypeId: json['activityTypeId'],
-      projectId: json['projectId'],
     );
   }
 

@@ -16,23 +16,6 @@ class _HistoryBodyWidgetState extends State<HistoryBodyWidget> {
   final Future<List<ActivityModel>> _activityList =
       const ActivityService().getActivities();
 
-  List<String> dateArray = [
-    '2022-06-30',
-    '2022-06-29',
-    '2022-06-28',
-    '2022-06-27',
-    '2022-06-26'
-  ];
-  List<String> nameArray = [
-    'Running',
-    'Cycling',
-    'Walking',
-    'Running',
-    'Swimming',
-    'Hiking'
-  ];
-  int preferedLength = 0;
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

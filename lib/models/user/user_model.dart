@@ -27,9 +27,16 @@ class UserModel {
       this.lastName});
 
   UserModel.fromJson(Map<String, dynamic> json) {
+    if (json['birthday'] == null) {
+      birthday = null;
+    } else if (json['birthday'] is String) {
+      birthday = int.parse(json['birthday']);
+    } else {
+      birthday = json['birthday'];
+    }
+
     gender = json['gender'];
     address = json['address'];
-    birthday = json['birthday'];
     height = json['height'];
     weight = json['weight'];
     id = json['id'];
