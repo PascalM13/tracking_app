@@ -42,7 +42,7 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
         endDate: widget.end.millisecondsSinceEpoch,
         userId: user.id!,
         activityTypeId: widget.activityTypeModel.id,
-        projectId: 1,
+        projectId: 2,
         hearthrate: 123,
         steps: 123);
 

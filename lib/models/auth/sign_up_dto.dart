@@ -4,6 +4,7 @@ class SignUpDto {
   final String password;
   final String firstName;
   final String lastName;
+  final String projectToken;
 
   //Optional
   String? gender;
@@ -17,6 +18,7 @@ class SignUpDto {
     required this.password,
     required this.firstName,
     required this.lastName,
+    required this.projectToken,
     this.gender,
     this.address,
     this.birthday,
@@ -35,6 +37,7 @@ class SignUpDto {
     data['birthday'] = birthday;
     data['height'] = height;
     data['weight'] = weight;
+    data['projectToken'] = projectToken;
     data['role'] = "USER"; //Needs to be send
 
     return data;

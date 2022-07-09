@@ -18,8 +18,9 @@ class _ActivitySVGWidgetState extends State<ActivitySVGWidget> {
   Future myLoadAsset(String name) async {
     try {
       String activityName = name.toLowerCase();
-      String assetPath = "assets/svgs/swimming.svg";
-      return await rootBundle.loadString(assetPath);
+      String assetPath = "assets/svgs/${widget.activityName.toLowerCase()}.svg";
+      String rootBudle = await rootBundle.loadString(assetPath);
+      return rootBudle;
     } catch (_) {
       return null;
     }
@@ -44,7 +45,7 @@ class _ActivitySVGWidgetState extends State<ActivitySVGWidget> {
               children = <Widget>[
                 SvgPicture.asset(
                   "assets/svgs/default.svg",
-                  width: size.width * 0.30,
+                  width: size.width * 0.50,
                   color: accentColor,
                 )
               ];

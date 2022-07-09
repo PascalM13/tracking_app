@@ -25,9 +25,17 @@ class _VerifyBodyWidgetState extends State<VerifyBodyWidget> {
     if (res == 201) {
       Navigator.pushNamedAndRemoveUntil(
           context, '/nav', ModalRoute.withName('/'));
+    } else if (res == 401) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Wrong Code"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Wrong Email or Code"),
+        content: const Text("Wrong Email"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),

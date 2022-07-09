@@ -75,6 +75,8 @@ class AuthService {
       return res.statusCode;
     } else if (res.statusCode == 401) {
       return res.statusCode;
+    } else if (res.statusCode == 400) {
+      return res.statusCode;
     } else {
       throw Exception("Cant validate Email");
     }

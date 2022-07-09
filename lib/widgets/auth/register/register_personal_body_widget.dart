@@ -12,8 +12,8 @@ import 'package:tracking_app/widgets/UI/rounded_dropdown_gender_widget.dart';
 import 'package:tracking_app/widgets/auth/register/register_background_widget.dart';
 
 class RegisterPersonalBodyWidget extends StatefulWidget {
-  final email;
-  final password;
+  final String email;
+  final String password;
   const RegisterPersonalBodyWidget(
       {Key? key, required this.password, required this.email})
       : super(key: key);
@@ -34,6 +34,8 @@ class _RegisterPersonalBodyWidgetState
   final _addressTownController = TextEditingController();
   final _addressZIPController = TextEditingController();
   final _addressStreetController = TextEditingController();
+
+  final _projectTokenController = TextEditingController();
 
   String? gender;
 
@@ -58,6 +60,17 @@ class _RegisterPersonalBodyWidgetState
       return;
     }
 
+    if (_projectTokenController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Project Code can't be empty!"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+      return;
+    }
+
     //Create a full Address
     final String fullAddress =
         "${_addressZIPController.text.trim()} ${_addressTownController.text.trim()}, ${_addressStreetController.text.trim()}";
@@ -74,17 +87,29 @@ class _RegisterPersonalBodyWidgetState
     final String? parsedGender =
         gender == "---" || gender == null ? null : gender!.toUpperCase();
 
+    DateTime? dateTime;
+    if (_birthdateController.text.trim().isNotEmpty) {
+      List<String> dateSplitted = _birthdateController.text.trim().split("/");
+      dateTime = DateTime(int.parse(dateSplitted[2]),
+          int.parse(dateSplitted[1]), int.parse(dateSplitted[0]));
+    }
+
+    final DateTime? birthdayDateTime =
+        _birthdateController.text.trim().isNotEmpty ? dateTime : null;
+
+    final int? parsedBirthday = birthdayDateTime?.millisecondsSinceEpoch;
+
     SignUpDto dto = SignUpDto(
-      email: widget.email,
-      password: widget.password,
-      firstName: _firstNameController.text.trim(),
-      lastName: _lastNameController.text.trim(),
-      address: fullAddress,
-      gender: parsedGender,
-      //birthday: _birthdateController.text.trim(), //TODO Convert to Int?
-      height: parsedHeight,
-      weight: parsedWeight,
-    );
+        email: widget.email,
+        password: widget.password,
+        firstName: _firstNameController.text.trim(),
+        lastName: _lastNameController.text.trim(),
+        address: fullAddress,
+        gender: parsedGender,
+        birthday: parsedBirthday,
+        height: parsedHeight,
+        weight: parsedWeight,
+        projectToken: _projectTokenController.text.trim());
 
     int res = await const AuthService().signUp(dto);
 
@@ -231,6 +256,14 @@ class _RegisterPersonalBodyWidgetState
               ),
             ],
           ),
+          const SizedBox(
+            height: 15,
+          ),
+          InputFieldWidget(
+              hintText: "Project Code",
+              icon: Icons.code,
+              inputController: _projectTokenController,
+              keyboardtType: TextInputType.name),
           const SizedBox(
             height: 30,
           ),
