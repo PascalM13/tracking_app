@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/activity/activity_model.dart';
-import 'package:tracking_app/screens/UI/nav_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
-import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 class HistoryCardInfoWidget extends StatefulWidget {
   final ActivityModel activityModel;
@@ -42,7 +40,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
             height: 15,
           ),
           Container(
-            padding: const EdgeInsets.all(40),
+            padding: const EdgeInsets.all(35), //40
             child: Row(
               children: [
                 Column(
@@ -51,7 +49,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         color: accentColor,
-                        width: (size.width / 2) - 50,
+                        width: (size.width / 2) - 40, //50
                         height: 90,
                         child: Center(
                           child: Row(

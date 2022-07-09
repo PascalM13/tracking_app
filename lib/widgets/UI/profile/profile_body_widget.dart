@@ -31,11 +31,6 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
     _getUser();
   }
 
-  /*refresh() async {
-    setState(() {
-      _getUser();
-    });
-  }*/
   void _changeProfile() {
     setState(() {
       _getUser();
@@ -45,8 +40,6 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
   void _getUser() async {
     UserModel tmp = await UserModel().getCurrentUser();
     setState(() {
-      //_firstname = tmp.firstName!;
-      //_lastname = tmp.lastName!;
       if (tmp.firstName == null || tmp.firstName == '') {
         _firstname = '---';
       } else {
@@ -61,6 +54,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
         _dateofbirth = '---';
       } else {
         _dateofbirth = tmp.birthday.toString();
+        print(_dateofbirth);
       }
       if (tmp.gender == null) {
         _gender = '---';
@@ -122,12 +116,11 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
           Container(
             padding: const EdgeInsets.all(30),
             child: Row(
-              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Firstname:',
                       style: TextStyle(
                         height: 2.5,
@@ -137,7 +130,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    Text(
+                    const Text(
                       'Lastname:',
                       style: TextStyle(
                         height: 2.5,
@@ -147,7 +140,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    Text(
+                    const Text(
                       'Date of birth:',
                       style: TextStyle(
                         height: 2.5,
@@ -157,7 +150,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    Text(
+                    const Text(
                       'Gender:',
                       style: TextStyle(
                         height: 2.5,
@@ -171,7 +164,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                       height: 50,
                       width: 80,
                       alignment: Alignment.topCenter,
-                      child: Text(
+                      child: const Text(
                         'Address:',
                         style: TextStyle(
                           height: 2.5,
@@ -182,7 +175,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Text(
+                    const Text(
                       'Height(cm):',
                       style: TextStyle(
                         height: 2.5,
@@ -192,7 +185,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    Text(
+                    const Text(
                       'Weight(kg):',
                       style: TextStyle(
                         height: 2.5,
@@ -204,7 +197,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Column(
