@@ -105,6 +105,18 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
     final String? parsedGender =
         gender == "---" || gender == null ? null : gender!.toUpperCase();
 
+    DateTime? dateTime;
+    if (_birthdateController.text.trim().isNotEmpty) {
+      List<String> dateSplitted = _birthdateController.text.trim().split("/");
+      dateTime = DateTime(int.parse(dateSplitted[2]),
+          int.parse(dateSplitted[1]), int.parse(dateSplitted[0]));
+    }
+
+    final DateTime? birthdayDateTime =
+        _birthdateController.text.trim().isNotEmpty ? dateTime : null;
+
+    final int? parsedBirthday = birthdayDateTime?.millisecondsSinceEpoch;
+
     if (_firstNameController.text.isNotEmpty) {
       UserModel userInfos = await UserService()
           .updateUser({"firstName": _firstNameController.text.trim()});
@@ -121,10 +133,10 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
       UserModel userInfos = await UserService()
           .updateUser({"address": _addressController.text.trim()});
     }
-    /*if (_birthdateController.text.isNotEmpty) {
-      UserModel userInfos = await UserService()
-          .updateUser({"birthday": int.parse(_heightController.text.trim())});
-    }*/
+    if (_birthdateController.text.isNotEmpty) {
+      UserModel userInfos =
+          await UserService().updateUser({"birthday": parsedBirthday});
+    }
     if (_heightController.text.isNotEmpty) {
       UserModel userInfos = await UserService()
           .updateUser({"height": int.parse(_heightController.text.trim())});
