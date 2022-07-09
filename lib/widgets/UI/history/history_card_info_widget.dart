@@ -40,7 +40,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
             height: 15,
           ),
           Container(
-            padding: const EdgeInsets.all(35), //40
+            padding: const EdgeInsets.all(20), //40
             child: Row(
               children: [
                 Column(
@@ -49,8 +49,8 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         color: accentColor,
-                        width: (size.width / 2) - 40, //50
-                        height: 90,
+                        width: (size.width / 2) - 30, //50
+                        height: 100,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -61,10 +61,11 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 color: secondery,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 8,
                               ),
                               Text(
                                 'Start date:\n${widget.activityModel.startDate}',
+                                overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -84,8 +85,8 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         color: secondery,
-                        width: (size.width / 2) - 50,
-                        height: 90,
+                        width: (size.width / 2) - 30,
+                        height: 100,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -96,10 +97,11 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 color: accentColor,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 8,
                               ),
                               Text(
                                 'Heartrate:\n${widget.activityModel.hearthrate}',
+                                overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -119,8 +121,8 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         color: accentColor,
-                        width: (size.width / 2) - 50,
-                        height: 90,
+                        width: (size.width / 2) - 30,
+                        height: 100,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -131,10 +133,11 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 color: secondery,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 8,
                               ),
                               Text(
                                 'Distance:\n${widget.activityModel.distance}',
+                                overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -158,8 +161,8 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         color: secondery,
-                        width: (size.width / 2) - 50,
-                        height: 90,
+                        width: (size.width / 2) - 30,
+                        height: 100,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -170,10 +173,11 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 color: accentColor,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 8,
                               ),
                               Text(
                                 'End date:\n${widget.activityModel.endDate}',
+                                overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -193,8 +197,8 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         color: accentColor,
-                        width: (size.width / 2) - 50,
-                        height: 90,
+                        width: (size.width / 2) - 30,
+                        height: 100,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -205,10 +209,11 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 color: secondery,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 8,
                               ),
                               Text(
                                 'Steps:\n${widget.activityModel.steps}',
+                                overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,
@@ -228,8 +233,8 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
                         color: secondery,
-                        width: (size.width / 2) - 50,
-                        height: 90,
+                        width: (size.width / 2) - 30,
+                        height: 100,
                         child: Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -240,10 +245,11 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 color: accentColor,
                               ),
                               const SizedBox(
-                                width: 5,
+                                width: 8,
                               ),
                               Text(
                                 'Blood sugar\n${widget.activityModel.bloodSugarOxygen}',
+                                overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     height: 1.5,

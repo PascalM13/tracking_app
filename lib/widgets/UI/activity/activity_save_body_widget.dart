@@ -32,7 +32,9 @@ class ActivitySaveBodyWidget extends StatefulWidget {
 }
 
 class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
-  final _testController = TextEditingController();
+  final _heartrateController = TextEditingController();
+  final _distanceController = TextEditingController();
+  final _bloodsugarController = TextEditingController();
 
   _saveActivity() async {
     var user = await UserModel().getCurrentUser();
@@ -79,34 +81,26 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
             height: 25,
           ),
           InputFieldWidget(
-              hintText: "Duration",
-              icon: Icons.person,
-              inputController: _testController,
-              keyboardtType: TextInputType.name),
+              hintText: "Heartrate",
+              icon: Icons.favorite,
+              inputController: _heartrateController,
+              keyboardtType: TextInputType.number),
           const SizedBox(
             height: 15,
           ),
           InputFieldWidget(
-              hintText: "Steps",
-              icon: Icons.family_restroom,
-              inputController: _testController,
-              keyboardtType: TextInputType.name),
-          const SizedBox(
-            height: 10,
-          ),
-          InputFieldWidget(
             hintText: "Distance",
-            icon: Icons.home,
-            inputController: _testController,
-            keyboardtType: TextInputType.text,
+            icon: Icons.directions_run_rounded,
+            inputController: _distanceController,
+            keyboardtType: TextInputType.number,
           ),
           const SizedBox(
             height: 15,
           ),
           InputFieldWidget(
             hintText: "Blood Sugar Oxygen",
-            icon: Icons.location_on,
-            inputController: _testController,
+            icon: Icons.bloodtype_outlined,
+            inputController: _bloodsugarController,
             keyboardtType: TextInputType.number,
           ),
           const SizedBox(
