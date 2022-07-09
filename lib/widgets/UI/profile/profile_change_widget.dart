@@ -121,6 +121,10 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
       UserModel userInfos = await UserService()
           .updateUser({"address": _addressController.text.trim()});
     }
+    /*if (_birthdateController.text.isNotEmpty) {
+      UserModel userInfos = await UserService()
+          .updateUser({"birthday": int.parse(_heightController.text.trim())});
+    }*/
     if (_heightController.text.isNotEmpty) {
       UserModel userInfos = await UserService()
           .updateUser({"height": int.parse(_heightController.text.trim())});
