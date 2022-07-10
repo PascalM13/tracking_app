@@ -71,10 +71,12 @@ class _PedometerWidgetState extends State<PedometerWidget> {
   }
 
   Future<void> initPlatformState() async {
-    Permission motionPermission = await getMotionPermission();
-    if (!await motionPermission.isGranted) {
-      var newStatus = await motionPermission.request();
-      if (!newStatus.isGranted) return Future.error('Permission not granted');
+    if (Platform.isAndroid) {
+      Permission motionPermission = await getMotionPermission();
+      if (!await motionPermission.isGranted) {
+        var newStatus = await motionPermission.request();
+        if (!newStatus.isGranted) return Future.error('Permission not granted');
+      }
     }
 
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
