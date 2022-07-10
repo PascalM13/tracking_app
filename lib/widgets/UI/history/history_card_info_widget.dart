@@ -13,14 +13,6 @@ class HistoryCardInfoWidget extends StatefulWidget {
 }
 
 class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
-  final String _startdate = '12:47';
-  final String _enddate = '14:20';
-  final String _heartrate = '123';
-  final String _steps = '1234';
-  final String _distance = '9 km'; // in km
-  final String _bloodSugarOxygen = '12';
-  //final String _activityType = 'One cool activity';
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -35,6 +27,13 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                 fontWeight: FontWeight.bold,
                 color: accentColor,
                 fontSize: 25.0),
+          ),
+          Text(
+            widget.activityModel.getDateString(),
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black38,
+                fontSize: 20.0),
           ),
           const SizedBox(
             height: 15,
@@ -64,7 +63,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Start date:\n${widget.activityModel.startDate}',
+                                'Start date:\n${widget.activityModel.getStartTimeString()}',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -100,7 +99,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Heartrate:\n${widget.activityModel.hearthrate}',
+                                'Heartrate:\n${widget.activityModel.hearthrate} BPM',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -136,7 +135,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Distance:\n${widget.activityModel.distance}',
+                                'Distance:\n${widget.activityModel.distance}m',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -176,7 +175,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'End date:\n${widget.activityModel.endDate}',
+                                'End date:\n${widget.activityModel.getEndTimeString()}',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -248,7 +247,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Blood sugar\n${widget.activityModel.bloodSugarOxygen}',
+                                'Blood sugar\n${widget.activityModel.bloodSugarOxygen}mg/dl',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,

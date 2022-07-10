@@ -31,7 +31,10 @@ class _HistoryCardWidgetState extends State<HistoryCardWidget> {
           child: Center(
               child: Text(
             '${widget.activityModel.getDateString()}     ${widget.activityModel.activityName!}',
-            style: const TextStyle(color: accentColor, fontSize: 14.0),
+            style: const TextStyle(
+                color: Colors.black54,
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold),
           )),
         ),
       ),

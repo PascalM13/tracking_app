@@ -24,11 +24,23 @@ class ActivityStartStopWidget extends StatefulWidget {
 class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
   DateTime start = DateTime.now();
   DateTime end = DateTime.now();
-  int steps = 0;
   DurationWrapper stopWatchTime = DurationWrapper("00:00:00:00");
 
   //Disable Save Activity Button
   bool saveActivityIsDisabled = true;
+
+  //Pedometer steps
+  int steps = 0;
+
+  calcSteps() {
+    setState(() {
+      steps++;
+    });
+  }
+
+  getSteps() {
+    return steps;
+  }
 
   setSaveActivityIsDisabled(bool value) {
     setState(() {
@@ -53,10 +65,20 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
           const SizedBox(
             height: 30,
           ),
-          //const PedometerWidget(),
           ActivitySVGWidget(activityName: widget.activity.name),
+          PedometerWidget(
+            getSteps: getSteps,
+            calcSteps: calcSteps,
+          ),
           const SizedBox(
             height: 15,
+          ),
+          Text(
+            'My steps: $steps',
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.black54,
+                fontSize: 28.0),
           ),
           StopWatchWidget(
               stopWatchTime: stopWatchTime,

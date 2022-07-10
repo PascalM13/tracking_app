@@ -36,7 +36,19 @@ class ActivityModel {
 
   String getDateString() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(startDate);
-    String date = "${dateTime.day}. ${dateTime.month} .${dateTime.year}";
+    String date = "${dateTime.day}.${dateTime.month}.${dateTime.year}";
+    return date;
+  }
+
+  String getStartTimeString() {
+    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(startDate);
+    String date = "${dateTime.hour}:${dateTime.minute}";
+    return date;
+  }
+
+  String getEndTimeString() {
+    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(endDate);
+    String date = "${dateTime.hour}:${dateTime.minute}";
     return date;
   }
 
