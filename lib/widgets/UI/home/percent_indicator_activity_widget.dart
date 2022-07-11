@@ -15,7 +15,7 @@ class _PercentIndicatorActivityWidgetState
   final double _drawnProgress =
       0.56; //TODO: hier Fortschritt der Aktivität aus Datenbank eingeben
   final String _progress =
-      '56 of 100 days'; //TODO: hier die jeweilige Zahl aus der Datenbank einfügen
+      '56 of 100 activities'; //TODO: hier die jeweilige Zahl aus der Datenbank einfügen
   final String _target =
       '100'; //TODO: hier die jeweilige Endzeit aus der Studie einfügen
   @override

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/home/expansion_panel_list_widget.dart';
-import 'package:tracking_app/widgets/UI/home/percent_indicator_activity_widget.dart';
 import 'package:tracking_app/widgets/UI/home/percent_indicator_days_widget.dart';
+
+import '../../../models/project/project_model.dart';
+import '../../../services/project_service.dart';
 
 class HomeBodyWidget extends StatefulWidget {
   const HomeBodyWidget({Key? key}) : super(key: key);
@@ -13,8 +15,21 @@ class HomeBodyWidget extends StatefulWidget {
 }
 
 class _HomeBodyWidgetState extends State<HomeBodyWidget> {
-  final String _studyname =
-      "Relationship between diabetes and fitness"; //TODO: hier Name aus Datenbank einfügen
+  String _studyname = "";
+
+  void _getStudyName() async {
+    ProjectModel project = await const ProjectService().getProject();
+
+    setState(() {
+      _studyname = project.name;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getStudyName();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +63,7 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
             height: 30,
           ),
           const Text(
-            'Your own progress:',
+            'Duration of the study:',
             style: TextStyle(
               height: 2.5,
               fontWeight: FontWeight.bold,
@@ -58,13 +73,13 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
             textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: 15,
+            height: 5,
           ),
           const PercentIndicatorDayWidget(),
           const SizedBox(
             height: 15,
           ),
-          const PercentIndicatorActivityWidget(),
+          //const PercentIndicatorActivityWidget(),
           const SizedBox(
             height: 30,
           ),
