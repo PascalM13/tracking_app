@@ -9,10 +9,12 @@ import '../round_button_icon_widget.dart';
 class StopWatchWidget extends StatefulWidget {
   DurationWrapper stopWatchTime;
   Function setSaveActivityIsDisabled;
+  Function setPedometerIsDisabled;
   StopWatchWidget(
       {Key? key,
       required this.stopWatchTime,
-      required this.setSaveActivityIsDisabled})
+      required this.setSaveActivityIsDisabled,
+      required this.setPedometerIsDisabled})
       : super(key: key);
 
   @override
@@ -87,6 +89,7 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                   if (startIsDisabled == false) {
                     _stopWatchTimer.onExecute.add(StopWatchExecute.start);
                     setStateStartButton();
+                    widget.setPedometerIsDisabled(true);
                   }
                 },
               ),
@@ -97,6 +100,7 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                   if (stopIsDisabled == false) {
                     _stopWatchTimer.onExecute.add(StopWatchExecute.stop);
                     setStateStopButton();
+                    widget.setPedometerIsDisabled(false);
                   }
                 },
               )

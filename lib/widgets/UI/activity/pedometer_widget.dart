@@ -8,9 +8,10 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:tracking_app/theme/colors.dart';
 
 class PedometerWidget extends StatefulWidget {
-  Function getSteps;
+  Function getPedometerIsDisabled;
   Function calcSteps;
-  PedometerWidget({Key? key, required this.getSteps, required this.calcSteps})
+  PedometerWidget(
+      {Key? key, required this.getPedometerIsDisabled, required this.calcSteps})
       : super(key: key);
 
   @override
@@ -30,8 +31,10 @@ class _PedometerWidgetState extends State<PedometerWidget> {
 
   void onStepCount(StepCount event) {
     setState(() {
-      widget.calcSteps();
-      _steps = event.steps.toString();
+      if (widget.getPedometerIsDisabled()) {
+        widget.calcSteps();
+        _steps = event.steps.toString();
+      }
     });
   }
 
@@ -92,21 +95,6 @@ class _PedometerWidgetState extends State<PedometerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-      const SizedBox(
-        height: 20,
-      ),
-      const Text(
-        'Steps taken:',
-        style: TextStyle(
-            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54),
-      ),
-      Text(
-        _status,
-        style: _status == 'walking' || _status == 'stopped'
-            ? const TextStyle(fontSize: 30)
-            : const TextStyle(fontSize: 20, color: accentColor),
-      ),
-    ]);
+    return const SizedBox();
   }
 }

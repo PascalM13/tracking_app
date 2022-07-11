@@ -31,6 +31,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
 
   //Pedometer steps
   int steps = 0;
+  bool pedometerDisabled = true;
 
   calcSteps() {
     setState(() {
@@ -38,8 +39,14 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
     });
   }
 
-  getSteps() {
-    return steps;
+  setPedometerIsDisabled(bool value) {
+    setState(() {
+      pedometerDisabled = value;
+    });
+  }
+
+  getPedometerIsDisabled() {
+    return pedometerDisabled;
   }
 
   setSaveActivityIsDisabled(bool value) {
@@ -67,7 +74,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
           ),
           ActivitySVGWidget(activityName: widget.activity.name),
           PedometerWidget(
-            getSteps: getSteps,
+            getPedometerIsDisabled: getPedometerIsDisabled,
             calcSteps: calcSteps,
           ),
           const SizedBox(
@@ -81,6 +88,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
                 fontSize: 28.0),
           ),
           StopWatchWidget(
+              setPedometerIsDisabled: setPedometerIsDisabled,
               stopWatchTime: stopWatchTime,
               setSaveActivityIsDisabled: setSaveActivityIsDisabled),
           const SizedBox(
