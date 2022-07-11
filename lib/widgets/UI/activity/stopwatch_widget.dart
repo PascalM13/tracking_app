@@ -118,7 +118,7 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(

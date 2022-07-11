@@ -20,6 +20,11 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
     super.initState();
   }
 
+  displayBirthday(int timeStamp) {
+    DateTime dt = DateTime.fromMillisecondsSinceEpoch(timeStamp);
+    return "${dt.day}.${dt.month}.${dt.year}";
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScreenBackgroundWidget(
@@ -158,7 +163,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                               Text(
                                 snapshot.data!.birthday == null
                                     ? "---"
-                                    : snapshot.data!.birthday!.toString(),
+                                    : displayBirthday(snapshot.data!.birthday!),
                                 style: const TextStyle(
                                   height: 2.5,
                                   color: Colors.black,
