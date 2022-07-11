@@ -21,8 +21,11 @@ class _HistoryBodyWidgetState extends State<HistoryBodyWidget> {
     Size size = MediaQuery.of(context).size;
     return ScreenBackgroundWidget(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
+          SizedBox(
+            height: size.height * 0.12,
+          ),
           const Text(
             "History",
             style: TextStyle(
@@ -34,55 +37,54 @@ class _HistoryBodyWidgetState extends State<HistoryBodyWidget> {
             'assets/images/login_screen.jpg',
             height: size.height * 0.3,
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          Container(
-              height: size.height * 0.4,
-              child: FutureBuilder(
-                  future: _activityList,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<ActivityModel>> snapshot) {
-                    List<Widget> children;
-                    if (snapshot.hasData) {
-                      children = <Widget>[
-                        for (ActivityModel activity in snapshot.data!.reversed)
-                          HistoryCardWidget(
-                            activityModel: activity,
-                          )
-                      ];
-                    } else if (snapshot.hasError) {
-                      children = <Widget>[
-                        const Icon(
-                          Icons.error_outline,
-                          color: Colors.red,
-                          size: 60,
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 16),
-                          child: Text('Error: Failed to load Activities'),
-                        )
-                      ];
-                    } else {
-                      children = const <Widget>[
-                        SizedBox(
-                          width: 60,
-                          height: 60,
-                          child: CircularProgressIndicator(),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 16),
-                          child: Text('Awaiting result...'),
-                        )
-                      ];
-                    }
-                    return Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: children,
-                      ),
-                    );
-                  }))
+          SizedBox(
+              height: size.height * 0.45,
+              child: SingleChildScrollView(
+                  child: FutureBuilder(
+                      future: _activityList,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<ActivityModel>> snapshot) {
+                        List<Widget> children;
+                        if (snapshot.hasData) {
+                          children = <Widget>[
+                            for (ActivityModel activity
+                                in snapshot.data!.reversed)
+                              HistoryCardWidget(
+                                activityModel: activity,
+                              )
+                          ];
+                        } else if (snapshot.hasError) {
+                          children = <Widget>[
+                            const Icon(
+                              Icons.error_outline,
+                              color: Colors.red,
+                              size: 60,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 16),
+                              child: Text('Error: Failed to load Activities'),
+                            )
+                          ];
+                        } else {
+                          children = const <Widget>[
+                            SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: CircularProgressIndicator(),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 16),
+                              child: Text('Awaiting result...'),
+                            )
+                          ];
+                        }
+                        return Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: children,
+                          ),
+                        );
+                      })))
         ],
       ),
     );
