@@ -37,55 +37,52 @@ class _HistoryBodyWidgetState extends State<HistoryBodyWidget> {
           const SizedBox(
             height: 15,
           ),
-          SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                  height: size.height * 0.4,
-                  child: FutureBuilder(
-                      future: _activityList,
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<ActivityModel>> snapshot) {
-                        List<Widget> children;
-                        if (snapshot.hasData) {
-                          children = <Widget>[
-                            for (ActivityModel activity
-                                in snapshot.data!.reversed)
-                              HistoryCardWidget(
-                                activityModel: activity,
-                              )
-                          ];
-                        } else if (snapshot.hasError) {
-                          children = <Widget>[
-                            const Icon(
-                              Icons.error_outline,
-                              color: Colors.red,
-                              size: 60,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 16),
-                              child: Text('Error: Failed to load Activities'),
-                            )
-                          ];
-                        } else {
-                          children = const <Widget>[
-                            SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: CircularProgressIndicator(),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 16),
-                              child: Text('Awaiting result...'),
-                            )
-                          ];
-                        }
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: children,
-                          ),
-                        );
-                      })))
+          Container(
+              height: size.height * 0.4,
+              child: FutureBuilder(
+                  future: _activityList,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<ActivityModel>> snapshot) {
+                    List<Widget> children;
+                    if (snapshot.hasData) {
+                      children = <Widget>[
+                        for (ActivityModel activity in snapshot.data!.reversed)
+                          HistoryCardWidget(
+                            activityModel: activity,
+                          )
+                      ];
+                    } else if (snapshot.hasError) {
+                      children = <Widget>[
+                        const Icon(
+                          Icons.error_outline,
+                          color: Colors.red,
+                          size: 60,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 16),
+                          child: Text('Error: Failed to load Activities'),
+                        )
+                      ];
+                    } else {
+                      children = const <Widget>[
+                        SizedBox(
+                          width: 60,
+                          height: 60,
+                          child: CircularProgressIndicator(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 16),
+                          child: Text('Awaiting result...'),
+                        )
+                      ];
+                    }
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: children,
+                      ),
+                    );
+                  }))
         ],
       ),
     );

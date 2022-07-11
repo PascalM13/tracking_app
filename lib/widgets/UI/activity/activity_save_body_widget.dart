@@ -58,9 +58,8 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
 
     if (!mounted) return;
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return const NavScreen();
-    }));
+    Navigator.pushNamedAndRemoveUntil(
+        context, '/nav', ModalRoute.withName('/'));
   }
 
   @override
@@ -123,9 +122,8 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
           RoundedButtonWidget(
               text: 'Cancel',
               onPress: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const NavScreen();
-                }));
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/nav', ModalRoute.withName('/'));
               },
               color: accentColor,
               textColor: Colors.white),

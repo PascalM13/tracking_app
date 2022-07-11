@@ -251,14 +251,13 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
           RoundedButtonWidget(
               text: 'Save information',
               onPress: () async {
-                //TODO: Profile Service needs to be created
-                log("No logic implemented at 'profile_body_widget'");
                 await _updateUserInfo();
                 _changeProfile();
-                await Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                  return const NavScreen();
-                }));
+
+                if (!mounted) return;
+
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/nav', ModalRoute.withName('/'));
               },
               color: accentColor,
               textColor: Colors.white),
