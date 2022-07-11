@@ -6,7 +6,7 @@ class SignInDto {
 
   Map<String, dynamic> toJson() {
     return {
-      'email': email,
+      'email': email.toLowerCase(),
       'password': password,
     };
   }

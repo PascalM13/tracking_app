@@ -25,6 +25,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
   DateTime start = DateTime.now();
   DateTime end = DateTime.now();
   DurationWrapper stopWatchTime = DurationWrapper("00:00:00:00");
+  double kcals = 0.00;
 
   //Disable Save Activity Button
   bool saveActivityIsDisabled = true;
@@ -85,12 +86,14 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
-                fontSize: 28.0),
+                fontSize: 22.0),
           ),
           StopWatchWidget(
-              setPedometerIsDisabled: setPedometerIsDisabled,
-              stopWatchTime: stopWatchTime,
-              setSaveActivityIsDisabled: setSaveActivityIsDisabled),
+            setPedometerIsDisabled: setPedometerIsDisabled,
+            stopWatchTime: stopWatchTime,
+            setSaveActivityIsDisabled: setSaveActivityIsDisabled,
+            activityType: widget.activity,
+          ),
           const SizedBox(
             height: 100,
           ),

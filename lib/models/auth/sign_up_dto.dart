@@ -28,7 +28,7 @@ class SignUpDto {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['email'] = email;
+    data['email'] = email.toLowerCase();
     data['password'] = password;
     data['firstName'] = firstName;
     data['lastName'] = lastName;

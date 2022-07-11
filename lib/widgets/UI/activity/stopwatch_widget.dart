@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:tracking_app/models/acitvity_type/activity_type_model.dart';
+import 'package:tracking_app/models/user/user_model.dart';
 import 'package:tracking_app/models/wrapper/duration_wrapper.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
@@ -10,11 +12,14 @@ class StopWatchWidget extends StatefulWidget {
   DurationWrapper stopWatchTime;
   Function setSaveActivityIsDisabled;
   Function setPedometerIsDisabled;
+  ActivityTypeModel activityType;
+
   StopWatchWidget(
       {Key? key,
       required this.stopWatchTime,
       required this.setSaveActivityIsDisabled,
-      required this.setPedometerIsDisabled})
+      required this.setPedometerIsDisabled,
+      required this.activityType})
       : super(key: key);
 
   @override
@@ -25,6 +30,7 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
   final _isHours = true;
   bool isStartButtonVisible = true;
+  double userWeight = 65.00;
 
   //Variables for Start and Stop Button
   bool startIsDisabled = false;
@@ -49,6 +55,19 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
     });
   }
 
+  _setUserWeight() async {
+    var user = await UserModel().getCurrentUser();
+    userWeight = user.weight != null ? user.weight!.toDouble() : userWeight;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _setUserWeight();
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -68,12 +87,48 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
                 final displayTime =
                     StopWatchTimer.getDisplayTime(value!, hours: _isHours);
                 widget.stopWatchTime.duration = displayTime;
-                return Text(
-                  displayTime,
-                  style: const TextStyle(
-                      fontSize: 40.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54),
+                final kcal = widget.activityType
+                    .calcCalsFromStopwatch(displayTime, userWeight);
+                return Column(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: "Kcals ",
+                            style: TextStyle(
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54),
+                          ),
+                          const WidgetSpan(
+                            child: Icon(
+                              IconData(0xf86b, fontFamily: 'MaterialIcons'),
+                              size: 22,
+                              color: accentColor,
+                            ),
+                          ),
+                          TextSpan(
+                            text: ": $kcal",
+                            style: const TextStyle(
+                                fontSize: 22.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      displayTime,
+                      style: const TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black54),
+                    ),
+                  ],
                 );
               }),
           const SizedBox(
