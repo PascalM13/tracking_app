@@ -1,7 +1,7 @@
 class NewsModel {
   final int id;
-  final int createdAt;
-  final int updatedAt;
+  final String createdAt;
+  final String updatedAt;
   final String title;
   final String text;
 
@@ -15,14 +15,15 @@ class NewsModel {
   factory NewsModel.fromJson(Map<String, dynamic> json) {
     return NewsModel(
         id: json['id'],
-        createdAt: int.parse(json['created_at']),
-        updatedAt: int.parse(json['updated_at']),
+        createdAt: json['created_at'],
+        updatedAt: json['updated_at'],
         title: json['title'],
         text: json['text']);
   }
 
   String getDateString() {
-    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(updatedAt);
+    DateTime dateTime =
+        DateTime.fromMillisecondsSinceEpoch(int.parse(updatedAt));
     String date =
         "${dateTime.hour}:${dateTime.minute} - ${dateTime.day}.${dateTime.month}.${dateTime.year}";
     return date;
