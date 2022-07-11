@@ -23,4 +23,6 @@ class ApiConstants {
   //Constants for Project
   static String project = 'project/';
   static String projectAll = 'project/all';
+  //Constants for News
+  static String newsAll = 'news/project/';
 }
