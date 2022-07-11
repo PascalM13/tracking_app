@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/auth/reset_password_dto.dart';
 import 'package:tracking_app/screens/auth/login_forgot_password_verify_screen.dart';
-import 'package:tracking_app/screens/auth/login_screen.dart';
 import 'package:tracking_app/services/auth_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/activity/activity_model.dart';
 import 'package:tracking_app/screens/history_card_screen.dart';
-import 'package:tracking_app/theme/colors.dart';
 
 class HistoryCardWidget extends StatefulWidget {
   final ActivityModel activityModel;

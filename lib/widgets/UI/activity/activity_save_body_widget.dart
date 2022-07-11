@@ -6,9 +6,7 @@ import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart
 import 'package:tracking_app/widgets/UI/input_fields/input_field_numbers_widget.dart';
 
 import '../../../models/user/user_model.dart';
-import '../../../screens/UI/nav_screen.dart';
 import '../../../theme/colors.dart';
-import '../input_fields/input_field_widget.dart';
 import '../rounded_button_widget.dart';
 
 // ignore: must_be_immutable

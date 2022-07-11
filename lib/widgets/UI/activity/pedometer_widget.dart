@@ -5,8 +5,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tracking_app/theme/colors.dart';
 
+// ignore: must_be_immutable
 class PedometerWidget extends StatefulWidget {
   Function getPedometerIsDisabled;
   Function calcSteps;

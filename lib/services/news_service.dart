@@ -11,7 +11,7 @@ class UniversityService {
 
   ///Get-Request which returns all News
   Future<List<NewsModel>> getNews() async {
-    final ProjectModel project = await ProjectService().getProject();
+    final ProjectModel project = await const ProjectService().getProject();
     final String url = ApiConstants.newsAll + project.id.toString();
     final res = await const ApiServiceHelper().createGetRequest(url, true);
     if (res.statusCode == 200) {

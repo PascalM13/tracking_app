@@ -9,7 +9,7 @@ class ProjectService {
 
   Future<ProjectModel> getProject() async {
     final String url = ApiConstants.projectAll;
-    final res = await ApiServiceHelper().createGetRequest(url, true);
+    final res = await const ApiServiceHelper().createGetRequest(url, true);
     if (res.statusCode == 200) {
       final responseJson = jsonDecode(res.body);
       return ProjectModel.fromJson(responseJson[0]);

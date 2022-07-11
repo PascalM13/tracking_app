@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/models/acitvity_type/activity_type_model.dart';
 import 'package:tracking_app/widgets/UI/activity/activity_save_body_widget.dart';
 
+// ignore: must_be_immutable
 class ActivitySaveScreen extends StatefulWidget {
   int? steps;
   final String duration;

@@ -36,7 +36,7 @@ class _LoginForgotPasswordVerifyBodyWidgetState
     ChangePasswordDto dto = ChangePasswordDto(_emailController.text.trim(),
         _passwordController.text.trim(), _verifyController.text.trim());
 
-    int res = await AuthService().changePassword(dto);
+    int res = await const AuthService().changePassword(dto);
 
     if (!mounted) return;
 

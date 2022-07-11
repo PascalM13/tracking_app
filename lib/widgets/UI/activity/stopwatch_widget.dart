@@ -4,10 +4,10 @@ import 'package:tracking_app/models/acitvity_type/activity_type_model.dart';
 import 'package:tracking_app/models/user/user_model.dart';
 import 'package:tracking_app/models/wrapper/duration_wrapper.dart';
 import 'package:tracking_app/theme/colors.dart';
-import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 import '../round_button_icon_widget.dart';
 
+// ignore: must_be_immutable
 class StopWatchWidget extends StatefulWidget {
   DurationWrapper stopWatchTime;
   Function setSaveActivityIsDisabled;
