@@ -18,14 +18,14 @@ class _PercentIndicatorDayWidgetState extends State<PercentIndicatorDayWidget> {
   String _progress = '';
 
   String _startdate = "";
-  String _enddate = "";
+  //String _enddate = "";
 
   void _getStudyInformation() async {
     ProjectModel project = await const ProjectService().getProject();
 
     setState(() {
       _startdate = project.startDate.toString().substring(0, 10);
-      _enddate = project.endDate.toString().substring(0, 10);
+      //_enddate = project.endDate.toString().substring(0, 10);
       final DateTime currentdateAsNumbers = DateTime.now();
       if (currentdateAsNumbers.compareTo(project.endDate) <= 0) {
         if (project.startDate.compareTo(currentdateAsNumbers) <= 0) {
@@ -61,20 +61,21 @@ class _PercentIndicatorDayWidgetState extends State<PercentIndicatorDayWidget> {
     return Container(
       padding: const EdgeInsets.all(10),
       child: LinearPercentIndicator(
+        alignment: MainAxisAlignment.center,
         lineHeight: 25,
-        width: size.width - 134, //60,
+        width: size.width - 60,
         barRadius: const Radius.circular(20),
         percent: _drawnProgress,
         animation: true,
         animationDuration: 1000,
         progressColor: accentColor,
-        leading: Text(
+        /*leading: Text(
           _startdate,
           style: const TextStyle(
             color: Colors.black,
             fontSize: 11.0,
           ),
-        ),
+        ),*/
         center: Text(
           _progress,
           style: const TextStyle(
@@ -82,13 +83,13 @@ class _PercentIndicatorDayWidgetState extends State<PercentIndicatorDayWidget> {
             fontSize: 11.0,
           ),
         ),
-        trailing: Text(
+        /*trailing: Text(
           _enddate,
           style: const TextStyle(
             color: Colors.black,
             fontSize: 11.0,
           ),
-        ),
+        ),*/
       ),
     );
   }
