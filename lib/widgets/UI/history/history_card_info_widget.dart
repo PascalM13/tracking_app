@@ -63,7 +63,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Start date:\n${widget.activityModel.getStartTimeString()}',
+                                'Start date:\n${widget.activityModel.getStartTimeString()}h',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -175,7 +175,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'End date:\n${widget.activityModel.getEndTimeString()}',
+                                'End date:\n${widget.activityModel.getEndTimeString()}h',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,

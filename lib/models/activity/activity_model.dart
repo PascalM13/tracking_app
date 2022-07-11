@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 class ActivityModel {
   final int id;
   final int startDate;
@@ -42,13 +44,35 @@ class ActivityModel {
 
   String getStartTimeString() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(startDate);
-    String date = "${dateTime.hour}:${dateTime.minute}";
+    String hour = dateTime.hour.toString();
+    String minute = dateTime.minute.toString();
+
+    if (hour.length == 1) {
+      hour = "0$hour";
+    }
+
+    if (minute.length == 1) {
+      minute = "0$minute";
+    }
+
+    String date = "${hour}:${minute}";
     return date;
   }
 
   String getEndTimeString() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(endDate);
-    String date = "${dateTime.hour}:${dateTime.minute}";
+    String hour = dateTime.hour.toString();
+    String minute = dateTime.minute.toString();
+
+    if (hour.length == 1) {
+      hour = "0$hour";
+    }
+
+    if (minute.length == 1) {
+      minute = "0$minute";
+    }
+
+    String date = "${hour}:${minute}";
     return date;
   }
 

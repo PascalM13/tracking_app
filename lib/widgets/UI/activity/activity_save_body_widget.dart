@@ -3,6 +3,7 @@ import 'package:tracking_app/models/acitvity_type/activity_type_model.dart';
 import 'package:tracking_app/models/activity/activity_dto.dart';
 import 'package:tracking_app/services/activity_service.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
+import 'package:tracking_app/widgets/UI/input_fields/input_field_numbers_widget.dart';
 
 import '../../../models/user/user_model.dart';
 import '../../../screens/UI/nav_screen.dart';
@@ -44,14 +45,16 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
         endDate: widget.end.millisecondsSinceEpoch,
         userId: user.id!,
         activityTypeId: widget.activityTypeModel.id,
-        projectId: 2,
-        hearthrate: 123,
-        steps: 123);
+        projectId: 2, //TODO Get ProjectID from Project
+        hearthrate: _heartrateController.text.trim() != ""
+            ? int.parse(_heartrateController.text.trim())
+            : 0,
+        bloodSugarOxygen: _bloodsugarController.text.trim() != ""
+            ? int.parse(_bloodsugarController.text.trim())
+            : 0,
+        steps: widget.steps! < 0 ? 0 : widget.steps!);
 
-    var savedAcitivity = await const ActivityService().createActivity(dto);
-
-    print(widget.start);
-    print(widget.start.millisecondsSinceEpoch);
+    await const ActivityService().createActivity(dto);
 
     if (!mounted) return;
 
@@ -80,28 +83,32 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
           const SizedBox(
             height: 25,
           ),
-          InputFieldWidget(
-              hintText: "Heartrate",
-              icon: Icons.favorite,
-              inputController: _heartrateController,
-              keyboardtType: TextInputType.number),
+          InputFieldNumbersWidget(
+            hintText: "Heartrate",
+            icon: Icons.favorite,
+            inputController: _heartrateController,
+            keyboardtType: TextInputType.number,
+            labelText: "BPM",
+          ),
           const SizedBox(
             height: 15,
           ),
-          InputFieldWidget(
-            hintText: "Distance",
+          InputFieldNumbersWidget(
+            hintText: "Apporx. Distance in m",
             icon: Icons.directions_run_rounded,
             inputController: _distanceController,
             keyboardtType: TextInputType.number,
+            labelText: "Approx. Meter",
           ),
           const SizedBox(
             height: 15,
           ),
-          InputFieldWidget(
+          InputFieldNumbersWidget(
             hintText: "Blood Sugar Oxygen",
             icon: Icons.bloodtype_outlined,
             inputController: _bloodsugarController,
             keyboardtType: TextInputType.number,
+            labelText: "mg/dl",
           ),
           const SizedBox(
             height: 30,

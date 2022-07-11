@@ -30,7 +30,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
   bool saveActivityIsDisabled = true;
 
   //Pedometer steps
-  int steps = 0;
+  int steps = -1;
   bool pedometerDisabled = true;
 
   calcSteps() {
@@ -81,7 +81,7 @@ class _ActivityStartStopWidgetState extends State<ActivityStartStopWidget> {
             height: 15,
           ),
           Text(
-            'My steps: $steps',
+            steps != -1 ? 'My steps: $steps' : 'My steps: 0',
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black54,
