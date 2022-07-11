@@ -1,5 +1,5 @@
 class ProjectModel {
-  final String id;
+  final int id;
   final DateTime startDate;
   final DateTime endDate;
   final String name;
@@ -13,8 +13,10 @@ class ProjectModel {
       required this.description});
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
-    var dtStart = DateTime.fromMillisecondsSinceEpoch(json['start_date']);
-    var dtEnd = DateTime.fromMillisecondsSinceEpoch(json['end_date']);
+    var dtStart =
+        DateTime.fromMillisecondsSinceEpoch(int.parse(json['start_date']));
+    var dtEnd =
+        DateTime.fromMillisecondsSinceEpoch(int.parse(json['end_date']));
 
     return ProjectModel(
         id: json['id'],
