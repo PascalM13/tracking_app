@@ -88,9 +88,12 @@ class _NavScreenState extends State<NavScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: getBody(),
-      bottomNavigationBar: getFooter(),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: getBody(),
+        bottomNavigationBar: getFooter(),
+      ),
     );
   }
 }
