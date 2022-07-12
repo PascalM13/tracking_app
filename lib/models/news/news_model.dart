@@ -4,13 +4,15 @@ class NewsModel {
   final String updatedAt;
   final String title;
   final String text;
+  final String author;
 
   NewsModel(
       {required this.id,
       required this.createdAt,
       required this.updatedAt,
       required this.title,
-      required this.text});
+      required this.text,
+      required this.author});
 
   factory NewsModel.fromJson(Map<String, dynamic> json) {
     return NewsModel(
@@ -18,7 +20,8 @@ class NewsModel {
         createdAt: json['created_at'],
         updatedAt: json['updated_at'],
         title: json['title'],
-        text: json['text']);
+        text: json['text'],
+        author: json['user_firstname'] + " " + json['user_lastname']);
   }
 
   String getDateString() {
