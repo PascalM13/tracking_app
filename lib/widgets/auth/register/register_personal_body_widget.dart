@@ -195,7 +195,7 @@ class _RegisterPersonalBodyWidgetState
             children: [
               InputFieldDateWidget(
                 inputController: _birthdateController,
-                inputWidth: 0.4,
+                inputWidth: 0.45,
               ),
               RoundedDropdownGenderWidget(setGender: _setGender),
             ],

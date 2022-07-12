@@ -189,7 +189,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
             children: [
               InputFieldDateWidget(
                 inputController: _birthdateController,
-                inputWidth: 0.4,
+                inputWidth: 0.45,
               ),
               RoundedDropdownGenderWidget(setGender: _setGender),
             ],
