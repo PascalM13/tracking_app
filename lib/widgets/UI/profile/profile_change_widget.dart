@@ -82,6 +82,8 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
       } else {
         _weight = '${tmp.weight} kg';
       }
+
+      gender = tmp.gender;
     });
   }
 
