@@ -32,6 +32,9 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(
+            height: 60,
+          ),
           const Text(
             "My Profile",
             style: TextStyle(
@@ -44,6 +47,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
           ),
           const Icon(
             Icons.account_circle_rounded,
+            size: 70,
+            color: accentColor,
           ),
           Container(
             padding: const EdgeInsets.all(30),
