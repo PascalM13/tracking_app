@@ -50,6 +50,9 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
         bloodSugarOxygen: _bloodsugarController.text.trim() != ""
             ? int.parse(_bloodsugarController.text.trim())
             : 0,
+        distance: _distanceController.text.trim() != ""
+            ? int.parse(_distanceController.text.trim())
+            : 0,
         steps: widget.steps! < 0 ? 0 : widget.steps!);
 
     await const ActivityService().createActivity(dto);

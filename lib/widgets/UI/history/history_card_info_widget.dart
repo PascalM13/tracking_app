@@ -69,7 +69,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Start date:\n${widget.activityModel.getStartTimeString()}h',
+                                'Start date:\n${widget.activityModel.getStartTimeString()} h',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -141,7 +141,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Distance:\n${widget.activityModel.distance}m',
+                                'Distance:\n${widget.activityModel.distance} m',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -181,7 +181,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'End date:\n${widget.activityModel.getEndTimeString()}h',
+                                'End date:\n${widget.activityModel.getEndTimeString()} h',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -253,7 +253,7 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                                 width: 8,
                               ),
                               Text(
-                                'Blood sugar\n${widget.activityModel.bloodSugarOxygen}mg/dl',
+                                'Blood sugar\n${widget.activityModel.bloodSugarOxygen} mg/dl',
                                 overflow: TextOverflow.visible,
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold,
