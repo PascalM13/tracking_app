@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/models/acitvity_type/activity_type_model.dart';
 import 'package:tracking_app/models/activity/activity_dto.dart';
 import 'package:tracking_app/services/activity_service.dart';
+import 'package:tracking_app/services/project_service.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_numbers_widget.dart';
 
@@ -37,13 +38,14 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
 
   _saveActivity() async {
     var user = await UserModel().getCurrentUser();
+    var project = await ProjectService().getProject();
 
     var dto = ActivityDto(
         startDate: widget.start.millisecondsSinceEpoch,
         endDate: widget.end.millisecondsSinceEpoch,
         userId: user.id!,
         activityTypeId: widget.activityTypeModel.id,
-        projectId: 2, //TODO Get ProjectID from Project
+        projectId: project.id,
         hearthrate: _heartrateController.text.trim() != ""
             ? int.parse(_heartrateController.text.trim())
             : 0,
