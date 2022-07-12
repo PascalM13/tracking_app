@@ -24,7 +24,7 @@ class _HistoryBodyWidgetState extends State<HistoryBodyWidget> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: size.height * 0.12,
+            height: size.height * 0.10,
           ),
           const Text(
             "History",
