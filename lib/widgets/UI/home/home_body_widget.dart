@@ -136,7 +136,7 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                                       height: 7,
                                     ),
                                     Text(
-                                      "created at: ${news.createdAt.substring(0, 10)}, updated at: ${news.updatedAt.substring(0, 10)}",
+                                      "created at: ${news.createdAt.substring(0, 10)}, by: ${news.author}",
                                       overflow: TextOverflow.visible,
                                       style: const TextStyle(
                                           fontStyle: FontStyle.italic,
