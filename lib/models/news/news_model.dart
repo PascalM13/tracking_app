@@ -25,10 +25,7 @@ class NewsModel {
   }
 
   String getDateString() {
-    DateTime dateTime =
-        DateTime.fromMillisecondsSinceEpoch(int.parse(updatedAt));
-    String date =
-        "${dateTime.hour}:${dateTime.minute} - ${dateTime.day}.${dateTime.month}.${dateTime.year}";
+    String date = updatedAt.split("T")[0];
     return date;
   }
 }

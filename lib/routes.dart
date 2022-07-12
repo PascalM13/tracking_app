@@ -10,6 +10,7 @@ import 'package:tracking_app/screens/auth/verify_screen.dart';
 import 'package:tracking_app/screens/auth/welcome_screen.dart';
 import 'package:tracking_app/screens/history_screen.dart';
 import 'package:tracking_app/screens/home_screen.dart';
+import 'package:tracking_app/screens/news_screen.dart';
 import 'package:tracking_app/screens/profile_screen.dart';
 
 class RouterManager {
@@ -19,6 +20,7 @@ class RouterManager {
   static const String activityScreen = '/activity';
   static const String historyScreen = '/history';
   static const String profileScreen = '/profile';
+  static const String newsScreen = '/news';
 
   //Auth Screens
   static const String welcomeScreen = '/';
@@ -85,6 +87,11 @@ class RouterManager {
       case loginForgotPasswordVerifyScreen:
         return MaterialPageRoute(
           builder: (context) => const LoginForgotPasswordVerifyScreen(),
+        );
+
+      case newsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const NewsScreen(),
         );
 
       case registerPersonalScreen:

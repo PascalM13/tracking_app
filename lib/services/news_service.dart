@@ -6,8 +6,8 @@ import 'package:tracking_app/models/project/project_model.dart';
 import 'package:tracking_app/services/project_service.dart';
 import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 
-class UniversityService {
-  const UniversityService();
+class NewsService {
+  const NewsService();
 
   ///Get-Request which returns all News
   Future<List<NewsModel>> getNews() async {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/screens/activity_screen.dart';
 import 'package:tracking_app/screens/history_screen.dart';
 import 'package:tracking_app/screens/home_screen.dart';
+import 'package:tracking_app/screens/news_screen.dart';
 import 'package:tracking_app/screens/profile_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 
@@ -23,6 +24,9 @@ class _NavScreenState extends State<NavScreen> {
           child: HomeScreen(),
         ),
         Center(
+          child: NewsScreen(),
+        ),
+        Center(
           child: ActivityScreen(),
         ),
         Center(
@@ -38,6 +42,7 @@ class _NavScreenState extends State<NavScreen> {
   Widget getFooter() {
     const List<IconData> icons = [
       IconData(0xe318, fontFamily: 'MaterialIcons'),
+      IconData(0xf0541, fontFamily: 'MaterialIcons'),
       IconData(0xf86b, fontFamily: 'MaterialIcons'),
       IconData(0xe314, fontFamily: 'MaterialIcons'),
       IconData(0xe491, fontFamily: 'MaterialIcons')

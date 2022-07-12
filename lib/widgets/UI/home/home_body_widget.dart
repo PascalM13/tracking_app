@@ -17,7 +17,7 @@ class HomeBodyWidget extends StatefulWidget {
 }
 
 class _HomeBodyWidgetState extends State<HomeBodyWidget> {
-  final Future<List<NewsModel>> _newsList = const UniversityService().getNews();
+  final Future<List<NewsModel>> _newsList = const NewsService().getNews();
   String _studyname = "";
   List allNews = [];
 
