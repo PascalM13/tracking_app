@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/news/news_model.dart';
+import 'package:tracking_app/screens/news_info_screen.dart';
 
 class NewsCardWidget extends StatefulWidget {
   final NewsModel newsModel;
@@ -21,60 +22,70 @@ class _NewsCardWidgetState extends State<NewsCardWidget> {
         ),
         elevation: 4.0,
         margin: EdgeInsets.fromLTRB(size.width * 0.03, 0, size.width * 0.03, 0),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: const CircleAvatar(
-                  radius: 30,
-                  backgroundImage: NetworkImage(
-                      "https://images.unsplash.com/photo-1604313890727-5542ff314405?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
-                ),
-                title: Text(
-                  widget.newsModel.title,
-                  style: const TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54),
-                ),
-                subtitle: RichText(
-                  text: TextSpan(
-                    children: [
-                      const WidgetSpan(
-                        child: Icon(
-                          Icons.person,
-                          size: 16,
-                          color: Colors.black54,
+        child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return NewsInfoScreen(
+                newsModel: widget.newsModel,
+              );
+            }));
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: const CircleAvatar(
+                    radius: 30,
+                    backgroundImage: NetworkImage(
+                        "https://images.unsplash.com/photo-1604313890727-5542ff314405?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
+                  ),
+                  title: Text(
+                    widget.newsModel.title,
+                    style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black54),
+                  ),
+                  subtitle: RichText(
+                    text: TextSpan(
+                      children: [
+                        const WidgetSpan(
+                          child: Icon(
+                            Icons.person,
+                            size: 16,
+                            color: Colors.black54,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: "${widget.newsModel.author}  ",
-                        style: const TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black54),
-                      ),
-                      const WidgetSpan(
-                        child: Icon(
-                          Icons.calendar_month,
-                          size: 16,
-                          color: Colors.black54,
+                        TextSpan(
+                          text: "${widget.newsModel.author}  ",
+                          style: const TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black54),
                         ),
-                      ),
-                      TextSpan(
-                        text: widget.newsModel.getDateString(),
-                        style: const TextStyle(
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black54),
-                      ),
-                    ],
+                        const WidgetSpan(
+                          child: Icon(
+                            Icons.calendar_month,
+                            size: 16,
+                            color: Colors.black54,
+                          ),
+                        ),
+                        TextSpan(
+                          text: widget.newsModel.getDateString(),
+                          style: const TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.black54),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
