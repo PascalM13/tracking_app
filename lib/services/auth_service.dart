@@ -40,9 +40,9 @@ class AuthService {
     final res =
         await const ApiServiceHelper().createPostRequest(url, dto, false);
 
-    if (res.statusCode == 201) {
-      return res.statusCode;
-    } else if (res.statusCode == 409) {
+    if (res.statusCode == 201 ||
+        res.statusCode == 409 ||
+        res.statusCode == 400) {
       return res.statusCode;
     } else {
       throw Exception('Failed to sign up');

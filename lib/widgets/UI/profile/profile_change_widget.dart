@@ -94,7 +94,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
     });
   }
 
-  Future<void> _updateUserInfo() async {
+  Future<bool> _updateUserInfo() async {
     //Parse only if its not empty
     final int? parsedHeight = _heightController.text.trim().isNotEmpty
         ? int.parse(_heightController.text.trim())
@@ -103,6 +103,31 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
     final int? parsedWeight = _weightController.text.trim().isNotEmpty
         ? int.parse(_weightController.text.trim())
         : null;
+
+    //Validation of Height und Weight
+    if (parsedHeight != null && (parsedHeight <= 120 || parsedHeight >= 230)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Please use a valid Height in cm"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+
+      return false;
+    }
+
+    if (parsedWeight != null && (parsedWeight <= 35 || parsedWeight >= 230)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Please use a valid Weight in cm"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+
+      return false;
+    }
 
     final String? parsedGender =
         gender == "---" || gender == null ? null : gender!.toUpperCase();
@@ -147,6 +172,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
       UserModel userInfos = await UserService()
           .updateUser({"weight": int.parse(_weightController.text.trim())});
     }
+    return true;
   }
 
   //Function to chance the profile
@@ -253,13 +279,15 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
           RoundedButtonWidget(
               text: 'Save information',
               onPress: () async {
-                await _updateUserInfo();
-                _changeProfile();
+                bool validation = await _updateUserInfo();
+                if (validation == true) {
+                  _changeProfile();
 
-                if (!mounted) return;
+                  if (!mounted) return;
 
-                Navigator.pushNamedAndRemoveUntil(
-                    context, '/nav', ModalRoute.withName('/'));
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/nav', ModalRoute.withName('/'));
+                }
               },
               color: accentColor,
               textColor: Colors.white),

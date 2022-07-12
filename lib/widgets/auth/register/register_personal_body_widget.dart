@@ -84,6 +84,31 @@ class _RegisterPersonalBodyWidgetState
         ? int.parse(_weightController.text.trim())
         : null;
 
+    // Validate Height and Weight
+    if (parsedHeight != null && (parsedHeight <= 120 || parsedHeight >= 230)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Please use a valid Height in cm"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+
+      return;
+    }
+
+    if (parsedWeight != null && (parsedWeight <= 35 || parsedWeight >= 230)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text("Please use a valid Weight in cm"),
+        backgroundColor: accentColor,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        behavior: SnackBarBehavior.floating,
+      ));
+
+      return;
+    }
+
     final String? parsedGender =
         gender == "---" || gender == null ? null : gender!.toUpperCase();
 
@@ -129,7 +154,7 @@ class _RegisterPersonalBodyWidgetState
       ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: const Text("Error - Please fill out all mandatory fields"),
+        content: const Text("Error - Check Project Code"),
         backgroundColor: accentColor,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
