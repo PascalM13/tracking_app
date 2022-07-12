@@ -43,6 +43,9 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const SizedBox(
+            height: 60,
+          ),
           const Text(
             "Welcome to the study",
             style: TextStyle(
