@@ -172,7 +172,15 @@ class _RegisterPersonalBodyWidgetState
               inputController: _lastNameController,
               keyboardtType: TextInputType.name),
           const SizedBox(
-            height: 10,
+            height: 15,
+          ),
+          InputFieldWidget(
+              hintText: "Project Code",
+              icon: Icons.code,
+              inputController: _projectTokenController,
+              keyboardtType: TextInputType.name),
+          const SizedBox(
+            height: 15,
           ),
           const Text("Optional",
               style: TextStyle(
@@ -256,14 +264,6 @@ class _RegisterPersonalBodyWidgetState
               ),
             ],
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          InputFieldWidget(
-              hintText: "Project Code",
-              icon: Icons.code,
-              inputController: _projectTokenController,
-              keyboardtType: TextInputType.name),
           const SizedBox(
             height: 30,
           ),

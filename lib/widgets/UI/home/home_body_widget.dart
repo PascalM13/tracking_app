@@ -120,9 +120,6 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: Column(
-                                  //color: secondery,
-                                  //width: (size.width / 2) - 30,
-                                  //height: 100,
                                   children: [
                                     const Divider(
                                         color: Colors.black45, thickness: 1),
@@ -131,7 +128,6 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                                       overflow: TextOverflow.visible,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          //height: 1.5,
                                           color: Colors.black,
                                           fontSize: 15.0),
                                       textAlign: TextAlign.center,
@@ -144,7 +140,6 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                                       overflow: TextOverflow.visible,
                                       style: const TextStyle(
                                           fontStyle: FontStyle.italic,
-                                          //height: 1.5,
                                           color: Colors.black,
                                           fontSize: 14.0),
                                       textAlign: TextAlign.center,
@@ -156,10 +151,7 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                                       news.text,
                                       overflow: TextOverflow.visible,
                                       style: const TextStyle(
-                                          //fontWeight: FontWeight.bold,
-                                          //height: 1.5,
-                                          color: Colors.black,
-                                          fontSize: 14.0),
+                                          color: Colors.black, fontSize: 14.0),
                                       textAlign: TextAlign.center,
                                     ),
                                     const Divider(
