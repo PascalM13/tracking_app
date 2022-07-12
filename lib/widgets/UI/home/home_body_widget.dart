@@ -4,9 +4,7 @@ import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart
 import 'package:tracking_app/widgets/UI/home/expansion_panel_list_widget.dart';
 import 'package:tracking_app/widgets/UI/home/percent_indicator_days_widget.dart';
 
-import '../../../models/news/news_model.dart';
 import '../../../models/project/project_model.dart';
-import '../../../services/news_service.dart';
 import '../../../services/project_service.dart';
 
 class HomeBodyWidget extends StatefulWidget {
@@ -17,13 +15,10 @@ class HomeBodyWidget extends StatefulWidget {
 }
 
 class _HomeBodyWidgetState extends State<HomeBodyWidget> {
-  final Future<List<NewsModel>> _newsList = const NewsService().getNews();
   String _studyname = "";
-  List allNews = [];
 
   void _getStudy() async {
     ProjectModel project = await const ProjectService().getProject();
-    //List<NewsModel> news = await const UniversityService().getNews();
 
     setState(() {
       _studyname = project.name;
@@ -92,106 +87,6 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
             height: 15,
           ),
 
-          const Text(
-            'Latest news:',
-            style: TextStyle(
-              height: 2.5,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              fontSize: 15.0,
-            ),
-            textAlign: TextAlign.center,
-          ),
-
-          Container(
-              padding: const EdgeInsets.all(10),
-              height: 250,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black45, width: 1.5)),
-              child: SingleChildScrollView(
-                  child: FutureBuilder(
-                      future: _newsList,
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<NewsModel>> snapshot) {
-                        List<Widget> children;
-                        if (snapshot.hasData) {
-                          children = <Widget>[
-                            for (NewsModel news in snapshot.data!.reversed)
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Column(
-                                  children: [
-                                    const Divider(
-                                        color: Colors.black45, thickness: 1),
-                                    Text(
-                                      news.title,
-                                      overflow: TextOverflow.visible,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 15.0),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(
-                                      height: 7,
-                                    ),
-                                    Text(
-                                      "created at: ${news.createdAt.substring(0, 10)}, by: ${news.author}",
-                                      overflow: TextOverflow.visible,
-                                      style: const TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          color: Colors.black,
-                                          fontSize: 14.0),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(
-                                      height: 7,
-                                    ),
-                                    Text(
-                                      news.text,
-                                      overflow: TextOverflow.visible,
-                                      style: const TextStyle(
-                                          color: Colors.black, fontSize: 14.0),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const Divider(
-                                        color: Colors.black45, thickness: 1),
-                                  ],
-                                ),
-                              ),
-                          ];
-                        } else if (snapshot.hasError) {
-                          children = <Widget>[
-                            const Icon(
-                              Icons.error_outline,
-                              color: Colors.red,
-                              size: 60,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 16),
-                              child: Text('Error: Failed to load News'),
-                            )
-                          ];
-                        } else {
-                          children = const <Widget>[
-                            SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: CircularProgressIndicator(),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 16),
-                              child: Text('Awaiting result...'),
-                            )
-                          ];
-                        }
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: children,
-                          ),
-                        );
-                      }))),
           const SizedBox(
             height: 15,
           ),
