@@ -3,6 +3,8 @@ import 'package:tracking_app/models/activity/activity_model.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 
+import '../activity_svg_widget.dart';
+
 class HistoryCardInfoWidget extends StatefulWidget {
   final ActivityModel activityModel;
   const HistoryCardInfoWidget({Key? key, required this.activityModel})
@@ -35,6 +37,10 @@ class _HistoryCardInfoWidgetState extends State<HistoryCardInfoWidget> {
                 color: Colors.black38,
                 fontSize: 20.0),
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          ActivitySVGWidget(activityName: widget.activityModel.activityName!),
           const SizedBox(
             height: 15,
           ),
