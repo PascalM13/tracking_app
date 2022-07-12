@@ -21,7 +21,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   final _lastNameController = TextEditingController();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
-  final _birthdateController = TextEditingController(text: "13/06/1999");
+  final _birthdateController = TextEditingController(text: "01/01/2000");
   // Controller for Address
   final _addressTownController = TextEditingController();
   final _addressZIPController = TextEditingController();
@@ -61,6 +61,9 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
         _dateofbirth = 'Date of birth';
       } else {
         _dateofbirth = tmp.birthday.toString();
+        DateTime dt =
+            DateTime.fromMillisecondsSinceEpoch(int.parse(_dateofbirth));
+        _birthdateController.text = "${dt.day}/${dt.month}/${dt.year}";
       }
 
       if (tmp.address == null) {
