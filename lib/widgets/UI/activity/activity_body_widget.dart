@@ -103,7 +103,8 @@ class _ActivityBodyWidgetState extends State<ActivityBodyWidget> {
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 16),
-                    child: Text('Error: Failed to load Activities'),
+                    child: Text(
+                        'Error: Failed to load Activities - Token Expired, please relog'),
                   )
                 ];
               } else {
