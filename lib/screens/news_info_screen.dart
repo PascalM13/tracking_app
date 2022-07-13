@@ -27,9 +27,9 @@ class _NewsInfoScreenState extends State<NewsInfoScreen> {
                 margin: EdgeInsets.symmetric(vertical: size.height * 0.045),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
+                  color: accentColor,
                   image: DecorationImage(
-                    image: NetworkImage(
-                        "https://images.unsplash.com/photo-1604313890727-5542ff314405?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
+                    image: AssetImage('assets/images/scientist.png'),
                   ),
                 )),
           ),

@@ -73,6 +73,7 @@ flutter:
     - assets/images/top_welcome_screen.png
     - assets/images/welcome_screen.png
     - assets/images/login_screen.jpg
+    - assets/images/scientist.png
     - assets/svgs/basketball.svg
     - assets/svgs/climbing.svg
     - assets/svgs/cycling.svg

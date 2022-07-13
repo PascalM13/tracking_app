@@ -51,7 +51,8 @@ class _NewsBodyWidgetState extends State<NewsBodyWidget> {
                       ),
                       const Padding(
                         padding: EdgeInsets.only(top: 16),
-                        child: Text('Error: Failed to load Activities'),
+                        child: Text(
+                            'Error: Failed to load News - Token Expired, please relog'),
                       )
                     ];
                   } else {

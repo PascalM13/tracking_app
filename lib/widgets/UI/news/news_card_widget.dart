@@ -39,8 +39,7 @@ class _NewsCardWidgetState extends State<NewsCardWidget> {
                 ListTile(
                   leading: const CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(
-                        "https://images.unsplash.com/photo-1604313890727-5542ff314405?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"),
+                    backgroundImage: AssetImage('assets/images/scientist.png'),
                   ),
                   title: Text(
                     widget.newsModel.title,
