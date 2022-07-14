@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Class which represents the UserModel
+///
+/// @author: PascalM13
 class UserModel {
   String? gender;
   String? address;
@@ -26,6 +29,7 @@ class UserModel {
       this.firstName,
       this.lastName});
 
+  /// Factory Method for parsing a Json Activity-Object to an object of type UserModel
   UserModel.fromJson(Map<String, dynamic> json) {
     if (json['birthday'] == null) {
       birthday = null;
@@ -46,6 +50,7 @@ class UserModel {
     lastName = json['lastName'];
   }
 
+  /// Method to generate an Object of class UserModel from a Json Object
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['gender'] = gender;
@@ -61,12 +66,14 @@ class UserModel {
     return data;
   }
 
+  /// Method to store the Current User in SharedPreferences
   Future<void> setCurrentUser(dynamic json) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String user = jsonEncode(UserModel.fromJson(json['user']));
     await pref.setString('user', user);
   }
 
+  /// Method to get User from SharedPreferences
   Future<UserModel> getCurrentUser() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     Map<String, dynamic> json = jsonDecode(pref.getString('user')!);

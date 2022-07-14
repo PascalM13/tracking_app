@@ -30,12 +30,10 @@ class _PercentIndicatorDayWidgetState extends State<PercentIndicatorDayWidget> {
       if (currentdateAsNumbers.compareTo(project.endDate) <= 0) {
         if (project.startDate.compareTo(currentdateAsNumbers) <= 0) {
           var diffStartNow = project.startDate.difference(currentdateAsNumbers);
-          var pastDays =
-              (diffStartNow.inDays * (-1) + 1); //TODO: Rechnung überprüfen
+          var pastDays = (diffStartNow.inDays * (-1) + 1);
 
           var diffStartEnd = project.startDate.difference(project.endDate);
-          var daysOfStudy =
-              (diffStartEnd.inDays * (-1) + 2); //TODO: Rechnung überprüfen
+          var daysOfStudy = (diffStartEnd.inDays * (-1) + 2);
           _progress = "You are on day $pastDays of $daysOfStudy";
           _drawnProgress = (pastDays / daysOfStudy);
         } else {

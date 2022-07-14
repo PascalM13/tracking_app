@@ -13,6 +13,9 @@ import 'package:tracking_app/screens/home_screen.dart';
 import 'package:tracking_app/screens/news_screen.dart';
 import 'package:tracking_app/screens/profile_screen.dart';
 
+/// Class which contains Constants for Routing
+///
+/// @author: PascalM13
 class RouterManager {
   //Non-Auth Screens
   static const String navScreen = '/nav';
@@ -32,6 +35,7 @@ class RouterManager {
   static const String registerPersonalScreen = '/register-personal';
   static const String verifyScreen = '/verify';
 
+  /// Generates Routes for Flutter Project and Flutter Routing, based on Names of the Routes
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case navScreen:

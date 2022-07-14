@@ -12,12 +12,9 @@ class PercentIndicatorActivityWidget extends StatefulWidget {
 
 class _PercentIndicatorActivityWidgetState
     extends State<PercentIndicatorActivityWidget> {
-  final double _drawnProgress =
-      0.56; //TODO: hier Fortschritt der Aktivität aus Datenbank eingeben
-  final String _progress =
-      '56 of 100 activities'; //TODO: hier die jeweilige Zahl aus der Datenbank einfügen
-  final String _target =
-      '100'; //TODO: hier die jeweilige Endzeit aus der Studie einfügen
+  final double _drawnProgress = 0.56;
+  final String _progress = '56 of 100 activities';
+  final String _target = '100';
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
