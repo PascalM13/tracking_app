@@ -11,6 +11,7 @@ import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_dropdown_gender_widget.dart';
 import 'package:tracking_app/widgets/auth/register/register_background_widget.dart';
 
+///widget where the user gives personal information about himself while registration
 class RegisterPersonalBodyWidget extends StatefulWidget {
   final String email;
   final String password;

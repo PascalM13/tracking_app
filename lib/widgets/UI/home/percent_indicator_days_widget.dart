@@ -13,6 +13,7 @@ class PercentIndicatorDayWidget extends StatefulWidget {
       _PercentIndicatorDayWidgetState();
 }
 
+///progress bar for counting the days of the study
 class _PercentIndicatorDayWidgetState extends State<PercentIndicatorDayWidget> {
   double _drawnProgress = 0;
   String _progress = '';

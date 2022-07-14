@@ -6,6 +6,7 @@ import 'package:tracking_app/widgets/auth/welcome/welcome_background_widget.dart
 
 import '../../UI/rounded_button_widget.dart';
 
+///widget where the user is welcomed
 class WelcomeBodyWidget extends StatelessWidget {
   const WelcomeBodyWidget({Key? key}) : super(key: key);
 

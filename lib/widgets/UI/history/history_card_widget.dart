@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/models/activity/activity_model.dart';
 import 'package:tracking_app/screens/history_card_screen.dart';
 
+///widget for creating a card which is shown in the history
 class HistoryCardWidget extends StatefulWidget {
   final ActivityModel activityModel;
   const HistoryCardWidget({Key? key, required this.activityModel})

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///widget for setting the background
 class ScreenBackgroundWidget extends StatelessWidget {
   final Widget child;
   const ScreenBackgroundWidget({Key? key, required this.child})

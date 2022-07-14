@@ -8,6 +8,8 @@ import 'package:tracking_app/widgets/auth/register/register_background_widget.da
 
 import '../../../screens/auth/register_personal_screen.dart';
 
+//widget for registration
+
 class RegisterBodyWidget extends StatefulWidget {
   const RegisterBodyWidget({Key? key}) : super(key: key);
 

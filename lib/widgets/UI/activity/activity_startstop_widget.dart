@@ -11,6 +11,7 @@ import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 import '../../../models/acitvity_type/activity_type_model.dart';
 
+///widget for starting and stopping the activity
 class ActivityStartStopWidget extends StatefulWidget {
   final ActivityTypeModel activity;
 

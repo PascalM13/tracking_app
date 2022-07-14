@@ -7,6 +7,7 @@ import 'package:tracking_app/widgets/UI/home/percent_indicator_days_widget.dart'
 import '../../../models/project/project_model.dart';
 import '../../../services/project_service.dart';
 
+///widget for the dashboard with headline and studyname
 class HomeBodyWidget extends StatefulWidget {
   const HomeBodyWidget({Key? key}) : super(key: key);
 
