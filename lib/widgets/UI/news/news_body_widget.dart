@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/models/news/news_model.dart';
-import 'package:tracking_app/screens/news_screen.dart';
 import 'package:tracking_app/services/news_service.dart';
 import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/news/news_card_widget.dart';
 
+/// Widget.class to Generate the Body of News-screen
 class NewsBodyWidget extends StatefulWidget {
   const NewsBodyWidget({Key? key}) : super(key: key);
 

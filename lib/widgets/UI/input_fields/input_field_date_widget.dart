@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/widgets/UI/input_fields/input_field_widget_container.dart';
 
+/// Widget-class for creating an Input Field with rounded corners and a uniformed style, which allows Date Only
 class InputFieldDateWidget extends StatefulWidget {
   final TextEditingController inputController;
   final double inputWidth;

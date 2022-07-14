@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../theme/colors.dart';
 
+//Widget-Container for uniformly styling of Input Fields
 class InputFieldWidgetContainer extends StatelessWidget {
   final double inputWidth;
   final Widget child;

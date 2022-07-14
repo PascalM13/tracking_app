@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'input_field_widget_container.dart';
 
-// ignore: must_be_immutable
+/// Widget-class to create a default input field
 class InputFieldWidget extends StatefulWidget {
   final String hintText;
   final IconData icon;

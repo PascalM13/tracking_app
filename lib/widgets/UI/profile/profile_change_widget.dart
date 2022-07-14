@@ -9,6 +9,7 @@ import 'package:tracking_app/widgets/UI/rounded_dropdown_gender_widget.dart';
 
 import '../../../models/user/user_model.dart';
 
+/// Widget-Class for updating the profile of the user
 class ProfileChangeWidget extends StatefulWidget {
   const ProfileChangeWidget({Key? key}) : super(key: key);
 
@@ -44,6 +45,7 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
     _getUser();
   }
 
+  /// Function to get the current user and fill its values into class atoms
   void _getUser() async {
     UserModel tmp = await UserModel().getCurrentUser();
     setState(() {

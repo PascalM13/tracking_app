@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tracking_app/models/news/news_model.dart';
 import 'package:tracking_app/screens/news_info_screen.dart';
 
+/// Widget-class to display the News from DB as a Card
 class NewsCardWidget extends StatefulWidget {
   final NewsModel newsModel;
   const NewsCardWidget({Key? key, required this.newsModel}) : super(key: key);

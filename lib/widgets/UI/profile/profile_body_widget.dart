@@ -7,6 +7,7 @@ import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 import '../../../models/user/user_model.dart';
 
+/// Widget-class for displaying the body with attributes of the User
 class ProfileBodyWidget extends StatefulWidget {
   const ProfileBodyWidget({Key? key}) : super(key: key);
 
@@ -20,6 +21,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
     super.initState();
   }
 
+  /// Helper Function the display the User Date as String from TimeStamp
   displayBirthday(int timeStamp) {
     DateTime dt = DateTime.fromMillisecondsSinceEpoch(timeStamp);
     return "${dt.day}.${dt.month}.${dt.year}";
