@@ -7,6 +7,7 @@ import 'package:tracking_app/widgets/UI/input_fields/input_field_widget.dart';
 import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 import 'package:tracking_app/widgets/auth/login/login_forgot_password_background_widget.dart';
 
+///widget which is shown when password is forgotten and the user has to verify the new password
 class LoginForgotPasswordVerifyBodyWidget extends StatefulWidget {
   const LoginForgotPasswordVerifyBodyWidget({Key? key}) : super(key: key);
 

@@ -3,6 +3,7 @@ import 'package:tracking_app/theme/colors.dart';
 
 import '../models/news/news_model.dart';
 
+///Screen for the detailled view of the news, where the widget is opened
 class NewsInfoScreen extends StatefulWidget {
   final NewsModel newsModel;
   const NewsInfoScreen({Key? key, required this.newsModel}) : super(key: key);
