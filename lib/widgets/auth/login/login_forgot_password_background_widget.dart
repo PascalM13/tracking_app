@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///widget for setting the background when password is forgotten
 class LoginForgotPasswordBackgroundWidget extends StatelessWidget {
   final Widget child;
   const LoginForgotPasswordBackgroundWidget({Key? key, required this.child})

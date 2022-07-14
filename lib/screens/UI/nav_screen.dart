@@ -6,6 +6,7 @@ import 'package:tracking_app/screens/news_screen.dart';
 import 'package:tracking_app/screens/profile_screen.dart';
 import 'package:tracking_app/theme/colors.dart';
 
+///Screen to navigate through the app using the navigation bar
 class NavScreen extends StatefulWidget {
   const NavScreen({Key? key}) : super(key: key);
 

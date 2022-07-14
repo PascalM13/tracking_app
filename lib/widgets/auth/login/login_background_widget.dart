@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///widget for setting the background to login
 class LoginBackgroundWidget extends StatelessWidget {
   final Widget child;
   const LoginBackgroundWidget({Key? key, required this.child})

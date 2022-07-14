@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/auth/login/login_forgot_password_verify_body_widget.dart';
 
+///Screen for verifying the password while login, where the widget is opened
 class LoginForgotPasswordVerifyScreen extends StatefulWidget {
   const LoginForgotPasswordVerifyScreen({Key? key}) : super(key: key);
 

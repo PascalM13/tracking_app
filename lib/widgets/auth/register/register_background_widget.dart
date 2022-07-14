@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///widget for setting the background in registration
 class RegisterBackgroundWidget extends StatelessWidget {
   final Widget child;
   const RegisterBackgroundWidget({Key? key, required this.child})

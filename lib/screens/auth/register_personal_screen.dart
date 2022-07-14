@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/auth/register/register_personal_body_widget.dart';
 
+///Screen for register personal information, where the widget is opened
 class RegisterPersonalScreen extends StatelessWidget {
   final String email;
   final String password;
