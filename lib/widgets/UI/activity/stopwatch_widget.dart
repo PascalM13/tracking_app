@@ -30,7 +30,7 @@ class _StopWatchWidgetState extends State<StopWatchWidget> {
   final StopWatchTimer _stopWatchTimer = StopWatchTimer();
   final _isHours = true;
   bool isStartButtonVisible = true;
-  double userWeight = 65.00;
+  double userWeight = 70.00;
 
   //Variables for Start and Stop Button
   bool startIsDisabled = false;

@@ -27,7 +27,6 @@ class ActivityTypeModel {
         minutes * caloriesConsumption +
         seconds * caloriesPerSecond;
 
-    double userWeight = 70.00;
     return (calories * userWeight).toStringAsFixed(2);
   }
 }
