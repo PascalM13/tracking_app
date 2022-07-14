@@ -3,6 +3,7 @@ import 'package:tracking_app/theme/colors.dart';
 
 import '../../models/acitvity_type/activity_type_model.dart';
 
+/// Widget-Class for Displaying a Rounded Dropdown Button, to select a Activity
 class RoundedDropdownActivityWidget extends StatefulWidget {
   final Function setActivity;
   final List<ActivityTypeModel> activityList;

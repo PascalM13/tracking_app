@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:tracking_app/theme/colors.dart';
 
+/// Widget-Class to load a SVG for a given Activity, by trying to get a svg from Acitivity Name, if no assets has been found, it retruns a default svg
 class ActivitySVGWidget extends StatefulWidget {
   final String activityName;
   const ActivitySVGWidget({Key? key, required this.activityName})

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tracking_app/theme/colors.dart';
 
+/// Widget-Class for Displaying a Rounded Dropdown Button, to select a gender
 class RoundedDropdownGenderWidget extends StatefulWidget {
   final Function setGender;
   const RoundedDropdownGenderWidget({Key? key, required this.setGender})

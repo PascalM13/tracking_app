@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Widget-Class for Wrapping a Rounded Button, to have an uniformly disigned button
 class RoundedButtonWidget extends StatelessWidget {
   final String text;
   final VoidCallback onPress;

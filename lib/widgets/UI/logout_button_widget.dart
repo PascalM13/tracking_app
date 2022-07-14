@@ -5,6 +5,7 @@ import 'package:tracking_app/widgets/UI/rounded_button_widget.dart';
 
 import '../../theme/colors.dart';
 
+/// Widget-Class for creating a logout button
 class LogoutButtonWidget extends StatefulWidget {
   const LogoutButtonWidget({Key? key}) : super(key: key);
 
