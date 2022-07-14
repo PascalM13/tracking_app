@@ -17,12 +17,6 @@ class _ExpansionPanelListWidgetState extends State<ExpansionPanelListWidget> {
   String _studydescription = "";
   String _startdate = "";
   String _enddate = "";
-  /*final String _name =
-      'Professor Schlau'; //TODO: hier Name der Kontaktperson einfügen
-  final String _university =
-      'University of Siegen'; //TODO: hier Universität der Kontaktperson einfügen
-  final String _contact =
-      'Tel: 01234-56789'; //TODO: hier Konakt der Kontaktperson einfügen*/
 
   void _getStudyInformation() async {
     ProjectModel project = await const ProjectService().getProject();
@@ -139,78 +133,6 @@ class _ExpansionPanelListWidgetState extends State<ExpansionPanelListWidget> {
                       isExpanded: _isVisible[1],
                       canTapOnHeader: true,
                     ),
-                    /*
-                    ExpansionPanel(
-                      backgroundColor: secondery,
-                      headerBuilder: (context, isVisible) {
-                        return const Text(
-                          'Contact person',
-                          style: TextStyle(
-                              height: 2.5,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 15.0),
-                          textAlign: TextAlign.center,
-                        );
-                      },
-                      body: Container(
-                        padding: const EdgeInsets.all(20),
-                        child: Row(
-                          children: [
-                            Column(
-                              children: const [
-                                Text(
-                                  'Name:',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14.0),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                  'University:',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14.0),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                  'Contact:',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 14.0),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              width: 50,
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  _name,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 14.0),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                  _university,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 14.0),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                  _contact,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 14.0),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      isExpanded: _isVisible[1],
-                      canTapOnHeader: true,
-                    ),
-                    */
                   ],
                   expansionCallback: (int index, isVisible) =>
                       setState(() => _isVisible[index] = !isVisible),

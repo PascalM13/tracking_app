@@ -14,8 +14,6 @@ class ApiConstants {
   static String actity = 'activity/';
   //Constant for News
   static String news = 'news/';
-  //Constant for University
-  static String university = 'university/';
   //Constants for User
   static String userUpdate = 'user/update';
   static String userUpdatePassword = 'user/update/password';

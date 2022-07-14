@@ -14,7 +14,7 @@ class ProjectService {
       final responseJson = jsonDecode(res.body);
       return ProjectModel.fromJson(responseJson[0]);
     } else {
-      throw Exception('Failed to load University ');
+      throw Exception('Failed to load Project ');
     }
   }
 }
