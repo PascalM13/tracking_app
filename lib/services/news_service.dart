@@ -6,6 +6,9 @@ import 'package:tracking_app/models/project/project_model.dart';
 import 'package:tracking_app/services/project_service.dart';
 import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 
+/// Serviceclass to create necessary request of Databasetable News
+///
+/// @author: PascalM13
 class NewsService {
   const NewsService();
 

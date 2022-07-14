@@ -10,6 +10,9 @@ import 'package:tracking_app/models/auth/sign_up_dto.dart';
 import 'package:tracking_app/models/user/user_model.dart';
 import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 
+/// Serviceclass to create necessary Auth-Requests from Backend
+///
+/// @author: PascalM13
 class AuthService {
   const AuthService();
 

@@ -1,3 +1,6 @@
+/// Class which serves as a Data Transfer Object for sending a SignUp Request to the Backend
+///
+/// @author: PascalM13
 class SignUpDto {
   //Required
   final String email;
@@ -26,6 +29,7 @@ class SignUpDto {
     this.weight,
   });
 
+  //Function to create a Json from an object of class SignUpDto
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['email'] = email.toLowerCase();

@@ -1,5 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+/// Helperclass to validate Token of FlutterSecureStorage
+///
+/// @author: PascalM13
 class TokenService {
   bool status = false;
 

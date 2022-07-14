@@ -8,6 +8,9 @@ import 'package:tracking_app/models/user/user_model.dart';
 import 'package:tracking_app/services/acitivity_type_service.dart';
 import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 
+/// Serviceclass to create necessary request of Databasetable Activity
+///
+/// @author: PascalM13
 class ActivityService {
   const ActivityService();
 
@@ -53,6 +56,7 @@ class ActivityService {
     }
   }
 
+  ///Post-Request for ceating a new Activity
   Future<ActivityModel> createActivity(ActivityDto dto) async {
     final String url = ApiConstants.actity;
     final res =
@@ -71,6 +75,7 @@ class ActivityService {
     }
   }
 
+  ///Patch-Request for updating an Activity
   Future<ActivityModel> updateActivity(
       Map<String, dynamic> changedAttributes, int id) async {
     final String url = '${ApiConstants.actity}$id';

@@ -1,3 +1,6 @@
+/// Class which represents the NewsModel
+///
+/// @author: frieda98
 class ProjectModel {
   final int id;
   final DateTime startDate;
@@ -12,6 +15,7 @@ class ProjectModel {
       required this.name,
       required this.description});
 
+  /// Factory Method for parsing a Json Activity-Object to an object of type ProjectModel
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     var dtStart =
         DateTime.fromMillisecondsSinceEpoch(int.parse(json['start_date']));

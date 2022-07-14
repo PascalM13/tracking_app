@@ -1,3 +1,6 @@
+/// Class which serves as a Data Transfer Object for sending a Activity to the Backend
+///
+/// @author: PascalM13
 class ActivityDto {
   int startDate;
   int endDate;
@@ -20,6 +23,7 @@ class ActivityDto {
       required this.activityTypeId,
       required this.projectId});
 
+  //Function to create a Json from an object of class ActivityDto
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['start_date'] = startDate;

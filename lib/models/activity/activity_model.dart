@@ -1,5 +1,6 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
-
+/// Class which represents the ActivityModel
+///
+/// @author: PascalM13
 class ActivityModel {
   final int id;
   final int startDate;
@@ -23,6 +24,7 @@ class ActivityModel {
       required this.activityTypeId,
       this.activityName});
 
+  /// Factory Method for parsing a Json Activity-Object to an object of type ActivityModel
   factory ActivityModel.fromJson(Map<String, dynamic> json) {
     return ActivityModel(
       id: json['id'],
@@ -36,12 +38,14 @@ class ActivityModel {
     );
   }
 
+  /// Function to get a String from start_date day.month.year
   String getDateString() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(startDate);
     String date = "${dateTime.day}.${dateTime.month}.${dateTime.year}";
     return date;
   }
 
+  /// Function to get the StartTime String from a Timestamp
   String getStartTimeString() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(startDate);
     String hour = dateTime.hour.toString();
@@ -59,6 +63,7 @@ class ActivityModel {
     return date;
   }
 
+  /// Function to get the EndTime String from a Timestamp
   String getEndTimeString() {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(endDate);
     String hour = dateTime.hour.toString();
@@ -76,6 +81,7 @@ class ActivityModel {
     return date;
   }
 
+  /// Function to get the Duration of the Activity by subtracting the end and start date
   String getDuration() {
     DateTime dateTime =
         DateTime.fromMillisecondsSinceEpoch(endDate - startDate);

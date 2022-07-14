@@ -7,6 +7,7 @@ import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 class ProjectService {
   const ProjectService();
 
+  ///Get-Request which returns the current project of the User
   Future<ProjectModel> getProject() async {
     final String url = ApiConstants.projectAll;
     final res = await const ApiServiceHelper().createGetRequest(url, true);

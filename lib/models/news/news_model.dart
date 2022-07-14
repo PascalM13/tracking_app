@@ -1,3 +1,6 @@
+/// Class which represents the NewsModel
+///
+/// @author: PascalM13
 class NewsModel {
   final int id;
   final String createdAt;
@@ -14,6 +17,7 @@ class NewsModel {
       required this.text,
       required this.author});
 
+  /// Factory Method for parsing a Json Activity-Object to an object of type NewsModel
   factory NewsModel.fromJson(Map<String, dynamic> json) {
     return NewsModel(
         id: json['id'],
@@ -24,6 +28,7 @@ class NewsModel {
         author: json['user_firstname'] + " " + json['user_lastname']);
   }
 
+  /// Function to get a String from date
   String getDateString() {
     String date = updatedAt.split("T")[0];
     return date;

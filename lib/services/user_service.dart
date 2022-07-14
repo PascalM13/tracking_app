@@ -6,8 +6,11 @@ import 'package:tracking_app/models/user/update_user_password_dto.dart';
 import 'package:tracking_app/models/user/user_model.dart';
 import 'package:tracking_app/services/service_helper/api_service_helper.dart';
 
+/// Serviceclass to create necessary request of Databasetable Activity
+///
+/// @author: PascalM13
 class UserService {
-  ///Http-Post-Request
+  ///Http-Post-Request to update the Password of the User
   Future<int> updatePassword(UpdateUserPasswordDto dto) async {
     final String url = ApiConstants.userUpdatePassword;
     final res =
@@ -19,7 +22,7 @@ class UserService {
     }
   }
 
-  ///Http-Post-Request
+  ///Http-Post-Request update the Email of the User
   Future<int> updateEmail(UpdateUserMailDto dto) async {
     final String url = ApiConstants.userUpdateEmail;
     final res =
@@ -31,7 +34,7 @@ class UserService {
     }
   }
 
-  ///Http-Patch-Request
+  ///Http-Patch-Request to update the User
   Future<UserModel> updateUser(Map<String, dynamic> changedAttributes) async {
     final String url = ApiConstants.userUpdate;
     final res = await const ApiServiceHelper()

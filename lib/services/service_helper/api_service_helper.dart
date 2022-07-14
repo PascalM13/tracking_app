@@ -5,6 +5,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:tracking_app/api_constans.dart';
 import 'package:http/http.dart' as http;
 
+/// Helperclass to create Base CRUD Operations for different Services
+///
+/// @author: PascalM13
+
 class ApiServiceHelper {
   const ApiServiceHelper();
 
