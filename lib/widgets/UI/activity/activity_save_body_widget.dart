@@ -11,6 +11,8 @@ import '../../../theme/colors.dart';
 import '../rounded_button_widget.dart';
 
 // ignore: must_be_immutable
+
+///widget for adding further information and saving the activity
 class ActivitySaveBodyWidget extends StatefulWidget {
   int? steps;
   final String duration;

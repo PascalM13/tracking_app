@@ -8,6 +8,7 @@ import '../background/screen_background_widget.dart';
 import '../rounded_button_widget.dart';
 import '../rounded_dropdown_activity_widget.dart';
 
+///widget for chosing the activity
 class ActivityBodyWidget extends StatefulWidget {
   const ActivityBodyWidget({Key? key}) : super(key: key);
 

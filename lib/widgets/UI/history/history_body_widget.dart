@@ -5,6 +5,7 @@ import 'package:tracking_app/theme/colors.dart';
 import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart';
 import 'package:tracking_app/widgets/UI/history/history_card_widget.dart';
 
+///widget for displaying the list of past activities consisting of Cards
 class HistoryBodyWidget extends StatefulWidget {
   const HistoryBodyWidget({Key? key}) : super(key: key);
 

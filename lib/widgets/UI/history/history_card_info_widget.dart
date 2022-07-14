@@ -5,6 +5,8 @@ import 'package:tracking_app/widgets/UI/background/screen_background_widget.dart
 
 import '../activity_svg_widget.dart';
 
+///widget to get more information about the past activity,
+///which the user has chosen from the history
 class HistoryCardInfoWidget extends StatefulWidget {
   final ActivityModel activityModel;
   const HistoryCardInfoWidget({Key? key, required this.activityModel})

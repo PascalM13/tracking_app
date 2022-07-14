@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:tracking_app/theme/colors.dart';
 
+///progress bar for counting activities
 class PercentIndicatorActivityWidget extends StatefulWidget {
   const PercentIndicatorActivityWidget({Key? key}) : super(key: key);
 

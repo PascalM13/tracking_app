@@ -7,6 +7,8 @@ import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 // ignore: must_be_immutable
+
+///widget for the pedometer which counts the steps of the users
 class PedometerWidget extends StatefulWidget {
   Function getPedometerIsDisabled;
   Function calcSteps;

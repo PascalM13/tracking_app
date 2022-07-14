@@ -5,6 +5,7 @@ import '../../../theme/colors.dart';
 import '../../UI/input_fields/input_field_widget.dart';
 import '../../UI/rounded_button_widget.dart';
 
+///widget for verifying the registration
 class VerifyBodyWidget extends StatefulWidget {
   const VerifyBodyWidget({Key? key}) : super(key: key);
 

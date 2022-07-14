@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+///widget for setting the background to welcome
 class WelcomeBackgroundWidget extends StatelessWidget {
   final Widget child;
   const WelcomeBackgroundWidget({

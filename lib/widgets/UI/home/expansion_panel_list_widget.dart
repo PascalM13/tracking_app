@@ -4,6 +4,8 @@ import 'package:tracking_app/theme/colors.dart';
 import '../../../models/project/project_model.dart';
 import '../../../services/project_service.dart';
 
+///widget where the studydescription and the other information
+///are shown in expansion panels
 class ExpansionPanelListWidget extends StatefulWidget {
   const ExpansionPanelListWidget({Key? key}) : super(key: key);
 

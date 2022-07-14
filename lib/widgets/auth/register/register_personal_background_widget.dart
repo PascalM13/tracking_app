@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+///widget for setting the background to registration
+///where the user gives more information about himself
 class RegisterBackgroundWidget extends StatelessWidget {
   final Widget child;
   const RegisterBackgroundWidget({Key? key, required this.child})
