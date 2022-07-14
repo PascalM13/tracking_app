@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 import 'dart:io';
 
@@ -6,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-// ignore: must_be_immutable
-
 ///widget for the pedometer which counts the steps of the users
+// ignore: must_be_immutable
 class PedometerWidget extends StatefulWidget {
   Function getPedometerIsDisabled;
   Function calcSteps;

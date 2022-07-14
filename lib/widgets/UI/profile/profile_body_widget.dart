@@ -232,7 +232,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                           ),
                         ];
                       } else {
-                        children = <Widget>[Text("Loading...")];
+                        children = <Widget>[const Text("Loading...")];
                       }
                       return Center(
                         child: Column(

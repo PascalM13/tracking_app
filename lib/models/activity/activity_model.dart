@@ -1,6 +1,8 @@
 /// Class which represents the ActivityModel
 ///
 /// @author: PascalM13
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 class ActivityModel {
   final int id;
   final int startDate;

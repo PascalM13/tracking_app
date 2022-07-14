@@ -17,6 +17,7 @@ class ActivitySVGWidget extends StatefulWidget {
 class _ActivitySVGWidgetState extends State<ActivitySVGWidget> {
   Future myLoadAsset(String name) async {
     try {
+      // ignore: unused_local_variable
       String activityName = name.toLowerCase();
       String assetPath = "assets/svgs/${widget.activityName.toLowerCase()}.svg";
       String rootBudle = await rootBundle.loadString(assetPath);

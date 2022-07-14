@@ -24,9 +24,6 @@ class _ProfileChangeWidgetState extends State<ProfileChangeWidget> {
   final _weightController = TextEditingController();
   final _birthdateController = TextEditingController(text: "01/01/2000");
   // Controller for Address
-  final _addressTownController = TextEditingController();
-  final _addressZIPController = TextEditingController();
-  final _addressStreetController = TextEditingController();
   final _addressController = TextEditingController();
 
   String? gender;

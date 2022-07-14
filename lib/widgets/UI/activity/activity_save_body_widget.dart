@@ -10,9 +10,8 @@ import '../../../models/user/user_model.dart';
 import '../../../theme/colors.dart';
 import '../rounded_button_widget.dart';
 
-// ignore: must_be_immutable
-
 ///widget for adding further information and saving the activity
+// ignore: must_be_immutable
 class ActivitySaveBodyWidget extends StatefulWidget {
   int? steps;
   final String duration;
@@ -40,7 +39,7 @@ class _ActivitySaveBodyWidgetState extends State<ActivitySaveBodyWidget> {
 
   _saveActivity() async {
     var user = await UserModel().getCurrentUser();
-    var project = await ProjectService().getProject();
+    var project = await const ProjectService().getProject();
 
     var dto = ActivityDto(
         startDate: widget.start.millisecondsSinceEpoch,

@@ -7,9 +7,8 @@ import 'package:tracking_app/theme/colors.dart';
 
 import '../round_button_icon_widget.dart';
 
-// ignore: must_be_immutable
-
 ///widget to show, to start and to stop the stopwatch
+// ignore: must_be_immutable
 class StopWatchWidget extends StatefulWidget {
   DurationWrapper stopWatchTime;
   Function setSaveActivityIsDisabled;
